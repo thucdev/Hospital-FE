@@ -1,0 +1,106 @@
+{
+    "homeheader": {
+        "specialty": "Medical specialty"
+
+
+    },
+
+
+    "banner":{
+        "title1":"MEDICAL PLATFORM",
+        "title2":"COMPREHENSIVE HEALTH CARE",
+        "child1": "Remote examination",
+        "child2": "General examination",
+        "child3": "Medical test",
+        "child4": "Specialized examination",
+        "child5": "Mental health",
+        "child6": "Dental examination"
+
+    },
+
+    "menu": {
+
+        "admin": {
+                "manage-user": "Users System",
+                "manage-doctor": "Manage doctor",
+                "manage-admin": "Manage admin",
+                "crud": "CRUD user",
+                "crud-redux": "CRUD redux",
+                "clinic": "Clinic",
+                "manage-clinic": "Manage Clinic",
+                "specialty":"Specialties",
+                "manage-specialty":"Manage Specialties",
+                "handbook":"Handbook",
+                "manage-handbook":"Manage handbook"
+            },
+            "doctor":{
+                "manage-schedule":"Manage doctor's schedule",
+                "manage-patient":"Manage patient's schedule"
+
+            }
+    },
+
+    "manage-user":{
+        "add":"Add new user",
+        "email":"Email",
+        "password":"Password",
+        "first-name":"First Name",
+        "last-name":"Last Name",
+        "phone-number":"Phone Number",
+        "address":"Address",
+        "gender":"Gender",
+        "role":"Role",
+        "position":"Position",
+        "image":"Avatar",
+        "save":"Add user",
+        "edit":"Edit user"
+    },
+    "homepage": {
+        "outstanding-doctor": "Last week's Outstanding Doctor",
+        "more-info":"More info",
+        "popular-specialties": "Popular Specialties"
+
+    },
+    "manage-schedule":{
+        "title":"Management plan of the Doctor",
+        "choose-doctor":"Choose Doctor",
+        "choose-date":"Choose date",
+        "save":"Save"
+
+    },
+    "patient": {
+        "detail-doctor": {
+            "schedule":"Schedule",
+            "no-schedule":"The doctor does not have an appointment for the day. Please choose another date!",
+            "choose":"Choose ",
+            "book-free":" and book free"
+        },
+        "extra-info-doctor":{
+            "text-address":"ADDRESS OF EXAMINATION",
+            "price":"Price examination",
+            "detail":"See detail",
+            "payment":"Patients can pay by ",
+            "hide-price":"Hide price list"
+        }
+    },
+    "admin": {
+        "manage-doctor":{
+            "title":"Add infomation's doctor",
+            "select-doctor":"Choose doctor",
+            "intro":"Introduction",
+            "create":"Create",
+            "save":"Save",
+            "price":"Price",
+            "payment": "Payment",
+            "province": "Province",
+            "nameClinic":"Clinic's name",
+            "addressClinic":"Address's clinic",
+            "note":"Note",
+            "specialty": "Select Specialty",
+            "select-clinic":"Select Clinic"
+
+
+        }
+    }
+
+}

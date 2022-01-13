@@ -1,0 +1,253 @@
+@import '../../styles/setting';
+@import '../../styles/customArrowSlice.css';
+header {
+    .main-utility {
+        background-color: #0063aa;
+        width: 100%;
+        height: 50px;
+        color: #ffffff;
+        font-size: 15px;
+        display: inline-block;
+        margin-right: auto;
+        .test {
+            margin-right: 930px;
+            .text-test {
+                margin-right: 8px;
+            }
+        }
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        .language-option {
+            display: inline-block;
+            margin: 0 20px;
+            position: relative;
+            // animation: languageList 5s ease-in;
+
+            .language-option-icon {
+                margin-left: 10px;
+            }
+
+            .language-list {
+                // animation: languageList 1s ease-in;
+
+                padding: 0;
+                position: absolute;
+                width: 120px;
+                top: 28px;
+                right: 0px;
+                background-color: rgb(245, 237, 237);
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                cursor: default;
+                transform-origin: calc(100% - 32px) top;
+                will-change: opacity, transform;
+                // animation: headerNotifyGrowth ease-in 0.2s;
+                display: none;
+                z-index: 1;
+                border-radius: 2px;
+            }
+            &:hover {
+                .language-list {
+                    display: block;
+                    transform-origin: 90% right; // de thay doi tam
+                    animation: languageList 0.2s ease-in;
+                }
+                &::after {
+                    content: '';
+                    border-width: 20px 27px;
+                    border-style: solid;
+                    border-color: transparent transparent rgb(245, 237, 237) transparent;
+                    position: absolute;
+                    animation: languageList 0.2s ease-in;
+                    top: 0;
+                    right: 0;
+                }
+                &::before {
+                    content: '';
+                    border: 20px solid transparent;
+                    width: 70px;
+                    position: absolute;
+                    top: -10px;
+                    right: 0;
+                }
+            }
+
+            .language-item {
+                color: darken($main-color, $amount: 8);
+                display: flex;
+                align-items: center;
+                float: left;
+                width: 100%;
+                img {
+                    display: block;
+                    width: 40px;
+                    padding: 5px 10px;
+                }
+                cursor: pointer;
+                &.language-item-active {
+                    background-color: rgb(144, 204, 253);
+                }
+            }
+        }
+
+        .phone-contact {
+            display: inline-block;
+            margin-right: 20px;
+            .phone-icon {
+                font-size: 16px;
+                color: white;
+                margin-right: 6px;
+            }
+            &:hover {
+                cursor: pointer;
+                opacity: 0.8;
+            }
+        }
+        .login {
+            display: inline-block;
+            margin-right: 20px;
+
+            .login-icon {
+                font-size: 16px;
+                color: white;
+                margin-right: 6px;
+            }
+            &:hover {
+                cursor: pointer;
+                opacity: 0.8;
+            }
+        }
+    }
+
+    .main-menu {
+        height: 80px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        .logo {
+            width: 20%;
+            padding-left: 36px;
+        }
+
+        .main-menu-content {
+            width: 80%;
+            position: relative;
+            .menu-content-list {
+                min-width: 160px;
+                position: relative;
+                display: inline-block;
+                margin: 16px;
+
+                .arrow-down-icon {
+                    font-size: 12px;
+                    margin-left: 8px;
+                }
+                .menu-content-ul {
+                    display: flex;
+                    .content-item {
+                        margin-right: 50px;
+
+                        position: relative;
+                        .content-item-title {
+                            // display: inline-block;
+                            position: relative;
+                        }
+                        .content-item-expand {
+                            position: absolute;
+                            border-radius: 2px;
+                            border: 1px solid wheat;
+                            top: 28px;
+                            background-color: rgb(245, 238, 238);
+                            left: 0;
+                            z-index: 1;
+                            width: fit-content;
+                            block-size: fit-content;
+                            display: none;
+                            .content-item-detail {
+                                block-size: fit-content;
+                                width: max-content;
+                                margin: 12px 12px 0 0;
+                                padding-left: 12px;
+                                padding-bottom: 12px;
+                                // display: inline-block;
+
+                                &:not(:last-child) {
+                                    // padding-bottom: 10px;
+                                    border-bottom: 1px solid wheat;
+                                    width: 100%;
+                                }
+                            }
+
+                            &::before {
+                                content: '';
+                                border-width: 15px 20px;
+                                border-style: solid;
+                                border-color: transparent transparent rgb(245, 237, 237) transparent;
+                                position: absolute;
+                                animation: languageList 0.2s ease-in;
+                                top: -26px;
+                                left: -12px;
+                            }
+                            &::before {
+                                content: '';
+                                border: 15px solid transparent;
+                                width: 145px;
+                                position: absolute;
+                                top: -19px;
+                                right: 0;
+                            }
+                        }
+                    }
+                    .content-item:hover {
+                        .content-item-expand {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .navbar-contact {
+        background-color: wheat;
+        height: 76px;
+        display: flex;
+        // justify-content: center;
+        .navbar-item {
+            justify-content: center;
+            display: flex;
+            width: 25%;
+            height: 76px;
+            align-items: center;
+            border: solid 1px #dfdfdf;
+            background-color: #f9f9f9;
+            .navbar-icon {
+                display: inline-block;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .banner-slide {
+        .bg-image {
+            width: 1349px;
+            height: 525px;
+            background: url('../../assets/slide1.jpg') no-repeat center center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    }
+}
+@keyframes languageList {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

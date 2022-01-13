@@ -1,0 +1,40 @@
+.landing {
+    position: relative;
+    background: url('../../assets/landing1.jpg') no-repeat center center/cover;
+    // background: url('../assets/slider1.jpg') no-repeat center center/cover;
+    height: 100vh;
+}
+
+.dark-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+}
+
+.landing-inner {
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.landing-inner form {
+    width: 30%;
+}
+
+.landing-inner h1,
+.landing-inner h4,
+.landing-inner p {
+    color: white;
+}
+
+.spinner-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
