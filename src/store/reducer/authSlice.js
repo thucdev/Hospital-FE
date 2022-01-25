@@ -1,7 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
-
-import { loginAsync } from '../apiRequest/apiAuth'
 
 const authSlice = createSlice({
     name: 'auth',
@@ -22,32 +19,26 @@ const authSlice = createSlice({
             state.login.isAuthenticated = true
             state.login.user = action.payload
         },
+        loginFailed: (state) => {
+            state.login.authLoading = false
+            state.login.isAuthenticated = false
+            // state.login.user = action.payload
+        },
         registerSuccess: (state) => {
+            state.register.authLoading = false
             state.login.authLoading = false
         },
     },
 })
 
-// export const loginAsync = (user) => {
-//     const getLoginAsync = async (dispatch) => {
-//         try {
-//             const res = await axios.post(`http://localhost:8080/v1/login`, user)
-//             dispatch(loginSuccess(res.data))
-//             console.log('res', res)
-//         } catch (error) {
-//             console.log('', error)
-//         }
-//     }
-//     return getLoginAsync
-// }
-
 // reducer
 const authReducer = authSlice.reducer
 
-// Selector : la noi store xuat khau ra data  de component nhan du lieu do
-export const authSelector = (state) => state.authReducer.initialState
-
 // export action
-export const { loginSuccess, registerSuccess } = authSlice.actions
+export const { loginSuccess, registerSuccess, loginFailed } = authSlice.actions
 
 export default authReducer
+
+// Selector : la noi store xuat khau ra data  de component nhan du lieu do
+// export const authSelector = (state) => state.authReducer.initialState
+// export const authSelector = (state) => state.authReducer.login

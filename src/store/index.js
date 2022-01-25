@@ -8,6 +8,7 @@ const store = configureStore({
         authReducer,
         languageReducer,
     },
+    devTools: true,
 })
 
 export default store

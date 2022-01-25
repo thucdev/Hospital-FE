@@ -1,15 +1,17 @@
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import { useState, useContext } from 'react'
-import { useNavigate, Navigate } from 'react-router-dom'
-// import AlertMessage from 'components/layout/AlertMessage'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+
 import { loginAsync } from '../store/apiRequest/apiAuth'
+import AlertMessage from './AlertMessage'
 
 const Login = () => {
-    const navigate = useNavigate()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const [alert, setAlert] = useState(null)
 
     const [loginForm, setLoginForm] = useState({
         email: '',
@@ -20,16 +22,24 @@ const Login = () => {
         setLoginForm({ ...loginForm, [event.target.name]: event.target.value })
     }
 
-    const login = (event) => {
+    const login = async (event) => {
         event.preventDefault()
-        // dispatch(loginAsync(loginForm))
-        loginAsync(loginForm, dispatch, navigate)
+
+        const loginData = await loginAsync(loginForm, dispatch)
+        if (loginData?.success) {
+            navigate('/system')
+        } else {
+            setAlert({ type: 'danger', message: loginData?.message })
+            setTimeout(() => {
+                setAlert(null)
+            }, 3000)
+        }
     }
 
     return (
         <>
             <Form className='my-4' onSubmit={login}>
-                {/* <AlertMessage info={alert} /> */}
+                <AlertMessage info={alert} />
                 <Form.Group>
                     <Form.Control
                         type='text'
@@ -52,14 +62,14 @@ const Login = () => {
                         onChange={onChangeLoginForm}
                     />
                 </Form.Group>
-                <Button variant='success' type='submit'>
-                    Login
+                <Button variant='success' type='submit' className='my-1'>
+                    Log In
                 </Button>
             </Form>
             <p>
                 Don't have an account?
                 <Link to='/register'>
-                    <Button variant='info' size='sm' className='ml-2'>
+                    <Button variant='info' size='sm' className='mx-2'>
                         Register
                     </Button>
                 </Link>

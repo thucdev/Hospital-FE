@@ -13,8 +13,14 @@ import slide1 from '../../assets/slide1.jpg'
 import slide2 from '../../assets/slide2.jpg'
 import slide3 from '../../assets/slide3.jpg'
 import './Header.scss'
+import { useNavigate, Navigate } from 'react-router-dom'
 
 function Header() {
+    const navigate = useNavigate()
+
+    const handleLogin = () => {
+        navigate('/login')
+    }
     return (
         <header>
             <div className='main-utility'>
@@ -59,7 +65,7 @@ function Header() {
                     <FontAwesomeIcon icon='phone' className='phone-icon' />
                     Goi chung toi
                 </div>
-                <div className='login'>
+                <div className='login' onClick={handleLogin}>
                     <FontAwesomeIcon icon='user' className='login-icon' />
                     Login
                 </div>

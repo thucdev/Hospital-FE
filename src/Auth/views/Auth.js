@@ -1,39 +1,56 @@
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { Spinner } from 'react-bootstrap'
+
 import Login from '../Login'
 import RegisterForm from '../RegisterForm'
-import { authSelector } from '../../store/reducer/authSlice'
 import './Auth.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import { loadUser } from '../../store/apiRequest/apiAuth'
+import { Navigate } from 'react-router-dom'
 
 function Auth({ authRoute }) {
-    // const login = useSelector(authSelector)
-    // console.log('state', login)
-    // const { authLoading, isAuthenticated } = login
-    // console.log('', authLoading)
-    let authLoading = false
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(loadUser())
+    }, [dispatch])
+
+    const login = useSelector((state) => state.authReducer.login)
+    const { authLoading, isAuthenticated } = login
 
     let body
     if (authLoading) {
-        body = <div>loading</div>
+        body = (
+            <div className='spinner-container'>
+                <Spinner animation='border' variant='info' />
+            </div>
+        )
     } else if (authRoute === 'login') {
-        body = <Login />
+        body = (
+            <>
+                <h1>Login</h1>
+                <Login />
+            </>
+        )
     } else {
         body = (
-            <div>
+            <>
+                <h1>Register</h1>
                 <RegisterForm />
-            </div>
+            </>
         )
     }
 
-    return (
-        <div className='landing'>
-            <div className='dark-overlay'>
-                <div className='landing-inner'>
-                    <h1>Learn it</h1>
-                    <h4>Keep track of what you are learning</h4>
-                    {body}
+    return isAuthenticated ? (
+        <Navigate to='/system' />
+    ) : (
+        <>
+            <div className='landing'>
+                <div className='dark-overlay'>
+                    <div className='landing-inner'>{body}</div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 export default Auth

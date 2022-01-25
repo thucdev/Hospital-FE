@@ -5,6 +5,7 @@ import {
     faChevronDown,
     faUser,
     faSearch,
+    faUserMd,
 } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faPhone, faPhoneVolume, faChevronDown, faUser, faSearch)
+library.add(faPhone, faPhoneVolume, faChevronDown, faUserMd, faSearch, faUser)

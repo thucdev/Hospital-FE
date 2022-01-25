@@ -6,9 +6,15 @@ import service2 from '../../../assets/Services2.jpg'
 import { Button } from 'react-bootstrap'
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'
 import 'pure-react-carousel/dist/react-carousel.es.css'
-import Carousel from 'react-elastic-carousel'
+import Carousel, { consts } from 'react-elastic-carousel'
 
 function Services() {
+    const breakPoints = [
+        { width: 1, itemsToShow: 1 },
+        { width: 550, itemsToShow: 1, itemsToScroll: 1 },
+        { width: 768, itemsToShow: 2 },
+        { width: 1200, itemsToShow: 2 },
+    ]
     return (
         <div className='section-services'>
             <div className='service-header'>
@@ -20,7 +26,7 @@ function Services() {
             </div>
             <div className='service-content'>
                 <div className='service-slide'>
-                    <Carousel itemsToShow={2}>
+                    <Carousel itemsToShow={2} breakPoints={breakPoints}>
                         <div className='service-slide-item'>
                             <div className='bg-image service-slide-img'>
                                 {/* <img src={service1} /> */}
