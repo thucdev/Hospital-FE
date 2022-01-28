@@ -6,29 +6,28 @@ const initContentOfConfirmModal = {
     handleFunc: null,
     dataFunc: null,
 }
-
+// "@formatjs/intl-pluralrules": "^4.3.0",
+// "@formatjs/intl-relativetimeformat": "^9.5.1",
 const languageSlice = createSlice({
     name: 'language',
     initialState: {
         languageState: {
-            started: true,
             language: 'vi',
-            systemMenuPath: '/system/user-manage',
-            contentOfConfirmModal: {
-                ...initContentOfConfirmModal,
-            },
+            // started: true,
+            // systemMenuPath: '/system/user-manage',
+            // contentOfConfirmModal: {
+            //     ...initContentOfConfirmModal,
+            // },
         },
     },
     reducers: {
         changLanguageApp: (state, action) => {
-            state.language = action.payload
+            state.languageState.language = action.payload
         },
     },
 })
 
 export const languageReducer = languageSlice.reducer
-
-export const languageSelector = (state) => state.languageReducer.languageState
 
 export const { changLanguageApp } = languageSlice.actions
 

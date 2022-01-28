@@ -29,3 +29,9 @@ li {
     width: 20px;
     height: 20px;
 }
+
+/* //overwrite boostrap */
+.btn-group-sm > .btn,
+.btn-sm {
+    border-radius: 0.2rem;
+}

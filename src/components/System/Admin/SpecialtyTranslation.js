@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import './ManageSpecialty.scss'
+import './SpecialtyTranslation.scss'
 import {
     createNewSpecialty,
     // getAllSpecialties,
@@ -21,7 +21,7 @@ import { useSelector } from 'react-redux'
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */)
 
-const ManageSpecialty = () => {
+const SpecialtyTranslation = () => {
     const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
 
     const [title, setTitle] = useState('')
@@ -146,17 +146,25 @@ const ManageSpecialty = () => {
                     <div className='add-new-specialty'>
                         <div className=' form-group my-2'>
                             <label htmlFor='' className='text-title'>
-                                Tên chuyên khoa
+                                Chọn chuyên khoa
                             </label>
                             <Select
                                 value={selectedSpecialty}
                                 onChange={handleChangeSelect}
                                 options={listSpecialty}
-                                // options={listObj}
-                                // placeholder={
-                                //     <FormattedMessage id='admin.manage-doctor.select-doctor' />
-                                // }
-                                className='manage-specialty-select'
+                                placeholder='Select specialty'
+                                className='translate-specialty-select'
+                            />
+                        </div>
+                        <div className='form-group my-2'>
+                            <label htmlFor='' className='text-title'>
+                                Tên chuyên khoa
+                            </label>
+                            <input
+                                type='text'
+                                className='form-control form-control-sm title-translate-specialty'
+                                value={title}
+                                // onChange={handleOnchangeInput}
                             />
                         </div>
 
@@ -192,29 +200,29 @@ const ManageSpecialty = () => {
                                 ))}
                             </Dropdown.Menu>
                         </Dropdown>
-                        <div className=' form-group my-2 p-0 '>
+                        {/* <div className=' form-group my-2 p-0 '>
                             <label htmlFor='' className='text-title'>
                                 Tải ảnh chuyên khoa
                             </label>
                             <input
                                 type='file'
-                                className='form-control-file manage-specialty-file-upload'
+                                className='form-control-file translate-specialty-file-upload'
                                 onChange={handleOnchangeImg}
                             />
-                        </div>
-                        <div className=' form-group my-2  p-0'>
+                        </div> */}
+                        {/* <div className=' form-group my-2  p-0'>
                             <button className='btn btn-success btn-sm mt-4 btn-add' onClick={onAdd}>
                                 Add New
                             </button>
-                        </div>
-                        <div className=' form-group my-2  p-0'>
+                        </div> */}
+                        {/* <div className=' form-group my-2  p-0'>
                             <button
                                 className='btn btn-success btn-sm mt-4 btn-add'
                                 onClick={onTranslate}
                             >
                                 Translate
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                     <div className='col-12'>
                         <MdEditor
@@ -235,4 +243,4 @@ const ManageSpecialty = () => {
     )
 }
 
-export default ManageSpecialty
+export default SpecialtyTranslation

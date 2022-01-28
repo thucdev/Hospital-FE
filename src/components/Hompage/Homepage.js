@@ -1,9 +1,12 @@
 import Header from '../Header/Header'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Homepage.scss'
+import { FormattedMessage } from 'react-intl'
 import Services from './Section/Services'
 
-function Homepage() {
+function Homepage(props) {
+    console.log('props', props)
+
     return (
         <>
             <Header />

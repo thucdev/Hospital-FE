@@ -1,0 +1,16 @@
+.add-new-specialty {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .translate-specialty-select {
+        width: 520px;
+        display: inline-block;
+    }
+    .title-translate-specialty {
+        width: 400px;
+    }
+    .dropdown-btn {
+        display: inline-block;
+    }
+}

@@ -7,8 +7,11 @@ import { Button } from 'react-bootstrap'
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'
 import 'pure-react-carousel/dist/react-carousel.es.css'
 import Carousel, { consts } from 'react-elastic-carousel'
+import { useSelector } from 'react-redux'
 
 function Services() {
+    const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
+
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
         { width: 550, itemsToShow: 1, itemsToScroll: 1 },
@@ -27,160 +30,29 @@ function Services() {
             <div className='service-content'>
                 <div className='service-slide'>
                     <Carousel itemsToShow={2} breakPoints={breakPoints}>
-                        <div className='service-slide-item'>
-                            <div className='bg-image service-slide-img'>
-                                {/* <img src={service1} /> */}
-                            </div>
-                            <div className='slide-item-content'>
-                                <h4 className='slide-item-content-title'>
-                                    body content Lorem ipsum dolo
-                                </h4>
-                                <div className='slide-item-content-body'>
-                                    body content Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Eos fugiat voluptatibus perspiciatis eum placeat dolores
-                                    suscipit quia quis veritatis quae corrupti officiis, aspernatur
-                                    omnis tempora doloremque provident nesciunt quo est. Lorem ipsum
-                                    dolor, sit amet consectetur adipisicing elit. Itaque harum omnis
-                                    consectetur sunt tempore natus reprehenderit minus iusto, facere
-                                    aspernatur animi nemo quos rerum laborum eaque, repellendus
-                                    ducimus dolore veniam. Ipsam ad quod sunt perferendis, veniam
-                                    eius repudiandae aliquid neque, in hic adipisci fugit veritatis
-                                    perspiciatis omnis rem rerum eligendi aspernatur possimus
-                                    magnam, sint error. Nemo error optio et ab. Enim quas magnam
-                                    cum, fugit cumque laboriosam, quae iusto quibusdam voluptatum
-                                    labore nemo culpa ex. Possimus officia deserunt id hic odio
-                                    veniam enim quam? A dicta corporis fugiat ex est. Neque atque
-                                    ipsum libero voluptatum quas alias, magni dolore unde? Fuga,
-                                    placeat nihil dicta officiis dolorum in quia. Possimus officia
-                                    harum dolore facilis eum aliquam maiores quae corrupti. Nam,
-                                    fugiat. Harum ea omnis amet est laudantium quae voluptas
-                                    exercitationem provident? Eveniet, sit delectus cumque unde
-                                    saepe est corporis quo illum ipsam aliquam numquam totam earum
-                                    id optio, quis quia rerum.
-                                </div>
+                        {allSpecialties.map((item, index) => {
+                            return (
+                                <div className='service-slide-item'>
+                                    <div
+                                        className='bg-image service-slide-img'
+                                        style={{ backgroundImage: `url(${item.img})` }}
+                                    ></div>
+                                    <div className='slide-item-content'>
+                                        <h4 className='slide-item-content-title'>{item.title}</h4>
+                                        <div className='slide-item-content-body'>
+                                            {item.descriptionMarkdown}
+                                        </div>
 
-                                <div className='read-more'>Readmore</div>
-                            </div>
-                        </div>
-                        <div className='service-slide-item'>
-                            <div className='bg-image service-slide-img'>
-                                {/* <img src={service1} /> */}
-                            </div>
-                            <div className='slide-item-content'>
-                                <h4 className='slide-item-content-title'>
-                                    body content Lorem ipsum dolo
-                                </h4>
-                                <div className='slide-item-content-body'>
-                                    body content Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Eos fugiat voluptatibus perspiciatis eum placeat dolores
-                                    suscipit quia quis veritatis quae corrupti officiis, aspernatur
-                                    omnis tempora doloremque provident nesciunt quo est. Lorem ipsum
-                                    dolor, sit amet consectetur adipisicing elit. Itaque harum omnis
-                                    consectetur sunt tempore natus reprehenderit minus iusto, facere
-                                    aspernatur animi nemo quos rerum laborum eaque, repellendus
-                                    ducimus dolore veniam. Ipsam ad quod sunt perferendis, veniam
-                                    eius repudiandae aliquid neque, in hic adipisci fugit veritatis
-                                    perspiciatis omnis rem rerum eligendi aspernatur possimus
-                                    magnam, sint error. Nemo error optio et ab. Enim quas magnam
-                                    cum, fugit cumque laboriosam, quae iusto quibusdam voluptatum
-                                    labore nemo culpa ex. Possimus officia deserunt id hic odio
-                                    veniam enim quam? A dicta corporis fugiat ex est. Neque atque
-                                    ipsum libero voluptatum quas alias, magni dolore unde? Fuga,
-                                    placeat nihil dicta officiis dolorum in quia. Possimus officia
-                                    harum dolore facilis eum aliquam maiores quae corrupti. Nam,
-                                    fugiat. Harum ea omnis amet est laudantium quae voluptas
-                                    exercitationem provident? Eveniet, sit delectus cumque unde
-                                    saepe est corporis quo illum ipsam aliquam numquam totam earum
-                                    id optio, quis quia rerum.
+                                        <div className='read-more'>Read more</div>
+                                    </div>
                                 </div>
-
-                                <div className='read-more'>Readmore</div>
-                            </div>
-                        </div>
-                        <div className='service-slide-item'>
-                            <div className='bg-image service-slide-img'>
-                                {/* <img src={service1} /> */}
-                            </div>
-                            <div className='slide-item-content'>
-                                <h4 className='slide-item-content-title'>
-                                    body content Lorem ipsum dolo
-                                </h4>
-                                <div className='slide-item-content-body'>
-                                    body content Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Eos fugiat voluptatibus perspiciatis eum placeat dolores
-                                    suscipit quia quis veritatis quae corrupti officiis, aspernatur
-                                    omnis tempora doloremque provident nesciunt quo est. Lorem ipsum
-                                    dolor, sit amet consectetur adipisicing elit. Itaque harum omnis
-                                    consectetur sunt tempore natus reprehenderit minus iusto, facere
-                                    aspernatur animi nemo quos rerum laborum eaque, repellendus
-                                    ducimus dolore veniam. Ipsam ad quod sunt perferendis, veniam
-                                    eius repudiandae aliquid neque, in hic adipisci fugit veritatis
-                                    perspiciatis omnis rem rerum eligendi aspernatur possimus
-                                    magnam, sint error. Nemo error optio et ab. Enim quas magnam
-                                    cum, fugit cumque laboriosam, quae iusto quibusdam voluptatum
-                                    labore nemo culpa ex. Possimus officia deserunt id hic odio
-                                    veniam enim quam? A dicta corporis fugiat ex est. Neque atque
-                                    ipsum libero voluptatum quas alias, magni dolore unde? Fuga,
-                                    placeat nihil dicta officiis dolorum in quia. Possimus officia
-                                    harum dolore facilis eum aliquam maiores quae corrupti. Nam,
-                                    fugiat. Harum ea omnis amet est laudantium quae voluptas
-                                    exercitationem provident? Eveniet, sit delectus cumque unde
-                                    saepe est corporis quo illum ipsam aliquam numquam totam earum
-                                    id optio, quis quia rerum.
-                                </div>
-
-                                <div className='read-more'>Readmore</div>
-                            </div>
-                        </div>
-                        <div className='service-slide-item'>
-                            <div className='bg-image service-slide-img'>
-                                {/* <img src={service1} /> */}
-                            </div>
-                            <div className='slide-item-content'>
-                                <h4 className='slide-item-content-title'>
-                                    body content Lorem ipsum dolo
-                                </h4>
-                                <div className='slide-item-content-body'>
-                                    body content Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Eos fugiat voluptatibus perspiciatis eum placeat dolores
-                                    suscipit quia quis veritatis quae corrupti officiis, aspernatur
-                                    omnis tempora doloremque provident nesciunt quo est. Lorem ipsum
-                                    dolor, sit amet consectetur adipisicing elit. Itaque harum omnis
-                                    consectetur sunt tempore natus reprehenderit minus iusto, facere
-                                    aspernatur animi nemo quos rerum laborum eaque, repellendus
-                                    ducimus dolore veniam. Ipsam ad quod sunt perferendis, veniam
-                                    eius repudiandae aliquid neque, in hic adipisci fugit veritatis
-                                    perspiciatis omnis rem rerum eligendi aspernatur possimus
-                                    magnam, sint error. Nemo error optio et ab. Enim quas magnam
-                                    cum, fugit cumque laboriosam, quae iusto quibusdam voluptatum
-                                    labore nemo culpa ex. Possimus officia deserunt id hic odio
-                                    veniam enim quam? A dicta corporis fugiat ex est. Neque atque
-                                    ipsum libero voluptatum quas alias, magni dolore unde? Fuga,
-                                    placeat nihil dicta officiis dolorum in quia. Possimus officia
-                                    harum dolore facilis eum aliquam maiores quae corrupti. Nam,
-                                    fugiat. Harum ea omnis amet est laudantium quae voluptas
-                                    exercitationem provident? Eveniet, sit delectus cumque unde
-                                    saepe est corporis quo illum ipsam aliquam numquam totam earum
-                                    id optio, quis quia rerum.
-                                </div>
-
-                                <div className='read-more'>Readmore</div>
-                            </div>
-                        </div>
-                        <div>
-                            <img src={service2} />
-                        </div>
-                        <div>
-                            <img src={service1} />
-                        </div>
-                        <div className=''>
-                            <img src={service2} />
-                        </div>
+                            )
+                        })}
                     </Carousel>
                 </div>
             </div>
             <div className='see-all'>
-                {/* <Button variant='info'>Xem tất cả</Button> */}
+                {/* <Button variant='outline-info'>Xem tất cả</Button> */}
                 <button className='see-all-btn'>Xem tất cả</button>
             </div>
         </div>

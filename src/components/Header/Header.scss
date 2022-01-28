@@ -10,7 +10,8 @@ header {
         display: inline-block;
         margin-right: auto;
         .test {
-            margin-right: 930px;
+            cursor: pointer;
+            // margin-right: 930px;
             .text-test {
                 margin-right: 8px;
             }
@@ -151,6 +152,7 @@ header {
                         position: relative;
                         .content-item-title {
                             // display: inline-block;
+                            text-transform: uppercase;
                             position: relative;
                         }
                         .content-item-expand {
@@ -225,6 +227,12 @@ header {
             .navbar-icon {
                 display: inline-block;
                 margin-right: 10px;
+            }
+
+            .navbar-item-title {
+                color: $main-color-soft;
+                font-weight: 600;
+                font-size: 15px;
             }
         }
     }

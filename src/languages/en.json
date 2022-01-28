@@ -1,7 +1,23 @@
 {
     "homeheader": {
-        "specialty": "Medical specialty"
+        "test": "Lab Test Results",
+        "call-us":"Call us",
+        "login":"Login"
 
+    },
+
+    "main-menu": {
+        "medical-services": "MEDICAL SERVICES",
+        "patient-guide":"PATIENT GUIDE",
+        "maternity":"MATERNITY",
+        "news":"WHAT'S NEW",
+        "about":"ABOUT US",
+        "contact":"CONTACT US",
+        "find-doctor": "Find a Doctor",
+        "appointment": "Make an Appointment",
+        "treatment": "Search Condition & Treatment",
+        "inquiry": "Send Us an Inquiry",
+        "search" : "How can I help you?"
 
     },
 

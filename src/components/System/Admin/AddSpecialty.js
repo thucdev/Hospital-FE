@@ -4,8 +4,9 @@ import MdEditor from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useNavigate } from 'react-router-dom'
 import './ManageSpecialty.scss'
-import { DropdownButton, Dropdown, Form } from 'react-bootstrap'
+import { Dropdown } from 'react-bootstrap'
 import FlagIcon from '../../../styles/FlagIcon'
 import { createNewSpecialty } from '../../../services/userService'
 import Base64 from '../../../utils/Base64'
@@ -77,6 +78,12 @@ const AddSpecialty = () => {
         }
     }
 
+    const navigate = useNavigate()
+
+    const onEdit = () => {
+        navigate('/system/manage-specialty')
+    }
+
     return (
         <>
             <div className='manage-specialty-container'>
@@ -104,7 +111,7 @@ const AddSpecialty = () => {
                                 </>
                             )
                         }}
-                        className='col-2 dropdown-btn'
+                        className='col-2 dropdown-btn '
                     >
                         <Dropdown.Toggle
                             variant='outline-info'
@@ -123,7 +130,7 @@ const AddSpecialty = () => {
                             ))}
                         </Dropdown.Menu>
                     </Dropdown>
-                    <div className='col-4 form-group my-2 '>
+                    <div className='col-3 form-group my-2 p-0'>
                         <label htmlFor='' className='text-title'>
                             Tải ảnh chuyên khoa
                         </label>
@@ -132,6 +139,15 @@ const AddSpecialty = () => {
                             className='form-control-file'
                             onChange={handleOnchangeImg}
                         />
+                    </div>
+                    <div className='col-1 form-group my-2  p-0'>
+                        <button
+                            className='btn btn-success btn-sm mt-4 btn-add'
+                            size='lg'
+                            onClick={onEdit}
+                        >
+                            Edit
+                        </button>
                     </div>
                     <div className='col-12'>
                         <MdEditor

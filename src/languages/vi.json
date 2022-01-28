@@ -1,8 +1,29 @@
 {
     "homeheader": {
-        "specialty": "Xét nghiệm"
+        "test": "Xét nghiệm",
+        "call-us":"Gọi chúng tôi",
+        "login":"Đăng nhập"
 
     },
+
+    "main-menu": {
+        "medical-services": "DỊCH VỤ Y TẾ",
+        "patient-guide":"HƯỚNG DẪN BỆNH NHÂN",
+        "maternity":"THAI SẢN",
+        "news":"Tin tức",
+        "about":"Về chúng tôi",
+        "contact":"liên hệ",
+        "find-doctor": "Tìm Bác Sĩ",
+        "appointment": "Đặt Lịch Khám Bệnh",
+        "treatment": "Các Bệnh & Điều Trị",
+        "inquiry": "Hỏi Bác Sĩ",
+        "search" : "Chúng tôi có thể giúp gì cho bạn?"
+
+
+    },
+
+
+
 
     "banner":{
         "title1":"NỀN TẢNG Y TẾ",
