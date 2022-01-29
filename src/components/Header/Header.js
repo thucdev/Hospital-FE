@@ -59,7 +59,8 @@ function Header() {
                 </div>
 
                 <div className='language-option'>
-                    <img src={VN} alt='' /> {language === 'vi' ? 'VN' : 'EN'}
+                    <img src={language === 'vi' ? VN : EN} alt='' className='flag-icon' />
+                    {language === 'vi' ? 'VN' : 'EN'}
                     <FontAwesomeIcon icon='chevron-down' className='language-option-icon' />
                     <ul className='language-list '>
                         <li

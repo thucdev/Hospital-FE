@@ -9,19 +9,26 @@ import { useNavigate } from 'react-router-dom'
 
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import './SpecialtyTranslation.scss'
-import { createNewSpecialtyTranslation, getSpecialtyById } from '../../../services/userService'
+import './EditSpecialty.scss'
+import {
+    createNewSpecialty,
+    // getAllSpecialties,
+    getSpecialtyById,
+} from '../../../services/userService'
 import Base64 from '../../../utils/Base64'
 import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */)
 
-const SpecialtyTranslation = () => {
+const EditSpecialty = () => {
+    const location = useLocation()
+    const { specialtyId } = location.state
     const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
 
     const [title, setTitle] = useState('')
-    // const [imgBase64, setImgBase64] = useState('')
+    const [imgBase64, setImgBase64] = useState('')
 
     const [editor, setEditor] = useState({
         descriptionMarkdown: '',
@@ -36,17 +43,13 @@ const SpecialtyTranslation = () => {
         { code: 'us', title: 'English' },
     ])
 
-    // const handleOnchangeImg = async (event) => {
-    //     let data = event.target.files
-    //     let file = data[0]
-    //     if (file) {
-    //         let base64 = await Base64.getBase64(file)
-    //         setImgBase64(base64)
-    //     }
-    // }
-
-    const handleOnchangeInput = (e) => {
-        setTitle(e.target.value)
+    const handleOnchangeImg = async (event) => {
+        let data = event.target.files
+        let file = data[0]
+        if (file) {
+            let base64 = await Base64.getBase64(file)
+            setImgBase64(base64)
+        }
     }
 
     function handleEditorChange({ html, text }) {
@@ -74,8 +77,14 @@ const SpecialtyTranslation = () => {
         setListSpecialty(listObj)
     }
 
-    useEffect(async () => {
-        fetchAllSpecialty()
+    useEffect(() => {
+        let data = fetchAllSpecialty()
+        console.log('data', data)
+        if (!data || data.length === 0) {
+            console.log('ko co data')
+        } else {
+        }
+        console.log('lan 1')
     }, [])
 
     const handleChangeSelect = async (selectedOption) => {
@@ -96,30 +105,33 @@ const SpecialtyTranslation = () => {
             console.log('', error)
         }
     }
-    //save translate
-    const handleSaveTranslation = async () => {
-        try {
-            const data = await createNewSpecialtyTranslation({
-                specialtyId: selectedSpecialty.value,
-                title,
-                descriptionMarkdown: editor.descriptionMarkdown,
-                descriptionHTML: editor.descriptionHTML,
-                code: selectedLanguage,
-            })
-            if (data.success) {
-                setTitle('')
-                setEditor({
-                    descriptionMarkdown: '',
-                    descriptionHTML: '',
-                })
-                // setToggleContents('Language')
-                toast.success('Create specialty successfully!')
-            } else {
-                toast.error('Create fail!')
-            }
-        } catch (error) {
-            console.log('', error)
-        }
+
+    const handleSaveSpecialty = async () => {
+        //update
+
+        // try {
+        //     const data = await createNewSpecialty({
+        //         img: imgBase64,
+        //         title,
+        //         descriptionMarkdown: editor.descriptionMarkdown,
+        //         descriptionHTML: editor.descriptionHTML,
+        //         code: selectedLanguage,
+        //     })
+        //     if (data.success) {
+        //         setTitle('')
+        //         setEditor({
+        //             descriptionMarkdown: '',
+        //             descriptionHTML: '',
+        //         })
+        //         setToggleContents('Language')
+        //         toast.success('Create specialty successfully!')
+        //     } else {
+        //         toast.error('Create fail!')
+        //     }
+        // } catch (error) {
+        //     console.log('', error)
+        // }
+        console.log('chua lam')
     }
     const navigate = useNavigate()
 
@@ -137,25 +149,17 @@ const SpecialtyTranslation = () => {
                     <div className='add-new-specialty'>
                         <div className=' form-group my-2'>
                             <label htmlFor='' className='text-title'>
-                                Chọn chuyên khoa
+                                Tên chuyên khoa
                             </label>
                             <Select
                                 value={selectedSpecialty}
                                 onChange={handleChangeSelect}
                                 options={listSpecialty}
-                                placeholder='Select specialty'
-                                className='translate-specialty-select'
-                            />
-                        </div>
-                        <div className='form-group my-2'>
-                            <label htmlFor='' className='text-title'>
-                                Tên chuyên khoa
-                            </label>
-                            <input
-                                type='text'
-                                className='form-control form-control-sm title-translate-specialty'
-                                value={title}
-                                onChange={handleOnchangeInput}
+                                // options={listObj}
+                                // placeholder={
+                                //     <FormattedMessage id='admin.manage-doctor.select-doctor' />
+                                // }
+                                className='manage-specialty-select'
                             />
                         </div>
 
@@ -191,29 +195,29 @@ const SpecialtyTranslation = () => {
                                 ))}
                             </Dropdown.Menu>
                         </Dropdown>
-                        {/* <div className=' form-group my-2 p-0 '>
+                        <div className=' form-group my-2 p-0 '>
                             <label htmlFor='' className='text-title'>
                                 Tải ảnh chuyên khoa
                             </label>
                             <input
                                 type='file'
-                                className='form-control-file translate-specialty-file-upload'
+                                className='form-control-file manage-specialty-file-upload'
                                 onChange={handleOnchangeImg}
                             />
-                        </div> */}
-                        {/* <div className=' form-group my-2  p-0'>
+                        </div>
+                        <div className=' form-group my-2  p-0'>
                             <button className='btn btn-success btn-sm mt-4 btn-add' onClick={onAdd}>
                                 Add New
                             </button>
-                        </div> */}
-                        {/* <div className=' form-group my-2  p-0'>
+                        </div>
+                        <div className=' form-group my-2  p-0'>
                             <button
                                 className='btn btn-success btn-sm mt-4 btn-add'
                                 onClick={onTranslate}
                             >
                                 Translate
                             </button>
-                        </div> */}
+                        </div>
                     </div>
                     <div className='col-12'>
                         <MdEditor
@@ -224,7 +228,7 @@ const SpecialtyTranslation = () => {
                         />
                     </div>
                     <div className='col-12'>
-                        <button className='btn btn-warning mt-3' onClick={handleSaveTranslation}>
+                        <button className='btn btn-warning mt-3' onClick={handleSaveSpecialty}>
                             Save
                         </button>
                     </div>
@@ -234,4 +238,4 @@ const SpecialtyTranslation = () => {
     )
 }
 
-export default SpecialtyTranslation
+export default EditSpecialty

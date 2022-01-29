@@ -4,9 +4,7 @@ import './Homepage.scss'
 import { FormattedMessage } from 'react-intl'
 import Services from './Section/Services'
 
-function Homepage(props) {
-    console.log('props', props)
-
+function Homepage() {
     return (
         <>
             <Header />

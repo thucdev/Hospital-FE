@@ -12,6 +12,7 @@ import { getAllSpecialties } from './store/apiRequest/apiUser'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import SpecialtyTranslation from './components/System/Admin/SpecialtyTranslation'
+import EditSpecialty from './components/System/Admin/EditSpecialty'
 
 function App() {
     const dispatch = useDispatch()
@@ -30,6 +31,7 @@ function App() {
                     <Route path='manage-specialty' element={<ManageSpecialty />} />
                     <Route path='add-new-specialty' element={<AddSpecialty />} />
                     <Route path='translate-specialty' element={<SpecialtyTranslation />} />
+                    <Route path='edit-specialty' element={<EditSpecialty />} />
                 </Route>
                 <Route path='/' element={<Homepage />} />
             </Routes>

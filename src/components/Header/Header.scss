@@ -25,7 +25,9 @@ header {
             margin: 0 20px;
             position: relative;
             // animation: languageList 5s ease-in;
-
+            .flag-icon {
+                margin-right: 4px;
+            }
             .language-option-icon {
                 margin-left: 10px;
             }

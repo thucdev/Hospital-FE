@@ -1,0 +1,33 @@
+.manage-specialty-container {
+    // padding: 0 16px;
+    // width: 100%;
+    // margin: 0 40px;
+
+    .add-new-specialty {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .manage-specialty-select {
+            width: 400px;
+            display: inline-block;
+        }
+        .dropdown-btn {
+            display: inline-block;
+        }
+        .manage-specialty-file-upload {
+            width: 250px;
+        }
+    }
+
+    .text-title {
+        display: block;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+    .dropdown-btn {
+        margin-top: 44px;
+    }
+}

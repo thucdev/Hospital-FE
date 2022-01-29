@@ -4,6 +4,10 @@ const createNewSpecialty = (data) => {
     return axios.post(`/create-new-specialty`, data)
 }
 
+const createNewSpecialtyTranslation = (data) => {
+    return axios.post(`/create-new-specialty-translation`, data)
+}
+
 // const getAllSpecialties = () => {
 //     return axios.get(`/get-all-specialties`)
 // }
@@ -16,4 +20,5 @@ export {
     createNewSpecialty,
     // getAllSpecialties,
     getSpecialtyById,
+    createNewSpecialtyTranslation,
 }

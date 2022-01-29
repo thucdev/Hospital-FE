@@ -5,7 +5,7 @@ import 'react-markdown-editor-lite/lib/index.css'
 import Select from 'react-select'
 import { DropdownButton, Dropdown, Form } from 'react-bootstrap'
 import FlagIcon from '../../../styles/FlagIcon'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -23,6 +23,8 @@ const mdParser = new MarkdownIt(/* Markdown-it options */)
 
 const ManageSpecialty = () => {
     const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
+
+    console.log('allSpecialties', allSpecialties)
 
     const [title, setTitle] = useState('')
     const [imgBase64, setImgBase64] = useState('')
@@ -62,26 +64,28 @@ const ManageSpecialty = () => {
         label: '',
     })
     const [listSpecialty, setListSpecialty] = useState([])
+    const [listSpecialtyEn, setListSpecialtyEn] = useState([])
     console.log('list spec', listSpecialty)
+    console.log('list specEn', listSpecialtyEn)
     const fetchAllSpecialty = () => {
         const listObj = []
+        const listObjEn = []
         allSpecialties.map((item) => {
             let obj = {}
+            let objEn = {}
             obj.label = item.title
+            obj.labelEn = item.translationData.title
             obj.value = item.id
+            // objEn.value = item.translationData.value
             listObj.push(obj)
+            // listObjEn.push(objEn)
         })
         setListSpecialty(listObj)
+        setListSpecialtyEn(listObjEn)
     }
 
-    useEffect(async () => {
-        let data = fetchAllSpecialty()
-        console.log('data', data)
-        if (!data || data.length === 0) {
-            console.log('ko co data')
-        } else {
-        }
-        console.log('lan 1')
+    useEffect(() => {
+        fetchAllSpecialty()
     }, [])
 
     const handleChangeSelect = async (selectedOption) => {
@@ -103,33 +107,6 @@ const ManageSpecialty = () => {
         }
     }
 
-    const handleSaveSpecialty = async () => {
-        //update
-
-        // try {
-        //     const data = await createNewSpecialty({
-        //         img: imgBase64,
-        //         title,
-        //         descriptionMarkdown: editor.descriptionMarkdown,
-        //         descriptionHTML: editor.descriptionHTML,
-        //         code: selectedLanguage,
-        //     })
-        //     if (data.success) {
-        //         setTitle('')
-        //         setEditor({
-        //             descriptionMarkdown: '',
-        //             descriptionHTML: '',
-        //         })
-        //         setToggleContents('Language')
-        //         toast.success('Create specialty successfully!')
-        //     } else {
-        //         toast.error('Create fail!')
-        //     }
-        // } catch (error) {
-        //     console.log('', error)
-        // }
-        console.log('chua lam')
-    }
     const navigate = useNavigate()
 
     const onAdd = () => {
@@ -141,95 +118,102 @@ const ManageSpecialty = () => {
 
     return (
         <>
-            <div className='manage-specialty-container'>
+            <div className='mt-4 manage-specialty'>
                 <div>
-                    <div className='add-new-specialty'>
-                        <div className=' form-group my-2'>
-                            <label htmlFor='' className='text-title'>
-                                Tên chuyên khoa
+                    <h3>Danh sách chuyên khoa</h3>
+                    {/* {{#if deleteCount}} */}
+                    <a href='/me/trash/courses'>
+                        Thùng rác
+                        {/* ({{ deleteCount }}) */}
+                    </a>
+
+                    <div className='mt-4 manage-specialty-action'>
+                        <div className=' form-check'>
+                            <input type='checkbox' className='form-check-input' id='checkbox-all' />
+                            <label className='form-check-label' for='checkbox-all'>
+                                Chọn tất cả
                             </label>
-                            <Select
-                                value={selectedSpecialty}
-                                onChange={handleChangeSelect}
-                                options={listSpecialty}
-                                // options={listObj}
-                                // placeholder={
-                                //     <FormattedMessage id='admin.manage-doctor.select-doctor' />
-                                // }
-                                className='manage-specialty-select'
-                            />
                         </div>
 
-                        <Dropdown
-                            onSelect={(eventKey) => {
-                                const { code, title } = languages.find(
-                                    ({ code }) => eventKey === code
-                                )
-
-                                setSelectedLanguage(eventKey)
-                                setToggleContents(
-                                    <>
-                                        <FlagIcon code={code} /> {title}
-                                    </>
-                                )
-                            }}
-                            className=' dropdown-btn '
-                        >
-                            <Dropdown.Toggle
-                                variant='outline-info'
-                                id='dropdown-flags'
-                                className='text-left '
-                                size='sm'
-                            >
-                                {toggleContents}
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                {languages.map(({ code, title }) => (
-                                    <Dropdown.Item key={code} eventKey={code}>
-                                        <FlagIcon code={code} /> {title}
-                                    </Dropdown.Item>
-                                ))}
-                            </Dropdown.Menu>
-                        </Dropdown>
-                        <div className=' form-group my-2 p-0 '>
-                            <label htmlFor='' className='text-title'>
-                                Tải ảnh chuyên khoa
-                            </label>
-                            <input
-                                type='file'
-                                className='form-control-file manage-specialty-file-upload'
-                                onChange={handleOnchangeImg}
-                            />
-                        </div>
-                        <div className=' form-group my-2  p-0'>
-                            <button className='btn btn-success btn-sm mt-4 btn-add' onClick={onAdd}>
-                                Add New
-                            </button>
-                        </div>
-                        <div className=' form-group my-2  p-0'>
-                            <button
-                                className='btn btn-success btn-sm mt-4 btn-add'
-                                onClick={onTranslate}
-                            >
-                                Translate
-                            </button>
-                        </div>
-                    </div>
-                    <div className='col-12'>
-                        <MdEditor
-                            style={{ height: '400px' }}
-                            renderHTML={(text) => mdParser.render(text)}
-                            onChange={handleEditorChange}
-                            value={descriptionMarkdown}
-                        />
-                    </div>
-                    <div className='col-12'>
-                        <button className='btn btn-warning mt-3' onClick={handleSaveSpecialty}>
-                            Save
-                        </button>
+                        <select id='disabledSelect' className='form-select form-select-sm'>
+                            <option>--Hành động--</option>
+                            <option value='delete'>Xoá</option>
+                        </select>
+                        <button className='btn btn-primary btn-sm'>Thực hiện</button>
                     </div>
                 </div>
+                <table className='table mt-4'>
+                    <thead>
+                        <tr>
+                            <th scope='col' colspan=''>
+                                #
+                            </th>
+                            <th scope='col' colspan=''>
+                                ID
+                            </th>
+                            <th scope='col' colspan=''>
+                                Tên chuyên khoa
+                                {/* {{{sortable 'name' _sort}}} */}
+                            </th>
+                            <th scope='col' colspan=''>
+                                Bài dịch
+                            </th>
+
+                            <th scope='col' colspan=''>
+                                Thời gian tạo
+                                {/* {{{sortable 'createdAt' _sort}}} */}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {listSpecialty.map((item, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td>
+                                        <div className='mb-3 form-check'>
+                                            <input
+                                                type='checkbox'
+                                                className='form-check-input checkbox-item'
+                                                name='courseIds[]'
+                                                value='{{this._id}}'
+                                            />
+                                        </div>
+                                    </td>
+
+                                    <td>{index + 1}</td>
+                                    <td>{item.label}</td>
+                                    <td>{item.labelEn}</td>
+
+                                    <td>20/10/2020</td>
+                                    <td className='w-20'>
+                                        <Link
+                                            to='/system/edit-specialty'
+                                            state={{ specialtyId: item.value }}
+                                            className='btn btn-link'
+                                        >
+                                            Sửa
+                                        </Link>
+                                        <a
+                                            href=''
+                                            className='btn btn-link'
+                                            data-id='{{this._id}}'
+                                            data-bs-toggle='modal'
+                                            data-bs-target='#delete-course'
+                                        >
+                                            Xoá
+                                        </a>
+                                    </td>
+                                </tr>
+                            )
+                        })}
+
+                        <td colspan='5' className='text-center'>
+                            Bạn chưa đăng khoá học nào.
+                            <a href='/courses/create'>Đăng khoá học</a>
+                        </td>
+                        {/* {{/each}} */}
+                    </tbody>
+                </table>
             </div>
         </>
     )

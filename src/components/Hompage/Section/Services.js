@@ -10,8 +10,9 @@ import Carousel, { consts } from 'react-elastic-carousel'
 import { useSelector } from 'react-redux'
 
 function Services() {
+    const language = useSelector((state) => state.languageReducer.languageState.language)
     const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
-
+    console.log('allSpecialties', allSpecialties)
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
         { width: 550, itemsToShow: 1, itemsToScroll: 1 },
@@ -30,24 +31,48 @@ function Services() {
             <div className='service-content'>
                 <div className='service-slide'>
                     <Carousel itemsToShow={2} breakPoints={breakPoints}>
-                        {allSpecialties.map((item, index) => {
-                            return (
-                                <div className='service-slide-item'>
-                                    <div
-                                        className='bg-image service-slide-img'
-                                        style={{ backgroundImage: `url(${item.img})` }}
-                                    ></div>
-                                    <div className='slide-item-content'>
-                                        <h4 className='slide-item-content-title'>{item.title}</h4>
-                                        <div className='slide-item-content-body'>
-                                            {item.descriptionMarkdown}
-                                        </div>
+                        {language === 'vi' &&
+                            allSpecialties?.map((item, index) => {
+                                return (
+                                    <div className='service-slide-item' key={index}>
+                                        <div
+                                            className='bg-image service-slide-img'
+                                            style={{ backgroundImage: `url(${item.img})` }}
+                                        ></div>
+                                        <div className='slide-item-content'>
+                                            <h4 className='slide-item-content-title'>
+                                                {item.title}
+                                            </h4>
+                                            <div className='slide-item-content-body'>
+                                                {item.descriptionMarkdown}
+                                            </div>
 
-                                        <div className='read-more'>Read more</div>
+                                            <div className='read-more'>Read more</div>
+                                        </div>
                                     </div>
-                                </div>
-                            )
-                        })}
+                                )
+                            })}
+                        {language === 'en' &&
+                            allSpecialties?.map((item, index) => {
+                                return (
+                                    <div className='service-slide-item' key={index}>
+                                        <div
+                                            className='bg-image service-slide-img'
+                                            style={{ backgroundImage: `url(${item.img})` }}
+                                        ></div>
+                                        <div className='slide-item-content'>
+                                            <h4 className='slide-item-content-title'>
+                                                {item.translationData?.title}
+                                            </h4>
+                                            <div className='slide-item-content-body'>
+                                                {item.translationData?.descriptionMarkdown}
+                                            </div>
+
+                                            <div className='read-more'>Read more</div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
                     </Carousel>
                 </div>
             </div>
