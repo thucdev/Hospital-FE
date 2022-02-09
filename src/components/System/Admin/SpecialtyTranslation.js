@@ -1,18 +1,18 @@
-import { useState, useEffect } from 'react'
-import MarkdownIt from 'markdown-it'
-import MdEditor from 'react-markdown-editor-lite'
-import 'react-markdown-editor-lite/lib/index.css'
-import Select from 'react-select'
-import { DropdownButton, Dropdown, Form } from 'react-bootstrap'
-import FlagIcon from '../../../styles/FlagIcon'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from "react"
+import MarkdownIt from "markdown-it"
+import MdEditor from "react-markdown-editor-lite"
+import "react-markdown-editor-lite/lib/index.css"
+import Select from "react-select"
+import { DropdownButton, Dropdown, Form } from "react-bootstrap"
+import FlagIcon from "../../../styles/FlagIcon"
+import { useNavigate } from "react-router-dom"
 
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import './SpecialtyTranslation.scss'
-import { createNewSpecialtyTranslation, getSpecialtyById } from '../../../services/userService'
-import Base64 from '../../../utils/Base64'
-import { useSelector } from 'react-redux'
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import "./SpecialtyTranslation.scss"
+import { createNewSpecialtyTranslation, getSpecialtyById } from "../../../services/userService"
+import Base64 from "../../../utils/Base64"
+import { useSelector } from "react-redux"
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */)
@@ -20,20 +20,20 @@ const mdParser = new MarkdownIt(/* Markdown-it options */)
 const SpecialtyTranslation = () => {
     const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
 
-    const [title, setTitle] = useState('')
+    const [title, setTitle] = useState("")
     // const [imgBase64, setImgBase64] = useState('')
 
     const [editor, setEditor] = useState({
-        descriptionMarkdown: '',
-        descriptionHTML: '',
+        descriptionMarkdown: "",
+        descriptionHTML: "",
     })
     const { descriptionMarkdown, descriptionHTML } = editor
 
-    const [toggleContents, setToggleContents] = useState('Language')
+    const [toggleContents, setToggleContents] = useState("Language")
     const [selectedLanguage, setSelectedLanguage] = useState()
     const [languages] = useState([
-        { code: 'vn', title: 'Việt Nam' },
-        { code: 'us', title: 'English' },
+        { code: "vn", title: "Việt Nam" },
+        { code: "us", title: "English" },
     ])
 
     // const handleOnchangeImg = async (event) => {
@@ -58,11 +58,10 @@ const SpecialtyTranslation = () => {
 
     //////////////////////
     const [selectedSpecialty, setSelectedSpecialty] = useState({
-        value: '',
-        label: '',
+        value: "",
+        label: "",
     })
     const [listSpecialty, setListSpecialty] = useState([])
-    console.log('list spec', listSpecialty)
     const fetchAllSpecialty = () => {
         const listObj = []
         allSpecialties.map((item) => {
@@ -93,7 +92,7 @@ const SpecialtyTranslation = () => {
                 })
             }
         } catch (error) {
-            console.log('', error)
+            console.log("", error)
         }
     }
     //save translate
@@ -107,27 +106,27 @@ const SpecialtyTranslation = () => {
                 code: selectedLanguage,
             })
             if (data.success) {
-                setTitle('')
+                setTitle("")
                 setEditor({
-                    descriptionMarkdown: '',
-                    descriptionHTML: '',
+                    descriptionMarkdown: "",
+                    descriptionHTML: "",
                 })
                 // setToggleContents('Language')
-                toast.success('Create specialty successfully!')
+                toast.success("Create specialty successfully!")
             } else {
-                toast.error('Create fail!')
+                toast.error("Create fail!")
             }
         } catch (error) {
-            console.log('', error)
+            console.log("", error)
         }
     }
     const navigate = useNavigate()
 
     const onAdd = () => {
-        navigate('/system/add-new-specialty')
+        navigate("/system/add-new-specialty")
     }
     const onTranslate = () => {
-        navigate('/system/translate-specialty')
+        navigate("/system/translate-specialty")
     }
 
     return (
@@ -217,7 +216,7 @@ const SpecialtyTranslation = () => {
                     </div>
                     <div className='col-12'>
                         <MdEditor
-                            style={{ height: '400px' }}
+                            style={{ height: "400px" }}
                             renderHTML={(text) => mdParser.render(text)}
                             onChange={handleEditorChange}
                             value={descriptionMarkdown}

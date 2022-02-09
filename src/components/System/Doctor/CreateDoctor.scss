@@ -1,0 +1,17 @@
+.create-doctor {
+    // display: flex;
+    // align-items: center;
+    .group-doctor-info {
+        border: 1px solid rgb(165, 177, 165);
+        border-radius: 5px;
+        margin-bottom: 8px;
+
+        li {
+            list-style: inside;
+        }
+    }
+
+    .group-doctor-info-filed {
+        margin-left: 12px;
+    }
+}

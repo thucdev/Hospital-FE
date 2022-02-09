@@ -1,8 +1,9 @@
-@import '../../styles/setting';
+@import "../../styles/setting";
 
 .manage-menu {
     width: 300px;
-    height: 100vh;
+    // height: 100vh;
+    height: auto;
     background-color: #333333;
     color: white;
 

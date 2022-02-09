@@ -1,14 +1,12 @@
-import React from 'react'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
-import { Row, Col, Stack } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './System.scss'
-import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { Dropdown } from 'react-bootstrap'
-import FlagIcon from '../styles/FlagIcon'
-
-// import ManageDoctor from './Admin/ManageDoctor'
+import React from "react"
+import { Link, Outlet, useNavigate } from "react-router-dom"
+import { Row, Col, Stack } from "react-bootstrap"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import "./System.scss"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import { Dropdown } from "react-bootstrap"
+import FlagIcon from "../styles/FlagIcon"
 
 export const System = () => {
     const navigate = useNavigate()
@@ -26,10 +24,10 @@ export const System = () => {
             <FlagIcon code='vn' /> Việt Nam
         </>
     )
-    const [selectedLanguage, setSelectedLanguage] = useState({ code: 'vn', title: 'Việt Nam' })
+    const [selectedLanguage, setSelectedLanguage] = useState({ code: "vn", title: "Việt Nam" })
     const [languages] = useState([
-        { code: 'vn', title: 'Việt Nam' },
-        { code: 'us', title: 'English' },
+        { code: "vn", title: "Việt Nam" },
+        { code: "us", title: "English" },
     ])
     return (
         <div className='container-fluid'>

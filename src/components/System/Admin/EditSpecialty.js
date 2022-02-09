@@ -1,47 +1,55 @@
-import { useState, useEffect } from 'react'
-import MarkdownIt from 'markdown-it'
-import MdEditor from 'react-markdown-editor-lite'
-import 'react-markdown-editor-lite/lib/index.css'
-import Select from 'react-select'
-import { DropdownButton, Dropdown, Form } from 'react-bootstrap'
-import FlagIcon from '../../../styles/FlagIcon'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect, useRef } from "react"
+import MarkdownIt from "markdown-it"
+import MdEditor from "react-markdown-editor-lite"
+import "react-markdown-editor-lite/lib/index.css"
+import Select from "react-select"
+import { DropdownButton, Dropdown, Form, Overlay, OverlayTrigger, Tooltip } from "react-bootstrap"
+import FlagIcon from "../../../styles/FlagIcon"
+import { useNavigate } from "react-router-dom"
 
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import './EditSpecialty.scss'
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import "./EditSpecialty.scss"
 import {
     createNewSpecialty,
-    // getAllSpecialties,
     getSpecialtyById,
-} from '../../../services/userService'
-import Base64 from '../../../utils/Base64'
-import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+    updateSpecialty,
+} from "../../../services/userService"
+import Base64 from "../../../utils/Base64"
+import { useSelector } from "react-redux"
+import { useLocation } from "react-router-dom"
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */)
 
 const EditSpecialty = () => {
+    const [show, setShow] = useState(false)
+    const [toggleContents, setToggleContents] = useState("Language")
+    const [selectedLanguage, setSelectedLanguage] = useState()
+    const [languages] = useState([
+        { code: "vn", title: "Việt Nam" },
+        { code: "us", title: "English" },
+    ])
+    const [selectedSpecialty, setSelectedSpecialty] = useState({
+        value: "",
+        label: "",
+    })
+    const [title, setTitle] = useState(selectedSpecialty.label)
+
+    const [listSpecialty, setListSpecialty] = useState([])
+
+    const target = useRef(null)
     const location = useLocation()
     const { specialtyId } = location.state
+
     const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
-
-    const [title, setTitle] = useState('')
-    const [imgBase64, setImgBase64] = useState('')
-
     const [editor, setEditor] = useState({
-        descriptionMarkdown: '',
-        descriptionHTML: '',
+        descriptionMarkdown: "",
+        descriptionHTML: "",
     })
     const { descriptionMarkdown, descriptionHTML } = editor
 
-    const [toggleContents, setToggleContents] = useState('Language')
-    const [selectedLanguage, setSelectedLanguage] = useState()
-    const [languages] = useState([
-        { code: 'vn', title: 'Việt Nam' },
-        { code: 'us', title: 'English' },
-    ])
+    const [imgBase64, setImgBase64] = useState("")
 
     const handleOnchangeImg = async (event) => {
         let data = event.target.files
@@ -60,15 +68,10 @@ const EditSpecialty = () => {
     }
 
     //////////////////////
-    const [selectedSpecialty, setSelectedSpecialty] = useState({
-        value: '',
-        label: '',
-    })
-    const [listSpecialty, setListSpecialty] = useState([])
-    console.log('list spec', listSpecialty)
+
     const fetchAllSpecialty = () => {
         const listObj = []
-        allSpecialties.map((item) => {
+        allSpecialties?.map((item) => {
             let obj = {}
             obj.label = item.title
             obj.value = item.id
@@ -77,69 +80,94 @@ const EditSpecialty = () => {
         setListSpecialty(listObj)
     }
 
-    useEffect(() => {
-        let data = fetchAllSpecialty()
-        console.log('data', data)
-        if (!data || data.length === 0) {
-            console.log('ko co data')
-        } else {
-        }
-        console.log('lan 1')
-    }, [])
-
-    const handleChangeSelect = async (selectedOption) => {
-        //get detail specialty
+    const [detailSpecialty, setDetailSpecialty] = useState([])
+    const getDetailSpecialty = async () => {
         try {
-            let res = await getSpecialtyById(selectedOption.value)
-            if (res?.data) {
-                setSelectedSpecialty({
-                    label: res.data.title,
-                    value: res.data.id,
-                })
-                setEditor({
-                    descriptionMarkdown: res.data.descriptionMarkdown,
-                    descriptionHTML: res.data.descriptionHTML,
-                })
-            }
+            let res = await getSpecialtyById(specialtyId)
+            setDetailSpecialty(res)
         } catch (error) {
-            console.log('', error)
+            console.log("", error)
         }
     }
 
-    const handleSaveSpecialty = async () => {
-        //update
+    const setValueSelect = () => {
+        try {
+            if (detailSpecialty?.data) {
+                if (selectedLanguage === "vn") {
+                    setSelectedSpecialty({
+                        label: detailSpecialty.data.title,
+                        value: detailSpecialty.data.id,
+                    })
+                    setEditor({
+                        descriptionMarkdown: detailSpecialty.data.descriptionMarkdown,
+                        descriptionHTML: detailSpecialty.data.descriptionHTML,
+                    })
+                } else {
+                    setSelectedSpecialty({
+                        label: detailSpecialty.data.translationData.title,
+                        value: detailSpecialty.data.translationData.id,
+                    })
+                    setEditor({
+                        descriptionMarkdown:
+                            detailSpecialty.data.translationData.descriptionMarkdown,
+                        descriptionHTML: detailSpecialty.data.translationData.descriptionHTML,
+                    })
+                }
+            }
+            setTitle(selectedSpecialty.label)
+        } catch (error) {
+            console.log("err", error)
+        }
+    }
 
-        // try {
-        //     const data = await createNewSpecialty({
-        //         img: imgBase64,
-        //         title,
-        //         descriptionMarkdown: editor.descriptionMarkdown,
-        //         descriptionHTML: editor.descriptionHTML,
-        //         code: selectedLanguage,
-        //     })
-        //     if (data.success) {
-        //         setTitle('')
-        //         setEditor({
-        //             descriptionMarkdown: '',
-        //             descriptionHTML: '',
-        //         })
-        //         setToggleContents('Language')
-        //         toast.success('Create specialty successfully!')
-        //     } else {
-        //         toast.error('Create fail!')
-        //     }
-        // } catch (error) {
-        //     console.log('', error)
-        // }
-        console.log('chua lam')
+    useEffect(() => {
+        getDetailSpecialty()
+    }, [])
+    useEffect(() => {
+        setValueSelect()
+    }, [selectedLanguage])
+
+    const handleFocusInput = () => {
+        if (!selectedLanguage) {
+            setShow(!show)
+        }
+    }
+
+    const handleOnchangeInput = (e) => {
+        setTitle(e.target.value)
+    }
+    const handleSaveSpecialty = async () => {
+        try {
+            const data = await updateSpecialty({
+                specialtyId,
+                img: imgBase64,
+                title,
+                descriptionMarkdown: editor.descriptionMarkdown,
+                descriptionHTML: editor.descriptionHTML,
+                code: selectedLanguage,
+            })
+            if (data.success) {
+                setTitle("")
+                setEditor({
+                    descriptionMarkdown: "",
+                    descriptionHTML: "",
+                })
+                setToggleContents("Language")
+                toast.success("Update specialty successfully!")
+            } else {
+                toast.error("Update fail!")
+            }
+        } catch (error) {
+            console.log("", error)
+        }
     }
     const navigate = useNavigate()
 
     const onAdd = () => {
-        navigate('/system/add-new-specialty')
+        navigate("/system/add-new-specialty")
     }
     const onTranslate = () => {
-        navigate('/system/translate-specialty')
+        navigate("/system/translate-specialty")
     }
 
     return (
@@ -153,14 +181,29 @@ const EditSpecialty = () => {
                             </label>
                             <Select
                                 value={selectedSpecialty}
-                                onChange={handleChangeSelect}
                                 options={listSpecialty}
-                                // options={listObj}
-                                // placeholder={
-                                //     <FormattedMessage id='admin.manage-doctor.select-doctor' />
-                                // }
                                 className='manage-specialty-select'
+                                // onChange={handleChangeSelect}
+                                // onFocus={handleFocusSelect}
+                                // ref={target}
                             />
+                            {/* <OverlayTrigger
+                                placement='top'
+                                overlay={<Tooltip>Please select language first!</Tooltip>}
+                            > */}
+                            <input
+                                type='text'
+                                className='manage-specialty-input form-control form-control-sm'
+                                value={title}
+                                ref={target}
+                                // onFocus={
+                                //     selectedSpecialty?.label?.length === 0
+                                //         ? handleFocusInput
+                                //         : ''
+                                // }
+                                onChange={handleOnchangeInput}
+                            />
+                            {/* </OverlayTrigger> */}
                         </div>
 
                         <Dropdown
@@ -221,7 +264,7 @@ const EditSpecialty = () => {
                     </div>
                     <div className='col-12'>
                         <MdEditor
-                            style={{ height: '400px' }}
+                            style={{ height: "400px" }}
                             renderHTML={(text) => mdParser.render(text)}
                             onChange={handleEditorChange}
                             value={descriptionMarkdown}

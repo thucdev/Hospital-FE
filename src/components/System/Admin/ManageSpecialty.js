@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react'
-import MarkdownIt from 'markdown-it'
-import MdEditor from 'react-markdown-editor-lite'
-import 'react-markdown-editor-lite/lib/index.css'
-import Select from 'react-select'
-import { DropdownButton, Dropdown, Form } from 'react-bootstrap'
-import FlagIcon from '../../../styles/FlagIcon'
-import { Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from "react"
+import MarkdownIt from "markdown-it"
+import MdEditor from "react-markdown-editor-lite"
+import "react-markdown-editor-lite/lib/index.css"
+import Select from "react-select"
+import { DropdownButton, Dropdown, Form } from "react-bootstrap"
+import FlagIcon from "../../../styles/FlagIcon"
+import { Link, useNavigate } from "react-router-dom"
 
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import './ManageSpecialty.scss'
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import "./ManageSpecialty.scss"
 import {
     createNewSpecialty,
     // getAllSpecialties,
     getSpecialtyById,
-} from '../../../services/userService'
-import Base64 from '../../../utils/Base64'
-import { useSelector } from 'react-redux'
+} from "../../../services/userService"
+import Base64 from "../../../utils/Base64"
+import { useSelector } from "react-redux"
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */)
@@ -24,53 +24,51 @@ const mdParser = new MarkdownIt(/* Markdown-it options */)
 const ManageSpecialty = () => {
     const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
 
-    console.log('allSpecialties', allSpecialties)
+    console.log("allSpecialties", allSpecialties)
 
-    const [title, setTitle] = useState('')
-    const [imgBase64, setImgBase64] = useState('')
+    const [title, setTitle] = useState("")
+    const [imgBase64, setImgBase64] = useState("")
 
     const [editor, setEditor] = useState({
-        descriptionMarkdown: '',
-        descriptionHTML: '',
+        descriptionMarkdown: "",
+        descriptionHTML: "",
     })
     const { descriptionMarkdown, descriptionHTML } = editor
 
-    const [toggleContents, setToggleContents] = useState('Language')
+    const [toggleContents, setToggleContents] = useState("Language")
     const [selectedLanguage, setSelectedLanguage] = useState()
     const [languages] = useState([
-        { code: 'vn', title: 'Việt Nam' },
-        { code: 'us', title: 'English' },
+        { code: "vn", title: "Việt Nam" },
+        { code: "us", title: "English" },
     ])
 
-    const handleOnchangeImg = async (event) => {
-        let data = event.target.files
-        let file = data[0]
-        if (file) {
-            let base64 = await Base64.getBase64(file)
-            setImgBase64(base64)
-        }
-    }
+    // const handleOnchangeImg = async (event) => {
+    //     let data = event.target.files
+    //     let file = data[0]
+    //     if (file) {
+    //         let base64 = await Base64.getBase64(file)
+    //         setImgBase64(base64)
+    //     }
+    // }
 
-    function handleEditorChange({ html, text }) {
-        setEditor({
-            descriptionMarkdown: text,
-            descriptionHTML: html,
-        })
-    }
+    // function handleEditorChange({ html, text }) {
+    //     setEditor({
+    //         descriptionMarkdown: text,
+    //         descriptionHTML: html,
+    //     })
+    // }
 
     //////////////////////
     const [selectedSpecialty, setSelectedSpecialty] = useState({
-        value: '',
-        label: '',
+        value: "",
+        label: "",
     })
     const [listSpecialty, setListSpecialty] = useState([])
     const [listSpecialtyEn, setListSpecialtyEn] = useState([])
-    console.log('list spec', listSpecialty)
-    console.log('list specEn', listSpecialtyEn)
     const fetchAllSpecialty = () => {
         const listObj = []
         const listObjEn = []
-        allSpecialties.map((item) => {
+        allSpecialties?.map((item) => {
             let obj = {}
             let objEn = {}
             obj.label = item.title
@@ -103,17 +101,17 @@ const ManageSpecialty = () => {
                 })
             }
         } catch (error) {
-            console.log('', error)
+            console.log("", error)
         }
     }
 
     const navigate = useNavigate()
 
     const onAdd = () => {
-        navigate('/system/add-new-specialty')
+        navigate("/system/add-new-specialty")
     }
     const onTranslate = () => {
-        navigate('/system/translate-specialty')
+        navigate("/system/translate-specialty")
     }
 
     return (

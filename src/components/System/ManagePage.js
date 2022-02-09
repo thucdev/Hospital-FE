@@ -1,6 +1,6 @@
-import { Row, Col, Button } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ManageDoctor from './Admin/ManageDoctor'
+import { Row, Col, Button } from "react-bootstrap"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import ManageDoctor from "./Doctor/ManageDoctor"
 
 function ManagePage() {
     return (
@@ -16,9 +16,9 @@ function ManagePage() {
                     </div>
                 </div>
             </Col>
-            <Col>
+            {/* <Col>
                 <ManageDoctor />
-            </Col>
+            </Col> */}
         </Row>
     )
 }

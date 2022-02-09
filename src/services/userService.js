@@ -1,4 +1,4 @@
-import axios from '../utils/axios'
+import axios from "../utils/axios"
 
 const createNewSpecialty = (data) => {
     return axios.post(`/create-new-specialty`, data)
@@ -8,17 +8,22 @@ const createNewSpecialtyTranslation = (data) => {
     return axios.post(`/create-new-specialty-translation`, data)
 }
 
-// const getAllSpecialties = () => {
-//     return axios.get(`/get-all-specialties`)
-// }
-
 const getSpecialtyById = (id) => {
     return axios.get(`/get-specialty-by-id/?id=${id}`)
 }
 
+const updateSpecialty = (data) => {
+    return axios.put(`/update-specialty`, data)
+}
+
+const createDoctor = (data) => {
+    return axios.post(`/create-doctor`, data)
+}
+
 export {
     createNewSpecialty,
-    // getAllSpecialties,
     getSpecialtyById,
     createNewSpecialtyTranslation,
+    updateSpecialty,
+    createDoctor,
 }
