@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"); */
 body {
-    margin: 0;
-    font-family: 'Noto Sans', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-size: 16px;
-    color: rgb(53, 48, 48);
-    padding: 0;
+   margin: 0;
+   font-family: "Noto Sans", sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   font-size: 16px;
+   color: rgb(53, 48, 48);
+   padding: 0;
 }
 ul,
 p,
@@ -16,22 +17,22 @@ h3,
 h4,
 h5,
 h6 {
-    padding: 0;
-    margin: 0;
+   padding: 0;
+   margin: 0;
 }
 li {
-    list-style: none;
+   list-style: none;
 }
 
 .icon {
-    margin: 0 4px;
-    font-size: 20px;
-    width: 20px;
-    height: 20px;
+   margin: 0 4px;
+   font-size: 20px;
+   width: 20px;
+   height: 20px;
 }
 
 /* //overwrite boostrap */
 .btn-group-sm > .btn,
 .btn-sm {
-    border-radius: 0.2rem;
+   border-radius: 0.2rem;
 }

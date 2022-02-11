@@ -1,129 +1,129 @@
-@import '../../../styles/setting';
-@import '../../../styles/customArrowSlice.css';
+@import "../../../styles/setting";
+@import "../../../styles/customArrowSlice.css";
 
 .section-services {
-    // height: 780px;
-    height: 870;
-    width: 100%;
-    padding: 0 44px;
-    background-color: #e9e9e9;
-    .service-header {
-        .service-header-title {
-            text-align: center;
-            padding-top: 92px;
-            color: $main-color;
-            font-weight: bold;
-        }
-        .service-header-content {
-            padding: 12px 0 36px 0;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 18px;
-            color: $text-color;
-        }
-    }
+   // height: 780px;
+   height: 870;
+   width: 100%;
+   padding: 0 44px;
+   background-color: #e9e9e9;
+   .service-header {
+      .service-header-title {
+         text-align: center;
+         padding-top: 92px;
+         color: $main-color;
+         font-weight: bold;
+      }
+      .service-header-content {
+         padding: 12px 0 36px 0;
+         max-width: 800px;
+         margin: 0 auto;
+         text-align: center;
+         font-size: 18px;
+         color: $text-color;
+      }
+   }
 
-    .service-content {
-        .service-slide {
-            .bg-image {
-                width: 535px;
-                height: 328px;
-                background-position: center center;
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-color: #eee;
-                &.service-slide-img {
-                    background-image: url('../../../assets/slide1.jpg');
-                }
+   .service-content {
+      .service-slide {
+         .bg-image {
+            width: 535px;
+            height: 328px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #eee;
+            &.service-slide-img {
+               background-image: url("../../../assets/slide1.jpg");
+            }
+         }
+
+         .slide-item-content {
+            padding: 0 16px 0 16px;
+            height: 212px;
+            width: 535px;
+            background-color: white;
+            border-top: 1px solid #e9e9e9;
+            .slide-item-content-title {
+               cursor: pointer;
+               padding-top: 24px;
+               padding-bottom: 16px;
+               font-size: 28px;
+               color: $main-color;
+            }
+            .slide-item-content-body {
+               font-size: 18px;
+               color: $text-color;
+               overflow: hidden;
+               width: 515px;
+               display: -webkit-box;
+               -webkit-line-clamp: 2;
+               -webkit-box-orient: vertical;
             }
 
-            .slide-item-content {
-                padding: 0 16px 0 16px;
-                height: 212px;
-                width: 535px;
-                background-color: white;
-                border-top: 1px solid #e9e9e9;
-                .slide-item-content-title {
-                    cursor: pointer;
-                    padding-top: 24px;
-                    padding-bottom: 16px;
-                    font-size: 28px;
-                    color: $main-color;
-                }
-                .slide-item-content-body {
-                    font-size: 18px;
-                    color: $text-color;
-                    overflow: hidden;
-                    width: 515px;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 2;
-                    -webkit-box-orient: vertical;
-                }
+            .read-more {
+               font-size: 18px;
+               color: $main-color;
+               padding-top: 16px;
 
-                .read-more {
-                    font-size: 18px;
-                    color: $main-color;
-                    padding-top: 16px;
-
-                    &:hover {
-                        opacity: 0.8;
-                        text-decoration: underline;
-                        cursor: pointer;
-                    }
-                }
+               &:hover {
+                  opacity: 0.8;
+                  text-decoration: underline;
+                  cursor: pointer;
+               }
             }
-        }
-    }
+         }
+      }
+   }
 
-    .see-all {
-        margin: 24px 0;
-        padding-bottom: 24px;
-        // display: flex;
-        // align-items: center;
-        // width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        // display: inline-block;
-        .see-all-btn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            // margin: auto;
-            // margin-top: 50px;
-            // padding-top: 50px;
-            // padding-bottom: 60px;
-            border-color: $main-color-soft;
-            border-radius: 5px;
-            // outline: $main-color;
-            font-weight: 700;
-            color: $main-color;
-            width: 230px;
-            transition: all 0.5s ease;
-            // animation: all 0.2s ease-in;
+   .see-all {
+      margin: 24px 0;
+      padding-bottom: 24px;
+      // display: flex;
+      // align-items: center;
+      // width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // display: inline-block;
+      .see-all-btn {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         // margin: auto;
+         // margin-top: 50px;
+         // padding-top: 50px;
+         // padding-bottom: 60px;
+         border-color: $main-color-soft;
+         border-radius: 5px;
+         // outline: $main-color;
+         font-weight: 700;
+         color: $main-color;
+         width: 230px;
+         transition: all 0.3s ease;
+         // animation: all 0.2s ease-in;
 
-            height: 50px;
+         height: 50px;
 
-            &:hover {
-                color: white;
-                background-color: $main-color;
-            }
-        }
-    }
+         &:hover {
+            color: white;
+            background-color: $main-color;
+         }
+      }
+   }
 }
 
 .rec-slider-container {
-    margin: 0 20px 0 20px;
+   margin: 0 20px 0 20px;
 }
 
 button.rec-dot_active {
-    background-color: rgba(16, 129, 235, 1);
-    box-shadow: 0 0 1px 3px rgba(16, 129, 235, 0.5);
+   background-color: rgba(16, 129, 235, 1);
+   box-shadow: 0 0 1px 3px rgba(16, 129, 235, 0.5);
 }
 
 button.rec-dot:hover,
 button.rec-dot:active,
 button.rec-dot:focus {
-    box-shadow: 0 0 1px 3px rgba(235, 16, 16, 0.5);
+   box-shadow: 0 0 1px 3px rgba(235, 16, 16, 0.5);
 }
