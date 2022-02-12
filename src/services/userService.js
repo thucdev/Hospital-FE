@@ -21,7 +21,7 @@ const createDoctor = (data) => {
 }
 
 const createAppointment = (data) => {
-   return axios.post(`/create-an-apointment`, data)
+   return axios.post(`/create-an-appointment`, data)
 }
 
 export {

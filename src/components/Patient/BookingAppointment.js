@@ -10,6 +10,7 @@ import Select from "react-select"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { createAppointment, getSpecialtyById } from "../../services/userService"
+import moment from "moment"
 
 function BookingAppointment() {
    const [bookingData, setBookingData] = useState({
@@ -84,12 +85,18 @@ function BookingAppointment() {
 
    const handleOrderAppointment = async () => {
       try {
+         let formattedDate = moment.utc(startDate).format("DD/MM/YYYY")
          let res = await createAppointment({
             ...bookingData,
             timeBooked: chosenHour,
-            dateBooked: startDate,
+            dateBooked: formattedDate,
             specialtyId: selectedSpecialty.value,
          })
+         if (res.success) {
+            toast.success("You have orderd an appointment successfully!")
+         } else {
+            toast.error("Order an appointment fail!")
+         }
       } catch (error) {
          console.log("er", error)
       }
@@ -181,6 +188,7 @@ function BookingAppointment() {
                         <Col sm='6'>
                            <DatePicker
                               selected={startDate}
+                              dateFormat='dd/MM/yyyy'
                               onChange={(date) => setStartDate(date)}
                               minDate={new Date()}
                               className='form-control'
