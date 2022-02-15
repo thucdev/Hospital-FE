@@ -192,7 +192,7 @@ const EditSpecialty = () => {
                             > */}
                      <input
                         type='text'
-                        className='manage-specialty-input form-control form-control-sm'
+                        className='manage-specialty-input form-control '
                         value={title}
                         ref={target}
                         // onFocus={
@@ -235,21 +235,22 @@ const EditSpecialty = () => {
                         ))}
                      </Dropdown.Menu>
                   </Dropdown>
-                  <div className=' form-group my-2 p-0 '>
-                     <label htmlFor='' className='text-title'>
+                  <div className=' form-group my-2 px-2 upload-photo'>
+                     <label htmlFor='file' className='text-title'>
                         Tải ảnh chuyên khoa
                      </label>
                      <input
                         type='file'
-                        className='form-control-file manage-specialty-file-upload'
+                        id='file'
+                        className='form-control-file manage-specialty-file-upload hidden'
                         onChange={handleOnchangeImg}
                      />
                   </div>
-                  <div className=' form-group my-2  p-0'>
+                  {/* <div className=' form-group my-2  p-0'>
                      <button className='btn btn-success btn-sm mt-4 btn-add' onClick={onAdd}>
                         Add New
                      </button>
-                  </div>
+                  </div> */}
                   <div className=' form-group my-2  p-0'>
                      <button className='btn btn-success btn-sm mt-4 btn-add' onClick={onTranslate}>
                         Translate

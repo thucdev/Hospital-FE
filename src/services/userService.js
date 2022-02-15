@@ -24,6 +24,9 @@ const createAppointment = (data) => {
    return axios.post(`/create-an-appointment`, data)
 }
 
+const verifyBookingAppointment = (data) => {
+   return axios.post("/verify-appointment", data)
+}
 export {
    createNewSpecialty,
    getSpecialtyById,
@@ -31,4 +34,5 @@ export {
    updateSpecialty,
    createDoctor,
    createAppointment,
+   verifyBookingAppointment,
 }

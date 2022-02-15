@@ -15,6 +15,9 @@ import EditSpecialty from "./components/System/Admin/EditSpecialty"
 import CreateDoctor from "./components/System/Doctor/CreateDoctor"
 import ManageDoctor from "./components/System/Doctor/ManageDoctor"
 import BookingAppointment from "./components/Patient/BookingAppointment"
+import ConfirmEmail from "./components/Patient/ConfirmEmail"
+import ConfirmEmailSuccess from "./components/Patient/ConfirmEmailSuccess"
+import Page404 from "./components/Page404"
 
 function App() {
    const dispatch = useDispatch()
@@ -38,6 +41,9 @@ function App() {
                <Route path='edit-specialty' element={<EditSpecialty />} />
             </Route>
             <Route path='/booking-appointment' element={<BookingAppointment />} />
+            <Route path='/confirm-email' element={<ConfirmEmail />} />
+            <Route path='/verify-appointment' element={<ConfirmEmailSuccess />} />
+            <Route path='/*' element={<Page404 />} />
             <Route path='/' element={<Homepage />} />
          </Routes>
 

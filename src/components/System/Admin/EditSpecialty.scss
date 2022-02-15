@@ -1,38 +1,38 @@
 .manage-specialty-container {
-    .add-new-specialty {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+   .add-new-specialty {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-        .manage-specialty-select {
-            width: 400px;
-            display: inline-block;
-            position: absolute;
-        }
+      .manage-specialty-select {
+         width: 400px;
+         display: inline-block;
+         position: absolute;
+      }
 
-        .manage-specialty-input {
-            position: relative;
-            top: 0;
-            right: 0;
-            z-index: 10000;
-            width: 400px;
-        }
-        .dropdown-btn {
-            display: inline-block;
-        }
-        .manage-specialty-file-upload {
-            width: 250px;
-        }
-    }
+      .manage-specialty-input {
+         position: relative;
+         top: 0;
+         right: 0;
+         z-index: 10000;
+         width: 400px;
+      }
+      .dropdown-btn {
+         display: inline-block;
+      }
+      .manage-specialty-file-upload {
+         width: 250px;
+      }
+   }
 
-    .text-title {
-        display: block;
-        font-size: 16px;
-        font-weight: bold;
-        margin: 10px 0;
-    }
+   .text-title {
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+      margin: 10px 0;
+   }
 
-    .dropdown-btn {
-        margin-top: 44px;
-    }
+   .dropdown-btn {
+      margin-top: 44px;
+   }
 }

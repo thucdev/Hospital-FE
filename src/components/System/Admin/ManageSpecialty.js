@@ -110,9 +110,6 @@ const ManageSpecialty = () => {
    const onAdd = () => {
       navigate("/system/add-new-specialty")
    }
-   const onTranslate = () => {
-      navigate("/system/translate-specialty")
-   }
 
    return (
       <>
@@ -124,22 +121,27 @@ const ManageSpecialty = () => {
                   Thùng rác
                   {/* ({{ deleteCount }}) */}
                </a>
+               <div className='btn-action'>
+                  <div className='mt-4 manage-specialty-action'>
+                     <div className=' form-check'>
+                        <input type='checkbox' className='form-check-input' id='checkbox-all' />
+                        <label className='form-check-label' for='checkbox-all'>
+                           Chọn tất cả
+                        </label>
+                     </div>
 
-               <div className='mt-4 manage-specialty-action'>
-                  <div className=' form-check'>
-                     <input type='checkbox' className='form-check-input' id='checkbox-all' />
-                     <label className='form-check-label' for='checkbox-all'>
-                        Chọn tất cả
-                     </label>
+                     <select id='disabledSelect' className='form-select form-select-sm'>
+                        <option>--Hành động--</option>
+                        <option value='delete'>Xoá</option>
+                     </select>
+                     <button className='btn btn-primary btn-sm'>Thực hiện</button>
                   </div>
-
-                  <select id='disabledSelect' className='form-select form-select-sm'>
-                     <option>--Hành động--</option>
-                     <option value='delete'>Xoá</option>
-                  </select>
-                  <button className='btn btn-primary btn-sm'>Thực hiện</button>
+                  <button className='btn btn-primary btn-add mt-4' onClick={onAdd}>
+                     Thêm mới
+                  </button>
                </div>
             </div>
+
             <table className='table mt-4'>
                <thead>
                   <tr>
@@ -206,9 +208,9 @@ const ManageSpecialty = () => {
                   })}
 
                   <td colspan='5' className='text-center'>
-                     Chưa có chuyên khoa nào được tạo.
+                     {/* Chưa có chuyên khoa nào được tạo. */}
                      {/* <Link to='/system/add-new-specialty'>Tạo chuyên khoa</Link> */}
-                     <Link to='/system/add-new-specialty'>Tạo chuyên khoa</Link>
+                     {/* <Link to='/system/add-new-specialty'>Tạo chuyên khoa</Link> */}
                   </td>
                   {/* {{/each}} */}
                </tbody>

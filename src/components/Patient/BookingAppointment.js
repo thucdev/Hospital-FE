@@ -11,8 +11,10 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { createAppointment, getSpecialtyById } from "../../services/userService"
 import moment from "moment"
+import { useNavigate, userNavigate } from "react-router-dom"
 
 function BookingAppointment() {
+   const navigate = useNavigate()
    const [bookingData, setBookingData] = useState({
       fullName: "",
       email: "",
@@ -94,6 +96,7 @@ function BookingAppointment() {
          })
          if (res.success) {
             toast.success("You have orderd an appointment successfully!")
+            navigate("/confirm-email")
          } else {
             toast.error("Order an appointment fail!")
          }

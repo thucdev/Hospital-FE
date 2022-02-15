@@ -1,42 +1,40 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css" // requires a loader
 // import { Carousel } from 'react-responsive-carousel'
-import "./Services.scss"
-import service1 from "../../../assets/Services1.jpg"
-import service2 from "../../../assets/Services2.jpg"
+import "./News.scss"
 import { Button } from "react-bootstrap"
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from "pure-react-carousel"
 import "pure-react-carousel/dist/react-carousel.es.css"
 import Carousel, { consts } from "react-elastic-carousel"
 import { useSelector } from "react-redux"
 
-function Services() {
+function News() {
    const language = useSelector((state) => state.languageReducer.languageState.language)
    const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
    console.log("allSpecialties", allSpecialties)
    const breakPoints = [
       { width: 1, itemsToShow: 1 },
       { width: 550, itemsToShow: 1, itemsToScroll: 1 },
-      { width: 768, itemsToShow: 2 },
-      { width: 1200, itemsToShow: 2 },
+      { width: 768, itemsToShow: 3 },
+      { width: 1200, itemsToShow: 3 },
    ]
    return (
-      <div className='section-services'>
-         <div className='service-header'>
-            <h2 className='service-header-title'>Our Services</h2>
-            <div className='service-header-content'>
+      <div className='section-news'>
+         <div className='news-header'>
+            <h2 className='news-header-title'>Tin Tức và Sự Kiện</h2>
+            {/* <div className='news-header-content'>
                At L'Hôpital Français de Hanoi you will experience high quality, international
                standard health care
-            </div>
+            </div> */}
          </div>
-         <div className='service-content'>
-            <div className='service-slide'>
+         <div className='news-content'>
+            <div className='news-slide'>
                <Carousel itemsToShow={2} breakPoints={breakPoints}>
                   {language === "vi" &&
                      allSpecialties?.map((item, index) => {
                         return (
-                           <div className='service-slide-item' key={index}>
+                           <div className='news-slide-item' key={index}>
                               <div
-                                 className='bg-image service-slide-img'
+                                 className='bg-image news-slide-img'
                                  style={{ backgroundImage: `url(${item.img})` }}
                               ></div>
                               <div className='slide-item-content'>
@@ -53,9 +51,9 @@ function Services() {
                   {language === "en" &&
                      allSpecialties?.map((item, index) => {
                         return (
-                           <div className='service-slide-item' key={index}>
+                           <div className='news-slide-item' key={index}>
                               <div
-                                 className='bg-image service-slide-img'
+                                 className='bg-image news-slide-img'
                                  style={{ backgroundImage: `url(${item.img})` }}
                               ></div>
                               <div className='slide-item-content'>
@@ -74,12 +72,12 @@ function Services() {
                </Carousel>
             </div>
          </div>
-         <div className='see-all'>
+         <div className='see-all-new'>
             {/* <Button variant='outline-info'>Xem tất cả</Button> */}
-            <button className=' main-btn'>Xem tất cả</button>
+            <button className=' main-btn see-all-new-btn'>Xem tất cả</button>
          </div>
       </div>
    )
 }
 
-export default Services
+export default News

@@ -1,0 +1,47 @@
+@import "../../styles/setting";
+
+.bg-footer {
+   background: url("../../assets/footer.jpg") #0061a9 no-repeat center top;
+   // width: 1349px;
+   width: 1361px;
+   height: 349px;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+   color: #fff;
+   // padding: 50px 0 70px;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   .icon-footer {
+      width: 22px;
+      height: 22px;
+      margin-right: 6px;
+   }
+   .icon-footer-play {
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+      margin-right: 6px;
+   }
+   .detail-footer {
+      cursor: pointer;
+
+      &:hover {
+         color: rgb(228, 201, 48);
+      }
+   }
+}
+
+.copywrite {
+   background-color: #005594;
+   width: 1361px;
+   height: 36px;
+   color: white;
+   font-size: 12px;
+   justify-content: center;
+   align-items: center;
+}

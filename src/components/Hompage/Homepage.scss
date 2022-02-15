@@ -1,3 +1,5 @@
+@import "../../styles/setting";
+
 .input-search-homepage {
    // width: 100%;
    position: relative;
@@ -50,5 +52,58 @@
       -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover;
+   }
+}
+
+.carousel .control-dots {
+   margin-bottom: 42px;
+}
+.carousel-status {
+   display: none;
+}
+
+.info-hospital {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   .info-hospital-header {
+      justify-content: center;
+      padding: 16px 26px;
+      margin-bottom: 16px;
+
+      .info-hospital-header__tilte,
+      .info-hospital-body__percent {
+         font-size: 32px;
+         font-weight: bold;
+         color: $main-color;
+         justify-content: center;
+      }
+      .info-hospital-header__text {
+         justify-content: center;
+      }
+   }
+
+   .info-hospital-body {
+      .info-hospital-body-statistic {
+         .statistic-percent {
+            font-size: 28px;
+            font-weight: bold;
+            color: $main-color;
+         }
+         .statistic-info {
+            color: $main-color-soft;
+            font-size: 18px;
+            font-weight: bold;
+         }
+         .info-hospital-content {
+            text-align: justify;
+         }
+      }
+   }
+   .info-hospital-btn {
+      margin: 40px 0;
+      gap: 16px;
+      justify-content: center;
    }
 }
