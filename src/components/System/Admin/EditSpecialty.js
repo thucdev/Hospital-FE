@@ -252,7 +252,7 @@ const EditSpecialty = () => {
                      </button>
                   </div> */}
                   <div className=' form-group my-2  p-0'>
-                     <button className='btn btn-success btn-sm mt-4 btn-add' onClick={onTranslate}>
+                     <button className='btn btn-success  mt-5 btn-add' onClick={onTranslate}>
                         Translate
                      </button>
                   </div>

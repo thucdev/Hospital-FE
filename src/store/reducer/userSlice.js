@@ -1,19 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit"
 
 const userSlice = createSlice({
-    name: 'user',
-    initialState: {
-        allSpecialty: [],
-    },
-    reducers: {
-        getAllSpecialtiesSuccess: (state, action) => {
-            state.allSpecialty = action.payload
-        },
-    },
+   name: "user",
+   initialState: {
+      allSpecialty: [],
+      allDoctor: [],
+   },
+   reducers: {
+      getAllSpecialtiesSuccess: (state, action) => {
+         state.allSpecialty = action.payload
+      },
+      getAllDoctorSuccess: (state, action) => {
+         state.allDoctor = action.payload
+      },
+   },
 })
 
 export const userReducer = userSlice.reducer
 
-export const { getAllSpecialtiesSuccess } = userSlice.actions
+export const { getAllSpecialtiesSuccess, getAllDoctorSuccess } = userSlice.actions
 
 export default userReducer

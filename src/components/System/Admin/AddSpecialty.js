@@ -7,6 +7,9 @@ import "react-toastify/dist/ReactToastify.css"
 import { useNavigate } from "react-router-dom"
 import "./ManageSpecialty.scss"
 import { Dropdown } from "react-bootstrap"
+import { useDispatch } from "react-redux"
+import { getAllSpecialties } from "../../../store/apiRequest/apiUser"
+
 import FlagIcon from "../../../styles/FlagIcon"
 import { createNewSpecialty } from "../../../services/userService"
 import Base64 from "../../../utils/Base64"
@@ -15,6 +18,8 @@ import Base64 from "../../../utils/Base64"
 const mdParser = new MarkdownIt(/* Markdown-it options */)
 
 const AddSpecialty = () => {
+   const dispatch = useDispatch()
+
    const [title, setTitle] = useState("")
    const [imgBase64, setImgBase64] = useState("")
 
@@ -68,6 +73,7 @@ const AddSpecialty = () => {
             })
             setToggleContents("Language")
             // setImgBase64('')
+            dispatch(getAllSpecialties())
 
             toast.success("Create specialty successfully!")
          } else {

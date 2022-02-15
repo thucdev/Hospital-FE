@@ -16,6 +16,14 @@ const updateSpecialty = (data) => {
    return axios.put(`/update-specialty`, data)
 }
 
+const deleteSpecialty = (id) => {
+   return axios.delete(`/delete-specialty`, {
+      data: {
+         id: id,
+      },
+   })
+}
+
 const createDoctor = (data) => {
    return axios.post(`/create-doctor`, data)
 }
@@ -32,6 +40,7 @@ export {
    getSpecialtyById,
    createNewSpecialtyTranslation,
    updateSpecialty,
+   deleteSpecialty,
    createDoctor,
    createAppointment,
    verifyBookingAppointment,
