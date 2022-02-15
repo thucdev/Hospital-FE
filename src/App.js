@@ -7,7 +7,7 @@ import ManageSchedule from "./components/System/Doctor/ManageSchedule"
 import ManageSpecialty from "./components/System/Admin/ManageSpecialty"
 import AddSpecialty from "./components/System/Admin/AddSpecialty"
 import { ToastContainer } from "react-toastify"
-import { getAllSpecialties } from "./store/apiRequest/apiUser"
+import { getAllSpecialties, getAllDoctor } from "./store/apiRequest/apiUser"
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 import SpecialtyTranslation from "./components/System/Admin/SpecialtyTranslation"
@@ -23,6 +23,7 @@ function App() {
    const dispatch = useDispatch()
    useEffect(() => {
       dispatch(getAllSpecialties())
+      dispatch(getAllDoctor())
    }, [])
 
    return (

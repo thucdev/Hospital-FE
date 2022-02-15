@@ -1,68 +1,71 @@
-.manage-navbar {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    width: 20%;
-    background-color: rgb(34, 33, 33);
+.dashboard {
+   display: flex;
+   .manage-navbar {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      width: 20%;
+      background-color: rgb(34, 33, 33);
 
-    .manage-navbar-title {
-        color: white;
-        text-decoration: none;
-        font-size: 22px;
-        display: block;
-        // width: fit-content;
-        height: 40px;
-        margin: 24px 0px 5px 0;
-        // text-align: center;
-        padding-left: 14px;
-        border-bottom: 1px solid rgb(156, 154, 154);
-    }
-    .manage-navbar-text {
-        color: white;
-        text-decoration: none;
-        font-size: 20px;
-        display: inline-block;
-        width: fit-content;
-        margin: 24px 12px;
-        &:hover {
+      .manage-navbar-title {
+         color: white;
+         text-decoration: none;
+         font-size: 22px;
+         display: block;
+         // width: fit-content;
+         height: 40px;
+         margin: 24px 0px 5px 0;
+         // text-align: center;
+         padding-left: 14px;
+         border-bottom: 1px solid rgb(156, 154, 154);
+      }
+      .manage-navbar-text {
+         color: white;
+         text-decoration: none;
+         font-size: 20px;
+         display: inline-block;
+         width: fit-content;
+         margin: 24px 12px;
+         &:hover {
             // background-color: #999;
             text-decoration: underline;
-        }
-    }
+         }
+      }
+   }
 }
 
 .manage-header {
-    width: 80%;
+   width: 80%;
+   padding: 0 16px;
 
-    .manage-menu-logout {
-        border-bottom: 1px solid #333;
-        float: right;
-        padding: 18px;
-        // display: inline-block;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 15px;
+   .manage-menu-logout {
+      border-bottom: 1px solid #333;
+      float: right;
+      padding: 16px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 15px;
 
-        &:hover {
-            opacity: 0.8;
-            cursor: pointer;
-        }
+      &:hover {
+         opacity: 0.8;
+         cursor: pointer;
+      }
 
-        .dropdown-language {
-        }
+      .dropdown-language {
+      }
 
-        .manage-menu-logout-content {
-            .manage-menu-logout-text {
-                font-size: 20px;
-                // margin-left: 4px;
-                display: inline-block;
-            }
-        }
-    }
+      .manage-menu-logout-content {
+         .manage-menu-logout-text {
+            font-size: 20px;
+            // margin-left: 4px;
+            display: inline-block;
+         }
+      }
+   }
 
-    .manage-menu-body {
-        // border: 1px solid green;
-        height: 100%;
-    }
+   .manage-menu-body {
+      // border: 1px solid green;
+      height: 100%;
+   }
 }

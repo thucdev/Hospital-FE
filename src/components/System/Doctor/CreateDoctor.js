@@ -17,6 +17,8 @@ function CreateDoctor() {
       email: "",
       password: "",
       fullName: "",
+      phoneNumber: "",
+      address: "",
       language: "",
       experience: "",
       member: "",
@@ -24,8 +26,19 @@ function CreateDoctor() {
       degree: "",
       field: "",
    })
-   const { email, password, fullName, language, experience, member, certificate, degree, field } =
-      infoFiled
+   const {
+      email,
+      password,
+      fullName,
+      language,
+      phoneNumber,
+      address,
+      experience,
+      member,
+      certificate,
+      degree,
+      field,
+   } = infoFiled
 
    const [infosArray, setInfosArray] = useState({
       experience: [],
@@ -259,12 +272,36 @@ function CreateDoctor() {
                      </button>
                   </div>
                </div>
+               <div className='form-group group-doctor-info'>
+                  <div className='px-3'>
+                     <label htmlFor='' className='my-1'>
+                        Lĩnh vực chuyên sâu
+                     </label>
+                     <ul>
+                        {infosArray["field"]?.map((item, index) => {
+                           return <li key={index}>{item}</li>
+                        })}
+                     </ul>
+
+                     <input
+                        type='text'
+                        className='form-control mt-2'
+                        name='field'
+                        value={field}
+                        placeholder='Enter field'
+                        onChange={handleOnchageInput}
+                     />
+                     <button onClick={() => handleClickAdd("degree")} class='btn btn-success my-2'>
+                        Thêm
+                     </button>
+                  </div>
+               </div>
             </div>
 
             <div className='col-6'>
                <div className='form-group'>
                   <label htmlFor='' className='text-title my-1'>
-                     Tên chuyên khoa
+                     Thuộc chuyên khoa
                   </label>
                   <Select
                      value={selectedSpecialty}
@@ -273,6 +310,32 @@ function CreateDoctor() {
                      onChange={handleChangeSelect}
                      // onFocus={handleFocusSelect}
                      // ref={target}
+                  />
+               </div>
+               <div className='form-group'>
+                  <label htmlFor='' className='my-1'>
+                     Số điện thoại
+                  </label>
+                  <input
+                     type='text'
+                     className='form-control'
+                     name='phoneNumber'
+                     placeholder='Enter phone number'
+                     value={phoneNumber}
+                     onChange={handleOnchageInput}
+                  />
+               </div>
+               <div className='form-group'>
+                  <label htmlFor='' className='my-1'>
+                     Địa chỉ
+                  </label>
+                  <input
+                     type='text'
+                     className='form-control'
+                     name='address'
+                     placeholder='Enter address'
+                     value={address}
+                     onChange={handleOnchageInput}
                   />
                </div>
                <div className='form-group'>
@@ -351,7 +414,7 @@ function CreateDoctor() {
                   </div>
                </div>
             </div>
-            <div className=' row '>
+            {/* <div className=' row '>
                <div className=' form-group group-doctor-info col-12 group-doctor-info-field '>
                   <div className='px-3 '>
                      <label htmlFor='' className='my-1'>
@@ -376,7 +439,7 @@ function CreateDoctor() {
                      </button>
                   </div>
                </div>
-            </div>
+            </div> */}
          </div>
          <button onClick={handleAddNew} class='btn btn-warning my-2'>
             Thêm mới
