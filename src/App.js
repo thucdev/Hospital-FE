@@ -3,21 +3,23 @@ import Auth from "./Auth/views/Auth"
 import Homepage from "./components/Hompage/Homepage"
 import "./App.scss"
 import { System } from "./routes/System"
-import ManageSchedule from "./components/System/Doctor/ManageSchedule"
-import ManageSpecialty from "./components/System/Admin/ManageSpecialty"
-import AddSpecialty from "./components/System/Admin/AddSpecialty"
+import ManageSpecialty from "./components/System/Admin/MagageSpecialty/ManageSpecialty"
+import AddSpecialty from "./components/System/Admin/MagageSpecialty/AddSpecialty"
+import EditSpecialty from "./components/System/Admin/MagageSpecialty/EditSpecialty"
 import { ToastContainer } from "react-toastify"
 import { getAllSpecialties, getAllDoctor } from "./store/apiRequest/apiUser"
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
-import SpecialtyTranslation from "./components/System/Admin/SpecialtyTranslation"
-import EditSpecialty from "./components/System/Admin/EditSpecialty"
-import CreateDoctor from "./components/System/Doctor/CreateDoctor"
-import ManageDoctor from "./components/System/Doctor/ManageDoctor"
+import SpecialtyTranslation from "./components/System/Admin/MagageSpecialty/SpecialtyTranslation"
 import BookingAppointment from "./components/Patient/BookingAppointment"
 import ConfirmEmail from "./components/Patient/ConfirmEmail"
 import ConfirmEmailSuccess from "./components/Patient/ConfirmEmailSuccess"
 import Page404 from "./components/Page404"
+import CreateDoctor from "./components/System/Admin/ManageDoctor/CreateDoctor"
+import ManageDoctor from "./components/System/Admin/ManageDoctor/ManageDoctor"
+import ManageSchedule from "./components/System/Admin/ManageDoctor/ManageSchedule"
+import ManageScheduleDoctor from "./components/System/Doctor/ManageScheduleDoctor"
+import FindDoctor from "./components/Hompage/FindDoctor"
 
 function App() {
    const dispatch = useDispatch()
@@ -36,12 +38,14 @@ function App() {
                <Route path='create-doctor' element={<CreateDoctor />} />
 
                <Route path='manage-schedule' element={<ManageSchedule />} />
+               <Route path='manage-schedule-by-doctor' element={<ManageScheduleDoctor />} />
                <Route path='manage-specialty' element={<ManageSpecialty />} />
                <Route path='add-new-specialty' element={<AddSpecialty />} />
                <Route path='translate-specialty' element={<SpecialtyTranslation />} />
                <Route path='edit-specialty' element={<EditSpecialty />} />
             </Route>
             <Route path='/booking-appointment' element={<BookingAppointment />} />
+            <Route path='/find-doctor' element={<FindDoctor />} />
             <Route path='/confirm-email' element={<ConfirmEmail />} />
             <Route path='/verify-appointment' element={<ConfirmEmailSuccess />} />
             <Route path='/*' element={<Page404 />} />

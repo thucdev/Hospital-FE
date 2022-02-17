@@ -4,17 +4,15 @@ import { Link, useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-// import "./ManageSpecialty.scss"
-import { deleteSpecialty } from "../../../services/userService"
-import { getAllSpecialties } from "../../../store/apiRequest/apiUser"
+import "./ManageSpecialty.scss"
+import { deleteSpecialty } from "../../../../services/userService"
+import { getAllSpecialties } from "../../../../store/apiRequest/apiUser"
 import { useSelector } from "react-redux"
 import moment from "moment"
 
-const ManageDoctor = () => {
+const ManageSpecialty = () => {
    const dispatch = useDispatch()
-   const allDoctors = useSelector((state) => state.userReducer.allDoctor)
    const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
-   console.log("allDoctors", allDoctors)
    const [checked, setChecked] = useState([])
    const [listSpecialty, setListSpecialty] = useState([])
    const [listSpecialtyEn, setListSpecialtyEn] = useState([])
@@ -24,23 +22,11 @@ const ManageDoctor = () => {
       const listObj = []
       const listObjEn = []
       const listId = []
-      allDoctors?.map((item) => {
-         let obj = {}
-         let objEn = {}
-         obj.label = item.fullName
-         obj.labelEn = item.experience
-         obj.value = item.id
-         obj.lastEdit = moment.utc(item.updatedAt).format("DD/MM/YYYY")
-         // objEn.value = item.translationData.value
-         listObj.push(obj)
-         listId.push(item.id)
-         // listObjEn.push(objEn)
-      })
       allSpecialties?.map((item) => {
          let obj = {}
          let objEn = {}
-         obj.label = item.fullName
-         obj.labelEn = item.experience
+         obj.label = item.title
+         obj.labelEn = item.translationData.title
          obj.value = item.id
          obj.lastEdit = moment.utc(item.updatedAt).format("DD/MM/YYYY")
          // objEn.value = item.translationData.value
@@ -55,11 +41,11 @@ const ManageDoctor = () => {
 
    useEffect(() => {
       fetchAllSpecialty()
-   }, [allDoctors])
+   }, [allSpecialties])
 
    const navigate = useNavigate()
    const onAdd = () => {
-      navigate("/system/create-doctor")
+      navigate("/system/add-new-specialty")
    }
 
    const handleDeleteSpecialty = async (specialtyId) => {
@@ -94,7 +80,7 @@ const ManageDoctor = () => {
       <>
          <div className='mt-4 manage-specialty'>
             <div>
-               <h3>Danh sách Bác sĩ</h3>
+               <h3>Danh sách chuyên khoa</h3>
                {/* {{#if deleteCount}} */}
                <a href='/me/trash/courses'>
                   {/* Thùng rác */}
@@ -136,11 +122,11 @@ const ManageDoctor = () => {
                         STT
                      </th>
                      <th scope='col' colSpan=''>
-                        Tên Bác sĩ
+                        Tên chuyên khoa
                         {/* {{{sortable 'name' _sort}}} */}
                      </th>
                      <th scope='col' colSpan=''>
-                        Thuộc chuyên khoa
+                        Bài dịch
                      </th>
 
                      <th scope='col' colSpan=''>
@@ -195,8 +181,8 @@ const ManageDoctor = () => {
                   ) : (
                      <tr>
                         <td colSpan='5' className='text-center'>
-                           Chưa có bác sĩ nào được tạo.
-                           <Link to='/system/create-doctor'>Tạo bác sĩ</Link>
+                           Chưa có chuyên khoa nào được tạo.
+                           <Link to='/system/add-new-specialty'>Tạo chuyên khoa</Link>
                         </td>
                      </tr>
                   )}
@@ -207,4 +193,4 @@ const ManageDoctor = () => {
    )
 }
 
-export default ManageDoctor
+export default ManageSpecialty

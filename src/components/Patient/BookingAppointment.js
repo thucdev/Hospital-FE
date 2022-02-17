@@ -12,6 +12,7 @@ import "react-datepicker/dist/react-datepicker.css"
 import { createAppointment, getSpecialtyById } from "../../services/userService"
 import moment from "moment"
 import { useNavigate, userNavigate } from "react-router-dom"
+import Footer from "../Footer/Footer"
 
 function BookingAppointment() {
    const navigate = useNavigate()
@@ -234,6 +235,7 @@ function BookingAppointment() {
                </div>
             </div>
          </div>
+         <Footer />
       </>
    )
 }

@@ -8,11 +8,11 @@ import { useNavigate } from "react-router-dom"
 import "./ManageSpecialty.scss"
 import { Dropdown } from "react-bootstrap"
 import { useDispatch } from "react-redux"
-import { getAllSpecialties } from "../../../store/apiRequest/apiUser"
+import { getAllSpecialties } from "../../../../store/apiRequest/apiUser"
 
-import FlagIcon from "../../../styles/FlagIcon"
-import { createNewSpecialty } from "../../../services/userService"
-import Base64 from "../../../utils/Base64"
+import FlagIcon from "../../../../styles/FlagIcon"
+import { createNewSpecialty } from "../../../../services/userService"
+import Base64 from "../../../../utils/Base64"
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */)
@@ -77,7 +77,7 @@ const AddSpecialty = () => {
 
             toast.success("Create specialty successfully!")
          } else {
-            toast.error("Create fail!")
+            toast.error(`${data.message}`)
          }
       } catch (error) {
          console.log("", error)

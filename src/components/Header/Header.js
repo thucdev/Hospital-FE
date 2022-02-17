@@ -19,17 +19,8 @@ function Header() {
    const dispatch = useDispatch()
    const language = useSelector((state) => state.languageReducer.languageState.language)
 
-   const handleLogin = () => {
-      navigate("/login")
-   }
-   const navigateToBooking = () => {
-      navigate("/booking-appointment")
-   }
-
    const handleChangeLanguage = (lang) => {
       lang === "vi" ? dispatch(changLanguageApp("vi")) : dispatch(changLanguageApp("en"))
-
-      console.log("lang", language)
    }
 
    return (
@@ -87,7 +78,7 @@ function Header() {
                <FontAwesomeIcon icon='phone' className='phone-icon' />
                <FormattedMessage id='homeheader.call-us' />
             </div>
-            <div className='login' onClick={handleLogin}>
+            <div className='login' onClick={() => navigate("/login")}>
                <FontAwesomeIcon icon='user' className='login-icon' />
                <FormattedMessage id='homeheader.login' />
             </div>
@@ -181,7 +172,7 @@ function Header() {
             </div>
          </div>
          <div className='navbar-contact'>
-            <div className='navbar-item'>
+            <div className='navbar-item' onClick={() => navigate("/find-doctor")}>
                <div className='navbar-icon'>
                   <img src={navGroup1} alt='' />
                </div>
@@ -189,22 +180,15 @@ function Header() {
                   <FormattedMessage id='main-menu.find-doctor' />
                </span>
             </div>
-
-            <div className='navbar-item' onClick={navigateToBooking}>
+            <div className='navbar-item' onClick={() => navigate("/booking-appointment")}>
                <div className='navbar-icon'>
                   <img src={navGroup3} alt='' />
                </div>
                <span className='navbar-item-title'>
-                  {/* <Link
-                     to='/booking-appointment'
-                     // state={{ specialtyId: item.value }}
-                     className='btn btn-link'
-                  > */}
                   <FormattedMessage id='main-menu.appointment' />
-                  {/* </Link> */}
                </span>
             </div>
-            <div className='navbar-item'>
+            <div className='navbar-item' onClick={() => navigate("/find-doctor")}>
                <div className='navbar-icon'>
                   <img src={navGroup2} alt='' />
                </div>

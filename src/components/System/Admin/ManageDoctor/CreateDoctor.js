@@ -3,9 +3,9 @@ import { toast } from "react-toastify"
 import _ from "lodash"
 import Select from "react-select"
 import { useSelector } from "react-redux"
-import Base64 from "../../../utils/Base64"
+import Base64 from "../../../../utils/Base64"
 import "./CreateDoctor.scss"
-import { getSpecialtyById, createDoctor } from "../../../services/userService"
+import { getSpecialtyById, createDoctor, checkIsEmailExist } from "../../../../services/userService"
 
 function CreateDoctor() {
    const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
@@ -103,25 +103,31 @@ function CreateDoctor() {
          })
 
          if (email || password || fullName || language) {
-            let compacted = _.pickBy(infoFiled)
-            let data = JSON.stringify({ ...compacted })
-            if (data) {
-               //add to existing key in local storage
-               if (localStorage.getItem("infoFiled")) {
-                  let getValueExist = JSON.parse(localStorage.getItem("infoFiled"))
-                  let value = JSON.stringify({ ...getValueExist, ...compacted })
+            getDataFromLocal()
+         }
+      }
+   }
 
-                  localStorage.setItem("infoFiled", value)
-               } else {
-                  localStorage.setItem("infoFiled", data)
-               }
-            }
+   const getDataFromLocal = () => {
+      let compacted = _.pickBy(infoFiled)
+      let data = JSON.stringify({ ...compacted })
+      if (data) {
+         //add to existing key in local storage
+         if (localStorage.getItem("infoFiled")) {
+            let getValueExist = JSON.parse(localStorage.getItem("infoFiled"))
+            let value = JSON.stringify({ ...getValueExist, ...compacted })
+
+            localStorage.setItem("infoFiled", value)
+         } else {
+            localStorage.setItem("infoFiled", data)
          }
       }
    }
 
    const handleChangeSelect = async (selectedOption) => {
       try {
+         getDataFromLocal()
+
          let res = await getSpecialtyById(selectedOption.value)
          if (res?.data) {
             setSelectedSpecialty({
@@ -133,6 +139,14 @@ function CreateDoctor() {
          console.log("", error)
       }
    }
+
+   const handleOnBlurEmail = async () => {
+      let res = await checkIsEmailExist({ email })
+      if (res.success) {
+         toast.error(`${res.message}!`)
+      }
+   }
+
    const handleAddNew = async () => {
       try {
          let info = localStorage.getItem("infoFiled")
@@ -154,6 +168,8 @@ function CreateDoctor() {
                email: "",
                password: "",
                fullName: "",
+               phoneNumber: "",
+               address: "",
                language: "",
                experience: "",
                member: "",
@@ -171,7 +187,7 @@ function CreateDoctor() {
             })
             localStorage.removeItem("infoFiled")
          } else {
-            toast.error("Create doctor fail!")
+            toast.error(`${res.message}!`)
          }
       } catch (error) {
          console.log("e", error)
@@ -193,6 +209,7 @@ function CreateDoctor() {
                      placeholder='Enter email'
                      value={email}
                      onChange={handleOnchageInput}
+                     onBlur={handleOnBlurEmail}
                   />
                </div>
                <div className='form-group'>
