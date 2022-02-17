@@ -4,7 +4,7 @@ import MdEditor from "react-markdown-editor-lite"
 import "react-markdown-editor-lite/lib/index.css"
 import Select from "react-select"
 import { DropdownButton, Dropdown, Form, Overlay, OverlayTrigger, Tooltip } from "react-bootstrap"
-import FlagIcon from "../../../styles/FlagIcon"
+import FlagIcon from "../../../../styles/FlagIcon"
 import { useNavigate } from "react-router-dom"
 
 import { toast } from "react-toastify"
@@ -14,8 +14,8 @@ import {
    createNewSpecialty,
    getSpecialtyById,
    updateSpecialty,
-} from "../../../services/userService"
-import Base64 from "../../../utils/Base64"
+} from "../../../../services/userService"
+import Base64 from "../../../../utils/Base64"
 import { useSelector } from "react-redux"
 import { useLocation } from "react-router-dom"
 

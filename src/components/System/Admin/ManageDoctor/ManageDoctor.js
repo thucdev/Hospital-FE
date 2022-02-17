@@ -4,57 +4,51 @@ import { Link, useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import "./ManageSpecialty.scss"
-import { deleteSpecialty } from "../../../services/userService"
-import { getAllSpecialties } from "../../../store/apiRequest/apiUser"
+// import "./ManageSpecialty.scss"
+import { deleteDoctor } from "../../../../services/userService"
+import { getAllDoctor } from "../../../../store/apiRequest/apiUser"
 import { useSelector } from "react-redux"
 import moment from "moment"
 
-const ManageSpecialty = () => {
+const ManageDoctor = () => {
    const dispatch = useDispatch()
-   const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
+   const allDoctors = useSelector((state) => state.userReducer.allDoctor)
    const [checked, setChecked] = useState([])
-   const [listSpecialty, setListSpecialty] = useState([])
-   const [listSpecialtyEn, setListSpecialtyEn] = useState([])
    const [idCheckAll, setIdCheckAll] = useState([])
-
-   const fetchAllSpecialty = () => {
+   const [listDoctor, setListDoctor] = useState([])
+   const fetchAllDoctor = () => {
       const listObj = []
-      const listObjEn = []
       const listId = []
-      allSpecialties?.map((item) => {
+      allDoctors?.map((item) => {
          let obj = {}
-         let objEn = {}
-         obj.label = item.title
-         obj.labelEn = item.translationData.title
+         obj.label = item.fullName
+         obj.labelEn = item.experience
          obj.value = item.id
          obj.lastEdit = moment.utc(item.updatedAt).format("DD/MM/YYYY")
-         // objEn.value = item.translationData.value
          listObj.push(obj)
          listId.push(item.id)
-         // listObjEn.push(objEn)
       })
-      setListSpecialty(listObj)
-      setListSpecialtyEn(listObjEn)
+
+      setListDoctor(listObj)
       setIdCheckAll(listId)
    }
 
    useEffect(() => {
-      fetchAllSpecialty()
-   }, [allSpecialties])
+      fetchAllDoctor()
+   }, [allDoctors])
 
    const navigate = useNavigate()
    const onAdd = () => {
-      navigate("/system/add-new-specialty")
+      navigate("/system/create-doctor")
    }
 
-   const handleDeleteSpecialty = async (specialtyId) => {
-      let res = await deleteSpecialty(specialtyId)
+   const handleDeleteDoctor = async (specialtyId) => {
+      let res = await deleteDoctor(specialtyId)
       if (res?.success) {
-         toast.success("Delete specialty success")
-         dispatch(getAllSpecialties())
+         toast.success("Delete doctor success")
+         dispatch(getAllDoctor())
       } else {
-         toast.error("Delete specialty fail")
+         toast.error("Delete doctor fail")
       }
    }
 
@@ -76,11 +70,12 @@ const ManageSpecialty = () => {
          setChecked([])
       }
    }
+
    return (
       <>
          <div className='mt-4 manage-specialty'>
             <div>
-               <h3>Danh sách chuyên khoa</h3>
+               <h3>Danh sách Bác sĩ</h3>
                {/* {{#if deleteCount}} */}
                <a href='/me/trash/courses'>
                   {/* Thùng rác */}
@@ -122,13 +117,17 @@ const ManageSpecialty = () => {
                         STT
                      </th>
                      <th scope='col' colSpan=''>
-                        Tên chuyên khoa
+                        Tên Bác sĩ
                         {/* {{{sortable 'name' _sort}}} */}
                      </th>
                      <th scope='col' colSpan=''>
-                        Bài dịch
+                        Địa chỉ
                      </th>
 
+                     <th scope='col' colSpan=''>
+                        Số điện thoại
+                        {/* {{{sortable 'createdAt' _sort}}} */}
+                     </th>
                      <th scope='col' colSpan=''>
                         Sửa đổi gần nhất
                         {/* {{{sortable 'createdAt' _sort}}} */}
@@ -136,8 +135,8 @@ const ManageSpecialty = () => {
                   </tr>
                </thead>
                <tbody>
-                  {listSpecialty?.length > 0 ? (
-                     listSpecialty.map((item, index) => {
+                  {listDoctor?.length > 0 ? (
+                     listDoctor.map((item, index) => {
                         return (
                            <tr key={index}>
                               <td>
@@ -153,7 +152,8 @@ const ManageSpecialty = () => {
 
                               <td>{index + 1}</td>
                               <td>{item.label}</td>
-                              <td>{item.labelEn}</td>
+                              <td>{item.address}</td>
+                              <td>{item.phoneNumber}</td>
 
                               <td>{item.lastEdit}</td>
                               <td className='w-20'>
@@ -170,7 +170,7 @@ const ManageSpecialty = () => {
                                     data-id='{{this._id}}'
                                     data-bs-toggle='modal'
                                     data-bs-target='#delete-course'
-                                    onClick={handleDeleteSpecialty.bind(this, item.value)}
+                                    onClick={handleDeleteDoctor.bind(this, item.value)}
                                  >
                                     Xoá
                                  </p>
@@ -181,8 +181,8 @@ const ManageSpecialty = () => {
                   ) : (
                      <tr>
                         <td colSpan='5' className='text-center'>
-                           Chưa có chuyên khoa nào được tạo.
-                           <Link to='/system/add-new-specialty'>Tạo chuyên khoa</Link>
+                           Chưa có bác sĩ nào được tạo.
+                           <Link to='/system/create-doctor'>Tạo bác sĩ</Link>
                         </td>
                      </tr>
                   )}
@@ -193,4 +193,4 @@ const ManageSpecialty = () => {
    )
 }
 
-export default ManageSpecialty
+export default ManageDoctor

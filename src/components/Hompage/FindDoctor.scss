@@ -1,0 +1,120 @@
+@import "../../styles/setting";
+
+.bg-find-doctor {
+   width: 1349px;
+   height: 400px;
+   background: url("../../assets/find-doctor.jpg") no-repeat center center;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+}
+
+.bg-header {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   h1 {
+      font-size: 48px;
+      font-weight: 500;
+      color: white;
+   }
+}
+
+.find-doctor-body {
+   padding: 20px 145px 30px;
+
+   .find-doctor-form {
+      margin-top: 30px;
+      .find-doctor-form-title {
+         font-size: 36px;
+         font-weight: 500;
+         color: $main-color;
+         padding: 30px 0;
+         text-align: center;
+      }
+      .find-doctor-form-body {
+         padding: 0 150px 30px;
+
+         .form-label {
+            font-size: 18px;
+            font-weight: 500;
+            color: $main-color;
+         }
+      }
+   }
+
+   .find-doctor-btn {
+      display: flex;
+      justify-content: center;
+   }
+}
+
+.list-doctor-container {
+   background-color: #f3f3f3;
+   width: 1349px;
+   overflow: hidden;
+   .img-doctor {
+      height: 444px;
+      width: 320px;
+      float: right;
+   }
+   .list-doctor {
+      padding: 50px 150px;
+      .info-doctor {
+         .info-doctor-name {
+            font-size: 24px;
+            color: $main-color;
+            font-weight: bold;
+         }
+         .info-doctor-specialty {
+            .info-doctor-specialty__title {
+               font-size: 18px;
+               color: $main-color;
+            }
+         }
+
+         .info-doctor-language {
+            .info-doctor-language__title {
+               font-size: 18px;
+               color: $main-color;
+               margin-top: 4px;
+            }
+
+            .info-doctor-language__content {
+               margin-bottom: 16px;
+            }
+         }
+
+         .school,
+         .training {
+            font-size: 16px;
+            font-weight: bold;
+            color: #4a4a4a;
+            margin-bottom: 4px;
+         }
+         .training {
+            margin-top: 8px;
+         }
+      }
+   }
+}
+
+//custom accordion
+.accordion-button {
+   color: $main-color;
+   // font-weight: bold;
+   background-color: #f3f3f3;
+   border: none;
+   font-size: 18px;
+   font-family: "Noto Sans";
+   padding-left: 0;
+}
+
+.accordion-item {
+   border: none;
+
+   border-top: 1px solid #ddd;
+   border-bottom: 1px solid #ddd;
+   padding: 0;
+}
