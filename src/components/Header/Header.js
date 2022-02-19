@@ -188,7 +188,7 @@ function Header() {
                   <FormattedMessage id='main-menu.appointment' />
                </span>
             </div>
-            <div className='navbar-item' onClick={() => navigate("/find-doctor")}>
+            <div className='navbar-item' onClick={() => navigate("/news")}>
                <div className='navbar-icon'>
                   <img src={navGroup2} alt='' />
                </div>
@@ -196,7 +196,7 @@ function Header() {
                   <FormattedMessage id='main-menu.treatment' />
                </span>
             </div>
-            <div className='navbar-item'>
+            <div className='navbar-item' onClick={() => navigate("/ask-doctor")}>
                <div className='navbar-icon'>
                   <img src={navGroup} alt='' />
                </div>

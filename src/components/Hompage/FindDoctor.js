@@ -185,21 +185,22 @@ function FindDoctor() {
                   return (
                      <Row className='list-doctor'>
                         <Col sm='5'>
-                           <img src={doctor1} alt='' className='img-doctor' />
+                           <div
+                              className='bg-image img-doctor'
+                              style={{ backgroundImage: `url(${item.image})` }}
+                           ></div>
                         </Col>
                         <Col className='info-doctor' sm='7'>
                            <div className='info-doctor-name'>Bác sĩ {item.fullName}</div>
                            <div className='info-doctor-specialty'>
                               <div className='info-doctor-specialty__title'>Chuyên khoa</div>
                               <div className='info-doctor-specialty__content'>
-                                 Khoa gây mê hồi sức
+                                 {item.specialtyName}
                               </div>
                            </div>
                            <div className='info-doctor-language'>
-                              <div className='info-doctor-language__title'>Chuyên khoa</div>
-                              <div className='info-doctor-language__content'>
-                                 {item.specialtyName}
-                              </div>
+                              <div className='info-doctor-language__title'>Ngôn ngữ</div>
+                              <div className='info-doctor-language__content'>{item.language}</div>
                            </div>
                            <Accordion alwaysOpen>
                               <Accordion.Item eventKey='0'>
@@ -209,40 +210,52 @@ function FindDoctor() {
                                  <Accordion.Body>
                                     <p className='school'>Trường Y</p>
                                     <ul>
-                                       {/* {certificate?.map(item)} */}
-                                       <li>
-                                          2010 - 2016: Bác sĩ đa khoa, trường Đại học Y Hà Nội, Hà
-                                          Nội, Việt Nam
-                                       </li>
-                                       <li>
-                                          2010 - 2016: Bác sĩ đa khoa, trường Đại học Y Hà Nội, Hà
-                                          Nội, Việt Nam
-                                       </li>
+                                       {item.doctor_infoData.degree?.map((certificate) => {
+                                          return <li>{certificate}</li>
+                                       })}
                                     </ul>
 
                                     <p className='training'>Đào tạo nâng cao</p>
                                     <ul>
-                                       <li>
-                                          2010 - 2016: Bác sĩ đa khoa, trường Đại học Y Hà Nội, Hà
-                                          Nội, Việt Nam
-                                       </li>
-                                       <li>
-                                          2010 - 2016: Bác sĩ đa khoa, trường Đại học Y Hà Nội, Hà
-                                          Nội, Việt Nam
-                                       </li>
+                                       <ul>
+                                          {item.doctor_infoData.certificate?.map((certificate) => {
+                                             return <li>{certificate}</li>
+                                          })}
+                                       </ul>
                                     </ul>
                                  </Accordion.Body>
                               </Accordion.Item>
                               <Accordion.Item eventKey='1'>
-                                 <Accordion.Header>Accordion Item #2</Accordion.Header>
+                                 <Accordion.Header>Kinh nghiệm</Accordion.Header>
                                  <Accordion.Body>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                    enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                                    in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                                    nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                                    sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    <p className='school'>Kinh nghiệm</p>
+                                    <ul>
+                                       {item.doctor_infoData.experience?.map((certificate) => {
+                                          return <li>{certificate}</li>
+                                       })}
+                                    </ul>
+                                 </Accordion.Body>
+                              </Accordion.Item>
+                              <Accordion.Item eventKey='2'>
+                                 <Accordion.Header>Hội viên</Accordion.Header>
+                                 <Accordion.Body>
+                                    <p className='school'>Hội viên</p>
+                                    <ul>
+                                       {item.doctor_infoData.member?.map((certificate) => {
+                                          return <li>{certificate}</li>
+                                       })}
+                                    </ul>
+                                 </Accordion.Body>
+                              </Accordion.Item>
+                              <Accordion.Item eventKey='3'>
+                                 <Accordion.Header>Lĩnh vực chuyên sâu</Accordion.Header>
+                                 <Accordion.Body>
+                                    <p className='school'>Lĩnh vực chuyên sâu</p>
+                                    <ul>
+                                       {item.doctor_infoData.field?.map((certificate) => {
+                                          return <li>{certificate}</li>
+                                       })}
+                                    </ul>
                                  </Accordion.Body>
                               </Accordion.Item>
                            </Accordion>

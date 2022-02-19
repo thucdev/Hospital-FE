@@ -58,6 +58,19 @@ const getAllSchedulesByDoctor = (doctorId) => {
 const checkIsEmailExist = (email) => {
    return axios.post("/is-email-exist", email)
 }
+
+const createQuestion = (data) => {
+   return axios.post("/create-question", data)
+}
+
+const createNews = (data) => {
+   return axios.post("/create-news", data)
+}
+
+const getNews = (data) => {
+   return axios.get(`/news?limit=${data?.limit}&page=${data?.page}`)
+}
+
 export {
    createNewSpecialty,
    getSpecialtyById,
@@ -72,4 +85,7 @@ export {
    getAllSchedules,
    checkIsEmailExist,
    getAllSchedulesByDoctor,
+   createQuestion,
+   createNews,
+   getNews,
 }

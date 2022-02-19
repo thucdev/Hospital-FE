@@ -56,13 +56,21 @@ export const System = () => {
                      <Link className='manage-navbar-text' to='manage-schedule-by-doctor'>
                         Manage Schedule
                      </Link>
+                     <Link className='manage-navbar-text' to='manage-news'>
+                        Manage News
+                     </Link>
                   </>
                )}
 
                {roleId === "R2" && (
-                  <Link className='manage-navbar-text' to='manage-schedule-by-doctor'>
-                     Manage Schedule
-                  </Link>
+                  <>
+                     <Link className='manage-navbar-text' to='manage-schedule-by-doctor'>
+                        Manage Schedule
+                     </Link>
+                     <Link className='manage-navbar-text' to='manage-news'>
+                        Manage News
+                     </Link>
+                  </>
                )}
             </div>
             <div className='manage-header'>

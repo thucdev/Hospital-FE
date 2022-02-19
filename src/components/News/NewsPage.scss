@@ -1,0 +1,94 @@
+@import "../../styles/setting";
+
+.bg-news {
+   width: 1349px;
+   height: 400px;
+   background: url("../../assets/news.jpg") no-repeat center center;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+}
+
+.btn-question {
+   display: flex;
+   justify-content: center;
+}
+
+.news-body {
+   width: 1349px;
+   background-color: #f3f3f3;
+   padding: 25px 135px 35px;
+
+   .news-item {
+      .news-thumbnail {
+         background-size: cover;
+         height: 229px;
+         width: 340px;
+      }
+
+      .news-item-content {
+         padding: 0 16px 0 16px;
+         // height: 212px;
+         // width: 535px;
+         height: 200px;
+         width: 340px;
+         background-color: white;
+         border-top: 1px solid #e9e9e9;
+
+         .news-item-info {
+            font-weight: bold;
+            color: #d0021b;
+            font-size: 18px;
+         }
+
+         .news-item-content-title {
+            cursor: pointer;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            font-size: 28px;
+            max-height: 82px;
+            color: $main-color;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+         }
+
+         .news-item-content-body {
+            font-size: 18px;
+            color: $text-color;
+            overflow: hidden;
+            width: 322px;
+
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+         }
+
+         .read-more {
+            font-size: 14px;
+            color: $main-color;
+            padding-top: 16px;
+
+            &:hover {
+               opacity: 0.8;
+               text-decoration: underline;
+               cursor: pointer;
+            }
+         }
+      }
+   }
+}
+.pagination-number {
+   display: flex;
+   justify-content: center;
+   margin: auto;
+}
+
+//custome pagination
+.page-link {
+   padding: 0.7rem 1.2rem;
+   background-color: #0061a8;
+   border: 1px solid #0096d5;
+}

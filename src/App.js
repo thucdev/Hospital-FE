@@ -20,6 +20,9 @@ import ManageDoctor from "./components/System/Admin/ManageDoctor/ManageDoctor"
 import ManageSchedule from "./components/System/Admin/ManageDoctor/ManageSchedule"
 import ManageScheduleDoctor from "./components/System/Doctor/ManageScheduleDoctor"
 import FindDoctor from "./components/Hompage/FindDoctor"
+import AskDoctor from "./components/Hompage/AskDoctor"
+import AddNews from "./components/System/Doctor/AddNews"
+import NewsPage from "./components/News/NewsPage"
 
 function App() {
    const dispatch = useDispatch()
@@ -43,9 +46,13 @@ function App() {
                <Route path='add-new-specialty' element={<AddSpecialty />} />
                <Route path='translate-specialty' element={<SpecialtyTranslation />} />
                <Route path='edit-specialty' element={<EditSpecialty />} />
+
+               <Route path='manage-news' element={<AddNews />} />
             </Route>
             <Route path='/booking-appointment' element={<BookingAppointment />} />
             <Route path='/find-doctor' element={<FindDoctor />} />
+            <Route path='/ask-doctor' element={<AskDoctor />} />
+            <Route path='/news' element={<NewsPage />} />
             <Route path='/confirm-email' element={<ConfirmEmail />} />
             <Route path='/verify-appointment' element={<ConfirmEmailSuccess />} />
             <Route path='/*' element={<Page404 />} />
