@@ -8,8 +8,11 @@ import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from "pure-re
 import "pure-react-carousel/dist/react-carousel.es.css"
 import Carousel, { consts } from "react-elastic-carousel"
 import { useSelector } from "react-redux"
+import { Link, useNavigate } from "react-router-dom"
 
 function Services() {
+   const navigate = useNavigate()
+
    const language = useSelector((state) => state.languageReducer.languageState.language)
    const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
    console.log("allSpecialties", allSpecialties)
@@ -19,6 +22,10 @@ function Services() {
       { width: 768, itemsToShow: 2 },
       { width: 1200, itemsToShow: 2 },
    ]
+
+   const viewSpecialtyDetail = (id) => {
+      navigate(`/detail-specialty/${id}`)
+   }
    return (
       <div className='section-services'>
          <div className='service-header'>
@@ -40,12 +47,22 @@ function Services() {
                                  style={{ backgroundImage: `url(${item.img})` }}
                               ></div>
                               <div className='slide-item-content'>
-                                 <h4 className='slide-item-content-title'>{item.title}</h4>
+                                 <h4
+                                    className='slide-item-content-title'
+                                    onClick={() => viewSpecialtyDetail(item.id)}
+                                 >
+                                    {item.title}
+                                 </h4>
                                  <div className='slide-item-content-body'>
                                     {item.descriptionMarkdown}
                                  </div>
 
-                                 <div className='read-more'>Read more</div>
+                                 <div
+                                    className='read-more'
+                                    onClick={() => viewSpecialtyDetail(item.id)}
+                                 >
+                                    Read more
+                                 </div>
                               </div>
                            </div>
                         )

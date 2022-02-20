@@ -29,7 +29,7 @@ const createDoctor = (data) => {
 }
 
 const getDoctorById = (id) => {
-   return axios.post(`/get-doctor-by-id/?id=${id}`)
+   return axios.get(`/get-doctor-by-id/?id=${id}`)
 }
 
 const deleteDoctor = (id) => {
@@ -71,6 +71,10 @@ const getNews = (data) => {
    return axios.get(`/news?limit=${data?.limit}&page=${data?.page}`)
 }
 
+const getNewsById = (id) => {
+   return axios.get(`/get-news-by-id/?id=${id}`)
+}
+
 export {
    createNewSpecialty,
    getSpecialtyById,
@@ -88,4 +92,5 @@ export {
    createQuestion,
    createNews,
    getNews,
+   getNewsById,
 }

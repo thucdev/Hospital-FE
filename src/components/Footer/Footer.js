@@ -1,6 +1,5 @@
 import "./Footer.scss"
 import { Col, Row } from "react-bootstrap"
-
 import addressIcon from "../../assets/footer/btm-address.png"
 import emailIcon from "../../assets/footer/btm-email.png"
 import hotlineIcon from "../../assets/footer/btm-hotline.png"
@@ -9,7 +8,7 @@ import linkedinIcon from "../../assets/footer/btm-link-linkedin.png"
 import ytIcon from "../../assets/footer/btm-link-youtube.png"
 import playIcon from "../../assets/footer/btm-below-2.png"
 
-const Footer = (props) => {
+const Footer = () => {
    return (
       <footer>
          <Row className='bg-footer px-5'>
@@ -26,7 +25,7 @@ const Footer = (props) => {
                   </li>
                   <li className='mb-3'>
                      <img src={emailIcon} alt='' className='icon-footer ' /> Email:
-                     /thucdo.developer@gmail.com
+                     thucdo.developer@gmail.com
                   </li>
                   <li className='mb-3'>
                      <img src={addressIcon} alt='' className='icon-footer ' /> Địa chỉ: 01 Phương

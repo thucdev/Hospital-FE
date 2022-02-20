@@ -23,6 +23,8 @@ import FindDoctor from "./components/Hompage/FindDoctor"
 import AskDoctor from "./components/Hompage/AskDoctor"
 import AddNews from "./components/System/Doctor/AddNews"
 import NewsPage from "./components/News/NewsPage"
+import DetailSpecialty from "./components/Detail/DetailSpecialty"
+import DetailNews from "./components/Detail/DetailNews"
 
 function App() {
    const dispatch = useDispatch()
@@ -53,6 +55,10 @@ function App() {
             <Route path='/find-doctor' element={<FindDoctor />} />
             <Route path='/ask-doctor' element={<AskDoctor />} />
             <Route path='/news' element={<NewsPage />} />
+
+            <Route path='/detail-specialty/:id' element={<DetailSpecialty />} />
+            <Route path='/detail-news/:id' element={<DetailNews />} />
+
             <Route path='/confirm-email' element={<ConfirmEmail />} />
             <Route path='/verify-appointment' element={<ConfirmEmailSuccess />} />
             <Route path='/*' element={<Page404 />} />

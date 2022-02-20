@@ -1,80 +1,74 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css" // requires a loader
-// import { Carousel } from 'react-responsive-carousel'
 import "./News.scss"
-import { Button } from "react-bootstrap"
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from "pure-react-carousel"
+import { Row, Col } from "react-bootstrap"
 import "pure-react-carousel/dist/react-carousel.es.css"
-import Carousel, { consts } from "react-elastic-carousel"
 import { useSelector } from "react-redux"
+import { useState, useEffect } from "react"
+import { getNews } from "../../../services/userService"
+import { useNavigate } from "react-router-dom"
 
 function News() {
+   const navigate = useNavigate()
+
    const language = useSelector((state) => state.languageReducer.languageState.language)
    const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
    console.log("allSpecialties", allSpecialties)
-   const breakPoints = [
-      { width: 1, itemsToShow: 1 },
-      { width: 550, itemsToShow: 1, itemsToScroll: 1 },
-      { width: 768, itemsToShow: 3 },
-      { width: 1200, itemsToShow: 3 },
-   ]
+
+   const [filter, setFilter] = useState({
+      limit: 3,
+      page: 0,
+   })
+   const [postNews, setPostNews] = useState([])
+
+   const fetchData = async () => {
+      let allNews = await getNews(filter)
+      setPostNews(allNews.data)
+   }
+
+   useEffect(() => {
+      fetchData()
+   }, [filter])
+
+   const viewNewsDetail = (id) => {
+      navigate(`/detail-news/${id}`)
+   }
    return (
       <div className='section-news'>
          <div className='news-header'>
             <h2 className='news-header-title'>Tin Tức và Sự Kiện</h2>
-            {/* <div className='news-header-content'>
-               At L'Hôpital Français de Hanoi you will experience high quality, international
-               standard health care
-            </div> */}
          </div>
-         <div className='news-content'>
-            <div className='news-slide'>
-               <Carousel itemsToShow={2} breakPoints={breakPoints}>
-                  {language === "vi" &&
-                     allSpecialties?.map((item, index) => {
-                        return (
-                           <div className='news-slide-item' key={index}>
+         <div className='news-content d-flex justify-content-center mx-auto'>
+            <Row className='news-slide '>
+               {language === "vi" &&
+                  postNews?.map((item, index) => {
+                     return (
+                        <Col sm='4' key={index}>
+                           <div className='news-item'>
                               <div
-                                 className='bg-image news-slide-img'
+                                 className='bg-image news-thumbnail'
                                  style={{ backgroundImage: `url(${item.img})` }}
                               ></div>
-                              <div className='slide-item-content'>
-                                 <h4 className='slide-item-content-title'>{item.title}</h4>
-                                 <div className='slide-item-content-body'>
-                                    {item.descriptionMarkdown}
-                                 </div>
-
-                                 <div className='read-more'>Read more</div>
-                              </div>
-                           </div>
-                        )
-                     })}
-                  {language === "en" &&
-                     allSpecialties?.map((item, index) => {
-                        return (
-                           <div className='news-slide-item' key={index}>
-                              <div
-                                 className='bg-image news-slide-img'
-                                 style={{ backgroundImage: `url(${item.img})` }}
-                              ></div>
-                              <div className='slide-item-content'>
-                                 <h4 className='slide-item-content-title'>
-                                    {item.translationData?.title}
+                              <div className='news-item-content'>
+                                 <div className='news-item-info pt-3'>Tin tức</div>
+                                 <h4
+                                    className='news-item-content-title'
+                                    onClick={() => viewNewsDetail(item.id)}
+                                 >
+                                    {item.title}
                                  </h4>
-                                 <div className='slide-item-content-body'>
-                                    {item.translationData?.descriptionMarkdown}
+                                 <div className='read-more' onClick={() => viewNewsDetail(item.id)}>
+                                    Read more
                                  </div>
-
-                                 <div className='read-more'>Read more</div>
                               </div>
                            </div>
-                        )
-                     })}
-               </Carousel>
-            </div>
+                        </Col>
+                     )
+                  })}
+            </Row>
          </div>
          <div className='see-all-new'>
-            {/* <Button variant='outline-info'>Xem tất cả</Button> */}
-            <button className=' main-btn see-all-new-btn'>Xem tất cả</button>
+            <button className=' main-btn see-all-new-btn' onClick={() => navigate("/news")}>
+               Xem tất cả
+            </button>
          </div>
       </div>
    )

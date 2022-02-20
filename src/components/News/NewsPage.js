@@ -91,9 +91,9 @@ function NewsPage() {
             )}
             {loading === false && (
                <Row>
-                  {postNews?.map((item) => {
+                  {postNews?.map((item, index) => {
                      return (
-                        <Col sm='4'>
+                        <Col sm='4' key={index}>
                            <div className='news-item'>
                               <div
                                  className='bg-image news-thumbnail'

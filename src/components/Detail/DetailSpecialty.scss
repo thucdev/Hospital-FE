@@ -1,0 +1,58 @@
+@import "../../styles/setting";
+
+.bg-detail-specialty {
+   width: 1349px;
+   height: 400px;
+   background: url("../../assets/detailSpecialty.jpg") no-repeat center center;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+}
+
+.specialty-detail {
+   padding: 30px 150px;
+   .specialty-detail-title,
+   .specialty-detail-img {
+      text-align: center;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+   .specialty-detail-img {
+      width: 100%;
+      height: 350px;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      background-position: center;
+   }
+   .specialty-detail-title {
+      font-size: 36px;
+      color: $main-color-soft;
+      margin-bottom: 30px;
+   }
+}
+
+.specialty-detail {
+   width: 1349px;
+   overflow: hidden;
+   .specialty-list {
+      .specialty-list-name {
+         padding: 17px 0;
+         font-size: 20px;
+         font-weight: bold;
+         border-bottom: solid 1px #dbdbdb;
+         color: #9b9b9b;
+         cursor: pointer;
+
+         &.active {
+            color: $main-color-soft;
+            border-bottom: solid 2px $main-color-soft;
+         }
+      }
+   }
+}
