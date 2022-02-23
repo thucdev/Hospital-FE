@@ -229,7 +229,7 @@ function BookingAppointment() {
                         </Col>
                      </Form.Group>
                   </Form>
-                  <button className='btn-save-booking' onClick={handleOrderAppointment}>
+                  <button className='btn-save-booking main-btn' onClick={handleOrderAppointment}>
                      Đặt lịch
                   </button>
                </div>

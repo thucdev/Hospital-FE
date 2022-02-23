@@ -19,79 +19,6 @@ header {
       justify-content: flex-end;
       align-items: center;
 
-      .language-option {
-         display: inline-block;
-         margin: 0 20px;
-         position: relative;
-         cursor: pointer;
-         .flag-icon {
-            margin-right: 4px;
-         }
-         .language-option-icon {
-            margin-left: 10px;
-         }
-
-         .language-list {
-            padding: 0;
-            position: absolute;
-            width: 140px;
-            top: 28px;
-            right: 0px;
-            background-color: #f0ede6;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            cursor: default;
-            transform-origin: calc(100% - 32px) top;
-            will-change: opacity, transform;
-            // animation: headerNotifyGrowth ease-in 0.2s;
-            display: none;
-            z-index: 1;
-            border-radius: 2px;
-         }
-         &:hover {
-            .language-list {
-               display: block;
-               transform-origin: 90% right; // de thay doi tam
-               animation: languageList 0.2s ease-in;
-            }
-            &::after {
-               content: "";
-               border-width: 20px 27px;
-               border-style: solid;
-               border-color: transparent transparent #e2ddd3 transparent;
-               position: absolute;
-               animation: languageList 0.2s ease-in;
-               top: 0;
-               right: 0;
-            }
-            &::before {
-               content: "";
-               border: 20px solid transparent;
-               width: 70px;
-               position: absolute;
-               top: -10px;
-               right: 0;
-            }
-         }
-
-         .language-item {
-            color: darken($main-color, $amount: 8);
-            display: flex;
-            align-items: center;
-            float: left;
-            width: 100%;
-            height: 40px;
-            img {
-               display: block;
-               width: 40px;
-               padding: 5px 10px;
-            }
-            cursor: pointer;
-            &.language-item-active {
-               background-color: rgb(144, 204, 253);
-            }
-         }
-      }
-
       .phone-contact {
          display: inline-block;
          margin-right: 20px;
@@ -254,6 +181,80 @@ header {
       }
    }
 }
+
+.language-option {
+   display: inline-block;
+   margin: 0 20px;
+   position: relative;
+   cursor: pointer;
+   .flag-icon {
+      margin-right: 4px;
+   }
+   .language-option-icon {
+      margin-left: 10px;
+   }
+
+   .language-list {
+      padding: 0;
+      position: absolute;
+      width: 140px;
+      top: 28px;
+      right: 0px;
+      background-color: #f0ede6;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      cursor: default;
+      transform-origin: calc(100% - 32px) top;
+      will-change: opacity, transform;
+      // animation: headerNotifyGrowth ease-in 0.2s;
+      display: none;
+      z-index: 1;
+      border-radius: 2px;
+   }
+   &:hover {
+      .language-list {
+         display: block;
+         transform-origin: 90% right; // de thay doi tam
+         animation: languageList 0.2s ease-in;
+      }
+      &::after {
+         content: "";
+         border-width: 20px 27px;
+         border-style: solid;
+         border-color: transparent transparent #e2ddd3 transparent;
+         position: absolute;
+         animation: languageList 0.2s ease-in;
+         top: 0;
+         right: 0;
+      }
+      &::before {
+         content: "";
+         border: 20px solid transparent;
+         width: 70px;
+         position: absolute;
+         top: -10px;
+         right: 0;
+      }
+   }
+
+   .language-item {
+      color: darken($main-color, $amount: 8);
+      display: flex;
+      align-items: center;
+      float: left;
+      width: 100%;
+      height: 40px;
+      img {
+         display: block;
+         width: 40px;
+         padding: 5px 10px;
+      }
+      cursor: pointer;
+      &.language-item-active {
+         background-color: rgb(144, 204, 253);
+      }
+   }
+}
+
 @keyframes languageList {
    from {
       opacity: 0;

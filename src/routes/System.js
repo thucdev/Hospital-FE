@@ -7,7 +7,10 @@ import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { Dropdown } from "react-bootstrap"
 import FlagIcon from "../styles/FlagIcon"
+import VN from "../assets/vi.png"
+import EN from "../assets/en.png"
 import { loginFailed } from "../store/reducer/authSlice"
+import { changLanguageApp } from "../store/reducer/languageSlice"
 
 export const System = () => {
    const navigate = useNavigate()
@@ -16,6 +19,7 @@ export const System = () => {
 
    const isAuth = useSelector((state) => state.authReducer.login.isAuthenticated)
    const roleId = useSelector((state) => state.authReducer.login.user?.roleId)
+   const language = useSelector((state) => state.languageReducer.languageState.language)
 
    // const roleId
 
@@ -24,6 +28,10 @@ export const System = () => {
          navigate("/login")
       }
    }, [isAuth])
+
+   const handleChangeLanguage = (lang) => {
+      lang === "vi" ? dispatch(changLanguageApp("vi")) : dispatch(changLanguageApp("en"))
+   }
 
    const [toggleContents, setToggleContents] = useState(
       <>
@@ -57,7 +65,7 @@ export const System = () => {
                         Manage Schedule
                      </Link>
                      <Link className='manage-navbar-text' to='manage-news'>
-                        Manage News
+                        Add News
                      </Link>
                   </>
                )}
@@ -78,6 +86,38 @@ export const System = () => {
                   <Row>
                      <div className='manage-menu-logout'>
                         <>
+                           <div className='language-option'>
+                              <img src={language === "vi" ? VN : EN} alt='' className='flag-icon' />
+                              {language === "vi" ? "VN" : "EN"}
+                              <FontAwesomeIcon
+                                 icon='chevron-down'
+                                 className='language-option-icon'
+                              />
+                              <ul className='language-list '>
+                                 <li
+                                    className={
+                                       language === "vi"
+                                          ? "language-item-active language-item "
+                                          : "language-item "
+                                    }
+                                    onClick={handleChangeLanguage.bind(this, "vi")}
+                                 >
+                                    <img src={VN} alt='' />
+                                    <span>Việt Nam</span>
+                                 </li>
+                                 <li
+                                    className={
+                                       language === "en"
+                                          ? "language-item-active language-item "
+                                          : "language-item "
+                                    }
+                                    onClick={handleChangeLanguage.bind(this, "en")}
+                                 >
+                                    <img src={EN} alt='' />
+                                    <span> English</span>
+                                 </li>
+                              </ul>
+                           </div>
                            <Dropdown
                               onSelect={(eventKey) => {
                                  const { code, title } = languages.find(

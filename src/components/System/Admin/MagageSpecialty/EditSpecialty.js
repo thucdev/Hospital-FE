@@ -23,6 +23,9 @@ import { useLocation } from "react-router-dom"
 const mdParser = new MarkdownIt(/* Markdown-it options */)
 
 const EditSpecialty = () => {
+   const ref = useRef()
+   const navigate = useNavigate()
+
    const [show, setShow] = useState(false)
    const [toggleContents, setToggleContents] = useState("Language")
    const [selectedLanguage, setSelectedLanguage] = useState()
@@ -151,6 +154,7 @@ const EditSpecialty = () => {
                descriptionMarkdown: "",
                descriptionHTML: "",
             })
+            ref.current.value = ""
             setToggleContents("Language")
             toast.success("Update specialty successfully!")
          } else {
@@ -159,14 +163,6 @@ const EditSpecialty = () => {
       } catch (error) {
          console.log("", error)
       }
-   }
-   const navigate = useNavigate()
-
-   const onAdd = () => {
-      navigate("/system/add-new-specialty")
-   }
-   const onTranslate = () => {
-      navigate("/system/translate-specialty")
    }
 
    return (
@@ -242,17 +238,21 @@ const EditSpecialty = () => {
                      <input
                         type='file'
                         id='file'
+                        ref={ref}
                         className='form-control-file manage-specialty-file-upload hidden'
                         onChange={handleOnchangeImg}
                      />
                   </div>
                   {/* <div className=' form-group my-2  p-0'>
-                     <button className='btn btn-success btn-sm mt-4 btn-add' onClick={onAdd}>
+                     <button className='btn btn-success btn-sm mt-4 btn-add'  navigate("/system/add-new-specialty")>
                         Add New
                      </button>
                   </div> */}
                   <div className=' form-group my-2  p-0'>
-                     <button className='btn btn-success  mt-5 btn-add' onClick={onTranslate}>
+                     <button
+                        className='btn btn-success  mt-5 btn-add'
+                        onClick={() => navigate("/system/translate-specialty")}
+                     >
                         Translate
                      </button>
                   </div>

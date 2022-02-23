@@ -181,9 +181,9 @@ function FindDoctor() {
 
          <div className='list-doctor-container'>
             {displayDoctor &&
-               displayDoctor.map((item) => {
+               displayDoctor.map((item, index) => {
                   return (
-                     <Row className='list-doctor'>
+                     <Row className='list-doctor' key={index}>
                         <Col sm='5'>
                            <div
                               className='bg-image img-doctor'
@@ -210,17 +210,19 @@ function FindDoctor() {
                                  <Accordion.Body>
                                     <p className='school'>Trường Y</p>
                                     <ul>
-                                       {item.doctor_infoData.degree?.map((certificate) => {
-                                          return <li>{certificate}</li>
+                                       {item.doctor_infoData.degree?.map((degree, index) => {
+                                          return <li key={index}>{degree}</li>
                                        })}
                                     </ul>
 
                                     <p className='training'>Đào tạo nâng cao</p>
                                     <ul>
                                        <ul>
-                                          {item.doctor_infoData.certificate?.map((certificate) => {
-                                             return <li>{certificate}</li>
-                                          })}
+                                          {item.doctor_infoData.certificate?.map(
+                                             (certificate, index) => {
+                                                return <li key={index}>{certificate}</li>
+                                             }
+                                          )}
                                        </ul>
                                     </ul>
                                  </Accordion.Body>
@@ -230,9 +232,11 @@ function FindDoctor() {
                                  <Accordion.Body>
                                     <p className='school'>Kinh nghiệm</p>
                                     <ul>
-                                       {item.doctor_infoData.experience?.map((certificate) => {
-                                          return <li>{certificate}</li>
-                                       })}
+                                       {item.doctor_infoData.experience?.map(
+                                          (experience, index) => {
+                                             return <li key={index}>{experience}</li>
+                                          }
+                                       )}
                                     </ul>
                                  </Accordion.Body>
                               </Accordion.Item>
@@ -241,8 +245,8 @@ function FindDoctor() {
                                  <Accordion.Body>
                                     <p className='school'>Hội viên</p>
                                     <ul>
-                                       {item.doctor_infoData.member?.map((certificate) => {
-                                          return <li>{certificate}</li>
+                                       {item.doctor_infoData.member?.map((member, index) => {
+                                          return <li key={index}>{member}</li>
                                        })}
                                     </ul>
                                  </Accordion.Body>
@@ -252,8 +256,8 @@ function FindDoctor() {
                                  <Accordion.Body>
                                     <p className='school'>Lĩnh vực chuyên sâu</p>
                                     <ul>
-                                       {item.doctor_infoData.field?.map((certificate) => {
-                                          return <li>{certificate}</li>
+                                       {item.doctor_infoData.field?.map((field, index) => {
+                                          return <li key={index}>{field}</li>
                                        })}
                                     </ul>
                                  </Accordion.Body>

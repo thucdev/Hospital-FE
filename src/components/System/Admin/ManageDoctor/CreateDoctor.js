@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { toast } from "react-toastify"
 import _ from "lodash"
 import Select from "react-select"
@@ -6,8 +6,13 @@ import { useSelector } from "react-redux"
 import Base64 from "../../../../utils/Base64"
 import "./CreateDoctor.scss"
 import { getSpecialtyById, createDoctor, checkIsEmailExist } from "../../../../services/userService"
+import { useDispatch } from "react-redux"
+import { getAllDoctor } from "../../../../store/apiRequest/apiUser"
 
 function CreateDoctor() {
+   const ref = useRef()
+   const dispatch = useDispatch()
+
    const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
    const [selectedSpecialty, setSelectedSpecialty] = useState({
       value: "",
@@ -156,6 +161,8 @@ function CreateDoctor() {
             email: infoDoctor.email,
             password: infoDoctor.password,
             fullName: infoDoctor.fullName,
+            address: infoDoctor.address,
+            phoneNumber: infoDoctor.phoneNumber,
             language: infoDoctor.language,
             image: imgBase64,
             specialtyId: selectedSpecialty.value,
@@ -185,7 +192,13 @@ function CreateDoctor() {
                degree: [],
                field: [],
             })
+            setSelectedSpecialty({
+               label: "",
+               value: "",
+            })
             localStorage.removeItem("infoFiled")
+            dispatch(getAllDoctor())
+            ref.current.value = ""
          } else {
             toast.error(`${res.message}!`)
          }
@@ -217,7 +230,7 @@ function CreateDoctor() {
                      Mật khẩu
                   </label>
                   <input
-                     type='text'
+                     type='password'
                      className='form-control'
                      name='password'
                      placeholder='Enter password'
@@ -308,7 +321,7 @@ function CreateDoctor() {
                         placeholder='Enter field'
                         onChange={handleOnchageInput}
                      />
-                     <button onClick={() => handleClickAdd("degree")} class='btn btn-success my-2'>
+                     <button onClick={() => handleClickAdd("field")} class='btn btn-success my-2'>
                         Thêm
                      </button>
                   </div>
@@ -375,6 +388,7 @@ function CreateDoctor() {
                   <br />
                   <input
                      type='file'
+                     ref={ref}
                      className='form-control-file my-2'
                      onChange={handleOnchangeImg}
                   />
@@ -431,32 +445,6 @@ function CreateDoctor() {
                   </div>
                </div>
             </div>
-            {/* <div className=' row '>
-               <div className=' form-group group-doctor-info col-12 group-doctor-info-field '>
-                  <div className='px-3 '>
-                     <label htmlFor='' className='my-1'>
-                        Lĩnh vực chuyên sâu
-                     </label>
-                     <ul>
-                        {infosArray["field"]?.map((item, index) => {
-                           return <li key={index}>{item}</li>
-                        })}
-                     </ul>
-
-                     <input
-                        type='text'
-                        className='form-control mt-2'
-                        value={field}
-                        name='field'
-                        placeholder='Enter field'
-                        onChange={handleOnchageInput}
-                     />
-                     <button onClick={() => handleClickAdd("field")} class='btn btn-success my-2'>
-                        Thêm
-                     </button>
-                  </div>
-               </div>
-            </div> */}
          </div>
          <button onClick={handleAddNew} class='btn btn-warning my-2'>
             Thêm mới

@@ -38,7 +38,7 @@ const ManageSchedule = () => {
       setIdCheckAll(listId)
    }
 
-   useEffect(async () => {
+   useEffect(() => {
       fetchAllSchedule()
    }, [])
 

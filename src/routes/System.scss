@@ -1,6 +1,9 @@
 .dashboard {
    display: flex;
    .manage-navbar {
+      position: -webkit-sticky; /* Safari */
+      position: fixed;
+      top: 0;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -36,6 +39,7 @@
 
 .manage-header {
    width: 80%;
+   margin-left: 20%;
    padding: 0 16px;
 
    .manage-menu-logout {

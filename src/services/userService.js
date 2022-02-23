@@ -71,6 +71,10 @@ const getNews = (data) => {
    return axios.get(`/news?limit=${data?.limit}&page=${data?.page}`)
 }
 
+const paginationDoctor = (data) => {
+   return axios.get(`/doctors?limit=${data?.limit}&page=${data?.page}`)
+}
+
 const getNewsById = (id) => {
    return axios.get(`/get-news-by-id/?id=${id}`)
 }
@@ -93,4 +97,5 @@ export {
    createNews,
    getNews,
    getNewsById,
+   paginationDoctor,
 }

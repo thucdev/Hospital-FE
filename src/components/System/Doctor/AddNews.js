@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import MarkdownIt from "markdown-it"
 import MdEditor from "react-markdown-editor-lite"
 import "react-markdown-editor-lite/lib/index.css"
@@ -19,6 +19,7 @@ const mdParser = new MarkdownIt(/* Markdown-it options */)
 
 const AddNews = () => {
    const dispatch = useDispatch()
+   const ref = useRef()
 
    const [title, setTitle] = useState("")
    const [imgBase64, setImgBase64] = useState("")
@@ -72,7 +73,7 @@ const AddNews = () => {
                descriptionHTML: "",
             })
             setToggleContents("Language")
-            // setImgBase64('')
+            ref.current.value = ""
             dispatch(getAllSpecialties())
 
             toast.success("Create News successfully!")
@@ -134,7 +135,12 @@ const AddNews = () => {
                   <label htmlFor='' className='text-title'>
                      Tải ảnh hiển thị
                   </label>
-                  <input type='file' className='form-control-file' onChange={handleOnchangeImg} />
+                  <input
+                     type='file'
+                     className='form-control-file'
+                     ref={ref}
+                     onChange={handleOnchangeImg}
+                  />
                </div>
                <div className='col-1 form-group my-2  '>
                   {/* <button

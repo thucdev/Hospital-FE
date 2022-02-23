@@ -5,42 +5,70 @@ import { useDispatch } from "react-redux"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 // import "./ManageSpecialty.scss"
-import { deleteDoctor } from "../../../../services/userService"
+import { deleteDoctor, paginationDoctor } from "../../../../services/userService"
 import { getAllDoctor } from "../../../../store/apiRequest/apiUser"
 import { useSelector } from "react-redux"
 import moment from "moment"
+import PaginationDoctor from "./PaginationDoctor"
+import { Spinner } from "react-bootstrap"
 
 const ManageDoctor = () => {
    const dispatch = useDispatch()
-   const allDoctors = useSelector((state) => state.userReducer.allDoctor)
+   const navigate = useNavigate()
+
+   // const allDoctors = useSelector((state) => state.userReducer.allDoctor)
+   const totalDoctor = useSelector((state) => state.userReducer.totalDoctor)
+   console.log("totalDoctor", totalDoctor)
    const [checked, setChecked] = useState([])
    const [idCheckAll, setIdCheckAll] = useState([])
    const [listDoctor, setListDoctor] = useState([])
-   const fetchAllDoctor = () => {
-      const listObj = []
-      const listId = []
-      allDoctors?.map((item) => {
-         let obj = {}
-         obj.label = item.fullName
-         obj.labelEn = item.experience
-         obj.value = item.id
-         obj.lastEdit = moment.utc(item.updatedAt).format("DD/MM/YYYY")
-         listObj.push(obj)
-         listId.push(item.id)
+   const [loading, setLoading] = useState(false)
+   // const [listDoctors, setListDoctors] = useState([])
+   console.log("idCheckAll", idCheckAll)
+   const [pagination, setPagination] = useState({
+      page: 0,
+      limit: 6,
+      total: totalDoctor,
+   })
+
+   const [filter, setFilter] = useState({
+      limit: 6,
+      page: 0,
+   })
+
+   const fetchAllDoctor = async () => {
+      setLoading(true)
+      let listDoctor = await paginationDoctor(filter)
+      console.log("listDoctor", listDoctor)
+      setPagination({
+         ...pagination,
+         total: listDoctor.total,
       })
 
-      setListDoctor(listObj)
+      const listId = []
+      listDoctor?.data.map((item) => {
+         listId.push(item.id)
+      })
+      setListDoctor(listDoctor.data)
       setIdCheckAll(listId)
+
+      setLoading(false)
+   }
+
+   const handlePageChange = (newPage) => {
+      setFilter({
+         ...filter,
+         page: newPage,
+      })
+      setPagination({
+         ...pagination,
+         page: newPage,
+      })
    }
 
    useEffect(() => {
       fetchAllDoctor()
-   }, [allDoctors])
-
-   const navigate = useNavigate()
-   const onAdd = () => {
-      navigate("/system/create-doctor")
-   }
+   }, [filter])
 
    const handleDeleteDoctor = async (specialtyId) => {
       let res = await deleteDoctor(specialtyId)
@@ -101,7 +129,10 @@ const ManageDoctor = () => {
                      </select>
                      <button className='btn btn-primary btn-sm'>Thực hiện</button>
                   </div>
-                  <button className='btn btn-primary btn-add mt-4' onClick={onAdd}>
+                  <button
+                     className='btn btn-primary btn-add mt-4'
+                     onClick={() => navigate("/system/create-doctor")}
+                  >
                      Thêm mới
                   </button>
                </div>
@@ -135,59 +166,69 @@ const ManageDoctor = () => {
                   </tr>
                </thead>
                <tbody>
-                  {listDoctor?.length > 0 ? (
-                     listDoctor.map((item, index) => {
-                        return (
-                           <tr key={index}>
-                              <td>
-                                 <div className='mb-3 form-check'>
-                                    <input
-                                       type='checkbox'
-                                       className='form-check-input checkbox-item'
-                                       checked={checked.includes(item.value)}
-                                       onChange={() => handleCheckInput(item.value)}
-                                    />
-                                 </div>
-                              </td>
+                  {loading === true && (
+                     <div className='d-flex justify-content-center mt-2'>
+                        <Spinner animation='border' variant='info' />
+                     </div>
+                  )}
 
-                              <td>{index + 1}</td>
-                              <td>{item.label}</td>
-                              <td>{item.address}</td>
-                              <td>{item.phoneNumber}</td>
+                  {loading === false && (
+                     <>
+                        {listDoctor?.length > 0 ? (
+                           listDoctor.map((item, index) => {
+                              return (
+                                 <tr key={index}>
+                                    <td>
+                                       <div className='mb-3 form-check'>
+                                          <input
+                                             type='checkbox'
+                                             className='form-check-input checkbox-item'
+                                             checked={checked.includes(item.id)}
+                                             onChange={() => handleCheckInput(item.id)}
+                                          />
+                                       </div>
+                                    </td>
 
-                              <td>{item.lastEdit}</td>
-                              <td className='w-20'>
-                                 <Link
-                                    to='/system/edit-specialty'
-                                    state={{ specialtyId: item.value }}
-                                    className='btn btn-link'
-                                 >
-                                    Sửa
-                                 </Link>
-                                 <p
-                                    href=''
-                                    className='btn btn-link'
-                                    data-id='{{this._id}}'
-                                    data-bs-toggle='modal'
-                                    data-bs-target='#delete-course'
-                                    onClick={handleDeleteDoctor.bind(this, item.value)}
-                                 >
-                                    Xoá
-                                 </p>
+                                    <td>{index + 1}</td>
+                                    <td>{item.fullName}</td>
+                                    <td>{item.address}</td>
+                                    <td>{item.phoneNumber}</td>
+                                    <td>{moment.utc(item.updatedAt).format("DD/MM/YYYY")}</td>
+                                    <td className='w-20'>
+                                       <Link
+                                          to='/system/edit-specialty'
+                                          state={{ specialtyId: item.value }}
+                                          className='btn btn-link'
+                                       >
+                                          Sửa
+                                       </Link>
+
+                                       <Link
+                                          to='/system/edit-specialty'
+                                          className='btn btn-link'
+                                          onClick={handleDeleteDoctor.bind(this, item.value)}
+                                       >
+                                          Xoá
+                                       </Link>
+                                    </td>
+                                 </tr>
+                              )
+                           })
+                        ) : (
+                           <tr>
+                              <td colSpan='7' className='text-center'>
+                                 Chưa có bác sĩ nào được tạo.
+                                 <Link to='/system/create-doctor'> Tạo bác sĩ</Link>
                               </td>
                            </tr>
-                        )
-                     })
-                  ) : (
-                     <tr>
-                        <td colSpan='5' className='text-center'>
-                           Chưa có bác sĩ nào được tạo.
-                           <Link to='/system/create-doctor'>Tạo bác sĩ</Link>
-                        </td>
-                     </tr>
+                        )}
+                     </>
                   )}
                </tbody>
             </table>
+         </div>
+         <div className='pagination-number my-4'>
+            <PaginationDoctor pagination={pagination} onPageChange={handlePageChange} />
          </div>
       </>
    )

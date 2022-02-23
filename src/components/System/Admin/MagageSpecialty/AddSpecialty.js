@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import MarkdownIt from "markdown-it"
 import MdEditor from "react-markdown-editor-lite"
 import "react-markdown-editor-lite/lib/index.css"
@@ -18,6 +18,7 @@ import Base64 from "../../../../utils/Base64"
 const mdParser = new MarkdownIt(/* Markdown-it options */)
 
 const AddSpecialty = () => {
+   const ref = useRef()
    const dispatch = useDispatch()
 
    const [title, setTitle] = useState("")
@@ -74,6 +75,7 @@ const AddSpecialty = () => {
             setToggleContents("Language")
             // setImgBase64('')
             dispatch(getAllSpecialties())
+            ref.current.value = ""
 
             toast.success("Create specialty successfully!")
          } else {
@@ -84,11 +86,11 @@ const AddSpecialty = () => {
       }
    }
 
-   const navigate = useNavigate()
+   // const navigate = useNavigate()
 
-   const onEdit = () => {
-      navigate("/system/manage-specialty")
-   }
+   // const onEdit = () => {
+   //    navigate("/system/manage-specialty")
+   // }
 
    return (
       <>
@@ -140,17 +142,14 @@ const AddSpecialty = () => {
                   <label htmlFor='' className='text-title'>
                      Tải ảnh chuyên khoa
                   </label>
-                  <input type='file' className='form-control-file' onChange={handleOnchangeImg} />
+                  <input
+                     type='file'
+                     ref={ref}
+                     className='form-control-file'
+                     onChange={handleOnchangeImg}
+                  />
                </div>
-               <div className='col-1 form-group my-2  '>
-                  {/* <button
-                     className='btn btn-success btn-sm mt-4 btn-add'
-                     size='lg'
-                     onClick={onEdit}
-                  >
-                     Edit
-                  </button> */}
-               </div>
+               <div className='col-1 form-group my-2  '></div>
                <div className='col-12'>
                   <MdEditor
                      style={{ height: "400px" }}

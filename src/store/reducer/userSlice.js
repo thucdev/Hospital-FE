@@ -5,13 +5,15 @@ const userSlice = createSlice({
    initialState: {
       allSpecialty: [],
       allDoctor: [],
+      totalDoctor: "",
    },
    reducers: {
       getAllSpecialtiesSuccess: (state, action) => {
          state.allSpecialty = action.payload
       },
       getAllDoctorSuccess: (state, action) => {
-         state.allDoctor = action.payload
+         state.allDoctor = action.payload.data
+         state.totalDoctor = action.payload.total
       },
    },
 })

@@ -32,7 +32,7 @@ const ManageScheduleDoctor = () => {
       setIdCheckAll(listId)
    }
 
-   useEffect(async () => {
+   useEffect(() => {
       fetchAllSchedule()
    }, [])
 

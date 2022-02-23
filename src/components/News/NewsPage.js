@@ -18,26 +18,27 @@ import doctor from "../../assets/Services1.jpg"
 import PaginationNews from "./PaginationNews"
 
 function NewsPage() {
+   const navigate = useNavigate()
+
    const [loading, setLoading] = useState(false)
-   const [currentPage, setCurrentPage] = useState(1)
-   const [postPerPage, setPostPerPage] = useState(3)
+   // const [currentPage, setCurrentPage] = useState(1)
+   // const [postPerPage, setPostPerPage] = useState(6)
 
    const [postNews, setPostNews] = useState([])
 
    ///////
    const [pagination, setPagination] = useState({
-      page: 1,
-      limit: 3,
+      page: 0,
+      limit: 6,
       total: 1,
    })
 
    const [filter, setFilter] = useState({
-      limit: 3,
+      limit: 6,
       page: 0,
    })
    const fetchData = async () => {
       setLoading(true)
-      // let allNews = await getNews(pagination)
       let allNews = await getNews(filter)
       setPagination({
          ...pagination,
@@ -64,17 +65,8 @@ function NewsPage() {
       })
    }
 
-   const handleOrderAppointment = async () => {
-      try {
-         // let res = await createQuestion({ askingData })
-         // if (res.success) {
-         //    toast.success("Send your question success")
-         // } else {
-         //    toast.error("Send your question fail")
-         // }
-      } catch (error) {
-         console.log("er", error)
-      }
+   const viewNewsDetail = (id) => {
+      navigate(`/detail-news/${id}`)
    }
 
    return (
@@ -90,21 +82,28 @@ function NewsPage() {
                </div>
             )}
             {loading === false && (
-               <Row>
+               <Row className='news-item-page'>
                   {postNews?.map((item, index) => {
                      return (
-                        <Col sm='4' key={index}>
-                           <div className='news-item'>
+                        <Col sm='4' key={index} className='mb-4'>
+                           <div>
                               <div
                                  className='bg-image news-thumbnail'
                                  style={{ backgroundImage: `url(${item.img})` }}
                               ></div>
                               <div className='news-item-content'>
                                  <div className='news-item-info pt-3'>Tin tức</div>
-                                 <h4 className='news-item-content-title'>{item.title}</h4>
+                                 <h4
+                                    className='news-item-content-title'
+                                    onClick={() => viewNewsDetail(item.id)}
+                                 >
+                                    {item.title}
+                                 </h4>
                                  {/* <div className='news-item-content-body'>item.descriptionMarkdown</div> */}
 
-                                 <div className='read-more'>Read more</div>
+                                 <div className='read-more' onClick={() => viewNewsDetail(item.id)}>
+                                    Read more
+                                 </div>
                               </div>
                            </div>
                         </Col>
@@ -113,7 +112,7 @@ function NewsPage() {
                </Row>
             )}
          </div>
-         <div className='pagination-number my-4'>
+         <div className='pagination-number  my-4'>
             <PaginationNews pagination={pagination} onPageChange={handlePageChange} />
          </div>
          <Footer />

@@ -73,7 +73,7 @@ const SpecialtyTranslation = () => {
       setListSpecialty(listObj)
    }
 
-   useEffect(async () => {
+   useEffect(() => {
       fetchAllSpecialty()
    }, [])
 

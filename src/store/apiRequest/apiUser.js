@@ -13,7 +13,7 @@ const getAllSpecialties = () => async (dispatch) => {
 const getAllDoctor = () => async (dispatch) => {
    try {
       let res = await axios.get(`/get-all-doctors`)
-      await dispatch(getAllDoctorSuccess(res.data))
+      await dispatch(getAllDoctorSuccess(res))
    } catch (error) {
       console.log("", error)
    }

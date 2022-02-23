@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Pagination } from "react-bootstrap"
 
-const PaginationNews = (props) => {
+const PaginationDoctor = (props) => {
    const { pagination, onPageChange } = props
    const { page, limit, total } = pagination
    const totalPages = Math.ceil(total / limit)
@@ -19,9 +19,8 @@ const PaginationNews = (props) => {
       }
    }
    return (
-      <div className='pagin'>
+      <div className='pagin-doctor'>
          <Pagination>
-            {/* <Pagination.First /> */}
             <Pagination.Prev onClick={() => handlePageChange(page - 1)} disabled={page < 1} />
             {pageNumber?.map((item, index) => {
                return (
@@ -34,51 +33,23 @@ const PaginationNews = (props) => {
                   </Pagination.Item>
                )
             })}
-            {/* <Pagination.Ellipsis /> */}
-            {/*
-            <Pagination.Item>{10}</Pagination.Item>
-            <Pagination.Item>{11}</Pagination.Item>
-            <Pagination.Item active>{12}</Pagination.Item>
-            <Pagination.Item>{13}</Pagination.Item>
 
-            <Pagination.Ellipsis />
-            <Pagination.Item>{20}</Pagination.Item> */}
             <Pagination.Next
                onClick={() => handlePageChange(page + 1)}
                disabled={page >= totalPages - 1}
             />
-            {/* <Pagination.Last /> */}
          </Pagination>
-
-         {/* <div aria-label='...'>
-            <ul class='pagination pagination-lg'>
-               {pageNumber?.map((item) => {
-                  return (
-                     <li class='page-item '>
-                        <a
-                           class='page-link'
-                           href='#'
-                           tabindex='-1'
-                           onClick={() => handlePageChange(item)}
-                        >
-                           {item}
-                        </a>
-                     </li>
-                  )
-               })}
-            </ul> */}
-         {/* </div> */}
       </div>
    )
 }
 
-PaginationNews.propTypes = {
+PaginationDoctor.propTypes = {
    pagination: PropTypes.object.isRequired,
    onPageChange: PropTypes.func,
 }
 
-PaginationNews.defaultProps = {
+PaginationDoctor.defaultProps = {
    onPageChange: null,
 }
 
-export default PaginationNews
+export default PaginationDoctor

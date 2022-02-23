@@ -23,7 +23,6 @@ function DetailNews() {
    const [specialty, setNews] = useState([])
    const fetchData = async () => {
       let specialty = await getNewsById(id)
-      console.log("new", specialty)
       setNews(specialty.data)
    }
 
