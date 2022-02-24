@@ -9,7 +9,7 @@ import "./ManageSpecialty.scss"
 import { Dropdown } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { getAllSpecialties } from "../../../../store/apiRequest/apiUser"
-
+import { FormattedMessage } from "react-intl"
 import FlagIcon from "../../../../styles/FlagIcon"
 import { createNewSpecialty } from "../../../../services/userService"
 import Base64 from "../../../../utils/Base64"
@@ -32,7 +32,6 @@ const AddSpecialty = () => {
 
    const [toggleContents, setToggleContents] = useState("Language")
    const [selectedLanguage, setSelectedLanguage] = useState()
-   console.log("selectedLanguage", selectedLanguage)
    const [languages] = useState([
       { code: "vn", title: "Việt Nam" },
       { code: "us", title: "English" },
@@ -98,7 +97,7 @@ const AddSpecialty = () => {
             <div className='add-new-specialty row'>
                <div className='col-6 form-group my-2'>
                   <label htmlFor='' className='text-title'>
-                     Tên chuyên khoa
+                     <FormattedMessage id='manage.specialty.specialty-name' />
                   </label>
                   <input
                      type='text'
@@ -140,7 +139,7 @@ const AddSpecialty = () => {
                </Dropdown>
                <div className='col-3 form-group my-2 ps-2 upload-photo'>
                   <label htmlFor='' className='text-title'>
-                     Tải ảnh chuyên khoa
+                     <FormattedMessage id='manage.specialty.img' />
                   </label>
                   <input
                      type='file'
@@ -160,7 +159,7 @@ const AddSpecialty = () => {
                </div>
                <div className='col-12'>
                   <button className='btn btn-warning mt-3' onClick={handleSaveNewSpecialty}>
-                     Save
+                     <FormattedMessage id='menu.save' />
                   </button>
                </div>
             </div>

@@ -99,8 +99,21 @@ function Header() {
                            <FontAwesomeIcon icon='chevron-down' className='arrow-down-icon' />
                         </div>
                         <li className='content-item-expand'>
-                           <li className='content-item-detail'>Chuyên khoa nội</li>
-                           <li className='content-item-detail'>Chuyên khoa ngoại</li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item1' />
+                           </li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item2' />
+                           </li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item3' />
+                           </li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item4' />
+                           </li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item5' />
+                           </li>
                         </li>
                      </li>
                      <li className='content-item'>
@@ -111,8 +124,21 @@ function Header() {
                            <FontAwesomeIcon icon='chevron-down' className='arrow-down-icon' />
                         </div>
                         <li className='content-item-expand'>
-                           <li className='content-item-detail'>Chuyên khoa nội</li>
-                           <li className='content-item-detail'>Chuyên khoa ngoại</li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item6' />
+                           </li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item7' />
+                           </li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item8' />
+                           </li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item9' />
+                           </li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item10' />
+                           </li>
                         </li>
                      </li>
                      <li className='content-item'>
@@ -123,8 +149,18 @@ function Header() {
                            <FontAwesomeIcon icon='chevron-down' className='arrow-down-icon' />
                         </div>
                         <li className='content-item-expand'>
-                           <li className='content-item-detail'>Chuyên khoa nội</li>
-                           <li className='content-item-detail'>Chuyên khoa ngoại</li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item11' />
+                           </li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item12' />
+                           </li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item13' />
+                           </li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item14' />
+                           </li>
                         </li>
                      </li>
 
@@ -136,9 +172,12 @@ function Header() {
                            <FontAwesomeIcon icon='chevron-down' className='arrow-down-icon' />
                         </div>
                         <li className='content-item-expand'>
-                           <li className='content-item-detail'>Chuyên khoa nội</li>
-                           <li className='content-item-detail'>Chuyên khoa ngoại</li>
-                           <li className='content-item-detail'>Chuyên khoa aaaaaaangoại</li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item15' />
+                           </li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item16' />
+                           </li>
                         </li>
                      </li>
                      <li className='content-item'>
@@ -149,9 +188,18 @@ function Header() {
                            <FontAwesomeIcon icon='chevron-down' className='arrow-down-icon' />
                         </div>
                         <li className='content-item-expand'>
-                           <li className='content-item-detail'>Chuyên khoa nội</li>
-                           <li className='content-item-detail'>Chuyên khoa ngoại</li>
-                           <li className='content-item-detail'>Chuyên khoa aaaaaaangoại</li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item17' />
+                           </li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item18' />
+                           </li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item19' />
+                           </li>
+                           <li className='content-item-detail'>
+                              <FormattedMessage id='main-menu.item20' />
+                           </li>
                         </li>
                      </li>
                      <li className='content-item'>
@@ -159,13 +207,7 @@ function Header() {
                            <span>
                               <FormattedMessage id='main-menu.contact' />
                            </span>
-                           <FontAwesomeIcon icon='chevron-down' className='arrow-down-icon' />
                         </div>
-                        <li className='content-item-expand'>
-                           <li className='content-item-detail'>Chuyên khoa nội</li>
-                           <li className='content-item-detail'>Chuyên khoa ngoại</li>
-                           <li className='content-item-detail'>Chuyên khoa aaaaaaangoại</li>
-                        </li>
                      </li>
                   </ul>
                </div>

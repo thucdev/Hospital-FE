@@ -6,15 +6,11 @@ import Select from "react-select"
 import { DropdownButton, Dropdown, Form, Overlay, OverlayTrigger, Tooltip } from "react-bootstrap"
 import FlagIcon from "../../../../styles/FlagIcon"
 import { useNavigate } from "react-router-dom"
-
+import { FormattedMessage } from "react-intl"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import "./EditSpecialty.scss"
-import {
-   createNewSpecialty,
-   getSpecialtyById,
-   updateSpecialty,
-} from "../../../../services/userService"
+import { getSpecialtyById, updateSpecialty } from "../../../../services/userService"
 import Base64 from "../../../../utils/Base64"
 import { useSelector } from "react-redux"
 import { useLocation } from "react-router-dom"
@@ -172,7 +168,7 @@ const EditSpecialty = () => {
                <div className='add-new-specialty'>
                   <div className=' form-group my-2'>
                      <label htmlFor='' className='text-title'>
-                        Tên chuyên khoa
+                        <FormattedMessage id='manage.specialty.specialty-name' />
                      </label>
                      <Select
                         value={selectedSpecialty}
@@ -233,7 +229,7 @@ const EditSpecialty = () => {
                   </Dropdown>
                   <div className=' form-group my-2 px-2 upload-photo'>
                      <label htmlFor='file' className='text-title'>
-                        Tải ảnh chuyên khoa
+                        <FormattedMessage id='manage.specialty.img' />
                      </label>
                      <input
                         type='file'
@@ -267,7 +263,7 @@ const EditSpecialty = () => {
                </div>
                <div className='col-12'>
                   <button className='btn btn-warning mt-3' onClick={handleSaveSpecialty}>
-                     Save
+                     <FormattedMessage id='menu.save' />
                   </button>
                </div>
             </div>

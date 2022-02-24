@@ -9,6 +9,7 @@ import "pure-react-carousel/dist/react-carousel.es.css"
 import Carousel, { consts } from "react-elastic-carousel"
 import { useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
+import { FormattedMessage, useIntl } from "react-intl"
 
 function Services() {
    const navigate = useNavigate()
@@ -29,10 +30,11 @@ function Services() {
    return (
       <div className='section-services'>
          <div className='service-header'>
-            <h2 className='service-header-title'>Our Services</h2>
+            <h2 className='service-header-title'>
+               <FormattedMessage id='homepage.service.our-service' />
+            </h2>
             <div className='service-header-content'>
-               At L'Hôpital Français de Hanoi you will experience high quality, international
-               standard health care
+               <FormattedMessage id='homepage.service.our-service-content' />
             </div>
          </div>
          <div className='service-content'>
@@ -61,7 +63,7 @@ function Services() {
                                     className='read-more'
                                     onClick={() => viewSpecialtyDetail(item.id)}
                                  >
-                                    Read more
+                                    <FormattedMessage id='homepage.read-more' />
                                  </div>
                               </div>
                            </div>
@@ -83,7 +85,9 @@ function Services() {
                                     {item.translationData?.descriptionMarkdown}
                                  </div>
 
-                                 <div className='read-more'>Read more</div>
+                                 <div className='read-more'>
+                                    <FormattedMessage id='homepage.read-more' />
+                                 </div>
                               </div>
                            </div>
                         )
@@ -92,8 +96,9 @@ function Services() {
             </div>
          </div>
          <div className='see-all'>
-            {/* <Button variant='outline-info'>Xem tất cả</Button> */}
-            <button className=' main-btn'>Xem tất cả</button>
+            <button className=' main-btn'>
+               <FormattedMessage id='homepage.see-all-btn' />
+            </button>
          </div>
       </div>
    )

@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css"
 import "./SpecialtyTranslation.scss"
 import { createNewSpecialtyTranslation, getSpecialtyById } from "../../../../services/userService"
 import Base64 from "../../../../utils/Base64"
+import { FormattedMessage } from "react-intl"
 import { useSelector } from "react-redux"
 
 // Initialize a markdown parser
@@ -120,14 +121,6 @@ const SpecialtyTranslation = () => {
          console.log("", error)
       }
    }
-   const navigate = useNavigate()
-
-   const onAdd = () => {
-      navigate("/system/add-new-specialty")
-   }
-   const onTranslate = () => {
-      navigate("/system/translate-specialty")
-   }
 
    return (
       <>
@@ -136,7 +129,7 @@ const SpecialtyTranslation = () => {
                <div className='add-new-specialty'>
                   <div className=' form-group my-2'>
                      <label htmlFor='' className='text-title'>
-                        Chọn chuyên khoa
+                        <FormattedMessage id='manage.specialty.select-specialty' />
                      </label>
                      <Select
                         value={selectedSpecialty}
@@ -148,7 +141,7 @@ const SpecialtyTranslation = () => {
                   </div>
                   <div className='form-group my-2'>
                      <label htmlFor='' className='text-title'>
-                        Tên chuyên khoa
+                        <FormattedMessage id='manage.specialty.specialty-name' />
                      </label>
                      <input
                         type='text'
@@ -222,7 +215,7 @@ const SpecialtyTranslation = () => {
                </div>
                <div className='col-12'>
                   <button className='btn btn-warning mt-3' onClick={handleSaveTranslation}>
-                     Save
+                     <FormattedMessage id='menu.save' />
                   </button>
                </div>
             </div>

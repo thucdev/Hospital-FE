@@ -45,11 +45,10 @@ function Homepage() {
             <Row className='info-hospital'>
                <Row className='info-hospital-header'>
                   <Row className='info-hospital-header__tilte'>
-                     Bệnh viện Quốc tế hàng đầu tại Hà Nội
+                     <FormattedMessage id='homepage.info.title' />
                   </Row>
                   <Row className='info-hospital-header__text'>
-                     Bệnh viện Việt Pháp Hà Nội là bệnh viện quốc tế đầu tiên tại Hà Nội và miền Bắc
-                     Việt Nam
+                     <FormattedMessage id='homepage.info.content' />
                   </Row>
                </Row>
                <Row className='info-hospital-body'>
@@ -60,12 +59,13 @@ function Homepage() {
                         </Col>
                         <Col className='col-8 info-hospital-body-statistic'>
                            <Row className='statistic-percent mb-2'>60%</Row>
-                           <Row className='statistic-info'>Bác sĩ nước ngoài</Row>
+                           <Row className='statistic-info'>
+                              <FormattedMessage id='homepage.info.item.international-doctor' />
+                           </Row>
                         </Col>
                      </Row>
                      <Row className='info-hospital-content'>
-                        Đội ngũ bác sĩ gồm nhiều chuyên gia người Pháp có trình độ chuyên môn cao
-                        thuộc nhiều chuyên khoa khác nhau.
+                        <FormattedMessage id='homepage.info.item.content1' />
                      </Row>
                   </Col>
                   <Col className='col-4  px-4'>
@@ -75,12 +75,13 @@ function Homepage() {
                         </Col>
                         <Col className='col-8 info-hospital-body-statistic'>
                            <Row className='statistic-percent mb-2'>120.000+</Row>
-                           <Row className='statistic-info'>Khám ngoại trú mỗi năm</Row>
+                           <Row className='statistic-info'>
+                              <FormattedMessage id='homepage.info.item.consultations' />
+                           </Row>
                         </Col>
                      </Row>
                      <Row className='info-hospital-content'>
-                        Bệnh viện Việt Pháp Hà Nội là địa chỉ tin cậy cho cộng đồng người Việt và
-                        nước ngoài sinh sống và làm việc tại Việt Nam.
+                        <FormattedMessage id='homepage.info.item.content2' />
                      </Row>
                   </Col>
                   <Col className='col-4  px-4'>
@@ -90,18 +91,23 @@ function Homepage() {
                         </Col>
                         <Col className='col-8 info-hospital-body-statistic'>
                            <Row className='statistic-percent mb-2'>25.000+</Row>
-                           <Row className='statistic-info'>Ca sinh nở</Row>
+                           <Row className='statistic-info'>
+                              <FormattedMessage id='homepage.info.item.born' />
+                           </Row>
                         </Col>
                      </Row>
                      <Row className='info-hospital-content'>
-                        Hàng năm Bệnh viện Việt Pháp Hà Nội đón rất nhiều trẻ sơ sinh chào đời an
-                        toàn và khỏe mạnh.
+                        <FormattedMessage id='homepage.info.item.content3' />
                      </Row>
                   </Col>
                </Row>
                <Row className='info-hospital-btn'>
-                  <button className='main-btn col-3'>Xem video của chúng tôi</button>
-                  <button className='main-btn col-2'>Làm việc tại đây</button>
+                  <button className='main-btn col-3'>
+                     <FormattedMessage id='homepage.info.video' />
+                  </button>
+                  <button className='main-btn col-2'>
+                     <FormattedMessage id='homepage.info.working' />
+                  </button>
                </Row>
             </Row>
          </div>

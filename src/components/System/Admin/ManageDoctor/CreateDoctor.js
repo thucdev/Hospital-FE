@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import { toast } from "react-toastify"
+import { FormattedMessage, injectIntl, useIntl } from "react-intl"
 import _ from "lodash"
 import Select from "react-select"
 import { useSelector } from "react-redux"
@@ -12,7 +13,7 @@ import { getAllDoctor } from "../../../../store/apiRequest/apiUser"
 function CreateDoctor() {
    const ref = useRef()
    const dispatch = useDispatch()
-
+   const intl = useIntl()
    const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
    const [selectedSpecialty, setSelectedSpecialty] = useState({
       value: "",
@@ -227,34 +228,38 @@ function CreateDoctor() {
                </div>
                <div className='form-group'>
                   <label htmlFor='' className='my-1'>
-                     Mật khẩu
+                     <FormattedMessage id='menu.doctor.password' />
                   </label>
                   <input
                      type='password'
                      className='form-control'
                      name='password'
-                     placeholder='Enter password'
+                     placeholder={intl.formatMessage({
+                        id: "menu.placeholder.password",
+                     })}
                      value={password}
                      onChange={handleOnchageInput}
                   />
                </div>
                <div className='form-group'>
                   <label htmlFor='' className='my-1 '>
-                     Họ và tên bác sĩ
+                     <FormattedMessage id='menu.doctor.fullName' />
                   </label>
                   <input
                      type='text'
                      className='form-control mb-2'
                      name='fullName'
                      value={fullName}
-                     placeholder='Enter full name'
+                     placeholder={intl.formatMessage({
+                        id: "menu.placeholder.fullName",
+                     })}
                      onChange={handleOnchageInput}
                   />
                </div>
                <div className='form-group group-doctor-info'>
                   <div className='px-3'>
                      <label htmlFor='' className='my-1'>
-                        Kinh nghiệm
+                        <FormattedMessage id='menu.doctor.experience' />
                      </label>
                      <ul>
                         {infosArray["experience"]?.map((item, index) => {
@@ -267,21 +272,23 @@ function CreateDoctor() {
                         className='form-control mt-2'
                         name='experience'
                         value={experience}
-                        placeholder='Enter experience'
+                        placeholder={intl.formatMessage({
+                           id: "menu.placeholder.experience",
+                        })}
                         onChange={handleOnchageInput}
                      />
                      <button
                         onClick={() => handleClickAdd("experience")}
                         class='btn btn-success my-2'
                      >
-                        Thêm
+                        <FormattedMessage id='menu.add' />
                      </button>
                   </div>
                </div>
                <div className='form-group group-doctor-info'>
                   <div className='px-3'>
                      <label htmlFor='' className='my-1'>
-                        Hội viên
+                        <FormattedMessage id='menu.doctor.membership' />
                      </label>
                      <ul>
                         {infosArray["member"]?.map((item, index) => {
@@ -294,18 +301,20 @@ function CreateDoctor() {
                         className='form-control mt-2'
                         name='member'
                         value={member}
-                        placeholder='Enter member'
+                        placeholder={intl.formatMessage({
+                           id: "menu.placeholder.membership",
+                        })}
                         onChange={handleOnchageInput}
                      />
                      <button onClick={() => handleClickAdd("member")} class='btn btn-success my-2'>
-                        Thêm
+                        <FormattedMessage id='menu.add' />
                      </button>
                   </div>
                </div>
                <div className='form-group group-doctor-info'>
                   <div className='px-3'>
                      <label htmlFor='' className='my-1'>
-                        Lĩnh vực chuyên sâu
+                        <FormattedMessage id='menu.doctor.field' />
                      </label>
                      <ul>
                         {infosArray["field"]?.map((item, index) => {
@@ -318,11 +327,13 @@ function CreateDoctor() {
                         className='form-control mt-2'
                         name='field'
                         value={field}
-                        placeholder='Enter field'
+                        placeholder={intl.formatMessage({
+                           id: "menu.placeholder.field",
+                        })}
                         onChange={handleOnchageInput}
                      />
                      <button onClick={() => handleClickAdd("field")} class='btn btn-success my-2'>
-                        Thêm
+                        <FormattedMessage id='menu.add' />
                      </button>
                   </div>
                </div>
@@ -331,7 +342,7 @@ function CreateDoctor() {
             <div className='col-6'>
                <div className='form-group'>
                   <label htmlFor='' className='text-title my-1'>
-                     Thuộc chuyên khoa
+                     <FormattedMessage id='menu.doctor.specialty' />
                   </label>
                   <Select
                      value={selectedSpecialty}
@@ -344,46 +355,52 @@ function CreateDoctor() {
                </div>
                <div className='form-group'>
                   <label htmlFor='' className='my-1'>
-                     Số điện thoại
+                     <FormattedMessage id='menu.doctor.phoneNumber' />
                   </label>
                   <input
                      type='text'
                      className='form-control'
                      name='phoneNumber'
-                     placeholder='Enter phone number'
+                     placeholder={intl.formatMessage({
+                        id: "menu.placeholder.phoneNumber",
+                     })}
                      value={phoneNumber}
                      onChange={handleOnchageInput}
                   />
                </div>
                <div className='form-group'>
                   <label htmlFor='' className='my-1'>
-                     Địa chỉ
+                     <FormattedMessage id='menu.address' />
                   </label>
                   <input
                      type='text'
                      className='form-control'
                      name='address'
-                     placeholder='Enter address'
+                     placeholder={intl.formatMessage({
+                        id: "menu.placeholder.address",
+                     })}
                      value={address}
                      onChange={handleOnchageInput}
                   />
                </div>
                <div className='form-group'>
                   <label htmlFor='' className='my-1'>
-                     ngôn ngữ
+                     <FormattedMessage id='menu.doctor.language' />
                   </label>
                   <input
                      type='text'
                      className='form-control'
                      name='language'
                      value={language}
-                     placeholder='Tiếng Việt, Tiếng Anh'
+                     placeholder={intl.formatMessage({
+                        id: "menu.placeholder.language",
+                     })}
                      onChange={handleOnchageInput}
                   />
                </div>
                <div className='form-group'>
                   <label htmlFor='' className='text-title my-1 '>
-                     Tải ảnh bác sĩ
+                     <FormattedMessage id='menu.doctor.avatar' />
                   </label>
                   <br />
                   <input
@@ -396,7 +413,7 @@ function CreateDoctor() {
                <div className='form-group group-doctor-info'>
                   <div className='px-3'>
                      <label htmlFor='' className='my-1'>
-                        Tên Chứng chỉ Trường y
+                        <FormattedMessage id='menu.doctor.qualifications' />
                      </label>
                      <ul>
                         {infosArray["certificate"]?.map((item, index) => {
@@ -409,21 +426,23 @@ function CreateDoctor() {
                         className='form-control mt-2'
                         name='certificate'
                         value={certificate}
-                        placeholder='Enter certificate'
+                        placeholder={intl.formatMessage({
+                           id: "menu.placeholder.qualifications",
+                        })}
                         onChange={handleOnchageInput}
                      />
                      <button
                         onClick={() => handleClickAdd("certificate")}
                         class='btn btn-success my-2'
                      >
-                        Thêm
+                        <FormattedMessage id='menu.add' />
                      </button>
                   </div>
                </div>
                <div className='form-group group-doctor-info'>
                   <div className='px-3'>
                      <label htmlFor='' className='my-1'>
-                        Bằng cấp chuyên môn
+                        <FormattedMessage id='menu.doctor.degree' />
                      </label>
                      <ul>
                         {infosArray["degree"]?.map((item, index) => {
@@ -436,18 +455,20 @@ function CreateDoctor() {
                         className='form-control mt-2'
                         name='degree'
                         value={degree}
-                        placeholder='Enter degree'
+                        placeholder={intl.formatMessage({
+                           id: "menu.placeholder.degree",
+                        })}
                         onChange={handleOnchageInput}
                      />
                      <button onClick={() => handleClickAdd("degree")} class='btn btn-success my-2'>
-                        Thêm
+                        <FormattedMessage id='menu.add' />
                      </button>
                   </div>
                </div>
             </div>
          </div>
          <button onClick={handleAddNew} class='btn btn-warning my-2'>
-            Thêm mới
+            <FormattedMessage id='menu.create' />
          </button>
       </div>
    )

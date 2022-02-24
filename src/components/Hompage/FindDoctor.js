@@ -138,7 +138,9 @@ function FindDoctor() {
       <>
          <Header />
          <div className='bg-header bg-find-doctor'>
-            <h1>Tìm bác sĩ</h1>
+            <h1>
+               <FormattedMessage id='find-doctor.title' />
+            </h1>
          </div>
 
          <div className='find-doctor-body'>
@@ -147,7 +149,7 @@ function FindDoctor() {
                   <Form>
                      <Form.Group as={Row} className='mb-4'>
                         <Form.Label column sm='3'>
-                           Chọn chuyên khoa
+                           <FormattedMessage id='find-doctor.select-specialty' />
                         </Form.Label>
                         <Col sm='8'>
                            <Select
@@ -160,7 +162,7 @@ function FindDoctor() {
                      </Form.Group>
                      <Form.Group as={Row} className='mb-4'>
                         <Form.Label column sm='3'>
-                           Tìm bác sĩ
+                           <FormattedMessage id='find-doctor.find-btn' />
                         </Form.Label>
                         <Col sm='8'>
                            <Select
@@ -173,7 +175,7 @@ function FindDoctor() {
                      </Form.Group>
                   </Form>
                   <button className='main-btn find-doctor-btn mx-auto' onClick={findDoctor}>
-                     Tìm bác sĩ
+                     <FormattedMessage id='find-doctor.find-btn' />
                   </button>
                </div>
             </div>

@@ -9,17 +9,19 @@ import { deleteDoctor, getAllSchedules } from "../../../../services/userService"
 import { getAllDoctor } from "../../../../store/apiRequest/apiUser"
 import { useSelector } from "react-redux"
 import moment from "moment"
+import { FormattedMessage, useIntl } from "react-intl"
 
 const ManageSchedule = () => {
    const dispatch = useDispatch()
-   // const allDoctors = useSelector((state) => state.userReducer.allDoctor)
+   const intl = useIntl()
+
    const [allSchedules, setAllSchedules] = useState([])
    const [checked, setChecked] = useState([])
    const [idCheckAll, setIdCheckAll] = useState([])
    const [listDoctor, setListDoctor] = useState([])
+
    const fetchAllSchedule = async () => {
       let res = await getAllSchedules()
-      console.log("allshc", res.data)
       // const listObj = []
       const listId = []
       res.data?.map((item) => {
@@ -80,12 +82,9 @@ const ManageSchedule = () => {
       <>
          <div className='mt-4 manage-specialty'>
             <div>
-               <h3>Danh sách Lịch khám bệnh</h3>
-               {/* {{#if deleteCount}} */}
-               <a href='/me/trash/courses'>
-                  {/* Thùng rác */}
-                  {/* ({{ deleteCount }}) */}
-               </a>
+               <h3>
+                  <FormattedMessage id='manage.schedule.list-schedule' />
+               </h3>
                <div className='btn-action'>
                   <div className='mt-4 manage-specialty-action'>
                      <div className=' form-check'>
@@ -96,19 +95,29 @@ const ManageSchedule = () => {
                            onChange={handleCheckAll}
                         />
                         <label className='form-check-label' htmlFor='checkbox-all'>
-                           Chọn tất cả
+                           <FormattedMessage id='menu.select-all' />
                         </label>
                      </div>
 
                      <select id='disabledSelect' className='form-select form-select-sm'>
-                        <option>--Hành động--</option>
-                        <option value='delete'>Xoá</option>
+                        <option>
+                           --
+                           {intl.formatMessage({
+                              id: "menu.action",
+                           })}
+                           --
+                        </option>
+                        <option value='delete'>
+                           {intl.formatMessage({
+                              id: "menu.delete",
+                           })}
+                        </option>
                      </select>
-                     <button className='btn btn-primary btn-sm'>Thực hiện</button>
+
+                     <button className='btn btn-primary btn-sm'>
+                        <FormattedMessage id='menu.perform' />
+                     </button>
                   </div>
-                  {/* <button className='btn btn-primary btn-add mt-4' onClick={onAdd}>
-                     Thêm mới
-                  </button> */}
                </div>
             </div>
 
@@ -119,26 +128,23 @@ const ManageSchedule = () => {
                         #
                      </th>
                      <th scope='col' colSpan=''>
-                        STT
+                        ID
                      </th>
                      <th scope='col' colSpan=''>
-                        Ngày hẹn
-                        {/* {{{sortable 'name' _sort}}} */}
+                        <FormattedMessage id='manage.schedule.appointment-date' />
                      </th>
                      <th scope='col' colSpan=''>
-                        Thời gian
+                        <FormattedMessage id='manage.schedule.time' />
                      </th>
 
                      <th scope='col' colSpan=''>
-                        Tên bệnh nhân
-                        {/* {{{sortable 'createdAt' _sort}}} */}
+                        <FormattedMessage id='manage.schedule.patient-name' />
                      </th>
                      <th scope='col' colSpan=''>
-                        Lý do khám
+                        <FormattedMessage id='manage.schedule.reason' />
                      </th>
                      <th scope='col' colSpan=''>
-                        Bác sĩ khám
-                        {/* {{{sortable 'createdAt' _sort}}} */}
+                        <FormattedMessage id='manage.schedule.doctor' />
                      </th>
                   </tr>
                </thead>
@@ -160,7 +166,7 @@ const ManageSchedule = () => {
 
                               <td>{index + 1}</td>
                               <td>{item.dateBooked}</td>
-                              <td className='ps-4'>{item.timeBooked}</td>
+                              <td className='ps-3'>{item.timeBooked}</td>
                               <td>{item.patientData.fullName}</td>
                               <td>{item.reason}</td>
                               <td>{item.doctorData.fullName}</td>
@@ -170,7 +176,7 @@ const ManageSchedule = () => {
                                     state={{ specialtyId: item.value }}
                                     className='btn btn-link'
                                  >
-                                    Sửa
+                                    <FormattedMessage id='menu.edit' />
                                  </Link>
                                  <p
                                     href=''
@@ -180,7 +186,7 @@ const ManageSchedule = () => {
                                     data-bs-target='#delete-course'
                                     onClick={handleDeleteDoctor.bind(this, item.value)}
                                  >
-                                    Xoá
+                                    <FormattedMessage id='menu.delete' />
                                  </p>
                               </td>
                            </tr>
@@ -189,8 +195,7 @@ const ManageSchedule = () => {
                   ) : (
                      <tr>
                         <td colSpan='7' className='text-center'>
-                           Chưa có lịch khám nào được hẹn.
-                           {/* <Link to='/system/create-doctor'>Tạo bác sĩ</Link> */}
+                           <FormattedMessage id='manage.schedule.no-schedule' />
                         </td>
                      </tr>
                   )}

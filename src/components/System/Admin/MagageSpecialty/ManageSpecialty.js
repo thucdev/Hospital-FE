@@ -8,10 +8,14 @@ import "./ManageSpecialty.scss"
 import { deleteSpecialty } from "../../../../services/userService"
 import { getAllSpecialties } from "../../../../store/apiRequest/apiUser"
 import { useSelector } from "react-redux"
+import { FormattedMessage, useIntl } from "react-intl"
 import moment from "moment"
 
 const ManageSpecialty = () => {
+   const intl = useIntl()
    const dispatch = useDispatch()
+   const navigate = useNavigate()
+
    const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
    const [checked, setChecked] = useState([])
    const [listSpecialty, setListSpecialty] = useState([])
@@ -42,11 +46,6 @@ const ManageSpecialty = () => {
    useEffect(() => {
       fetchAllSpecialty()
    }, [allSpecialties])
-
-   const navigate = useNavigate()
-   const onAdd = () => {
-      navigate("/system/add-new-specialty")
-   }
 
    const handleDeleteSpecialty = async (specialtyId) => {
       let res = await deleteSpecialty(specialtyId)
@@ -80,12 +79,9 @@ const ManageSpecialty = () => {
       <>
          <div className='mt-4 manage-specialty'>
             <div>
-               <h3>Danh sách chuyên khoa</h3>
-               {/* {{#if deleteCount}} */}
-               <a href='/me/trash/courses'>
-                  {/* Thùng rác */}
-                  {/* ({{ deleteCount }}) */}
-               </a>
+               <h3>
+                  <FormattedMessage id='manage.specialty.list-specialty' />
+               </h3>
                <div className='btn-action'>
                   <div className='mt-4 manage-specialty-action'>
                      <div className=' form-check'>
@@ -96,18 +92,33 @@ const ManageSpecialty = () => {
                            onChange={handleCheckAll}
                         />
                         <label className='form-check-label' htmlFor='checkbox-all'>
-                           Chọn tất cả
+                           <FormattedMessage id='menu.select-all' />
                         </label>
                      </div>
 
                      <select id='disabledSelect' className='form-select form-select-sm'>
-                        <option>--Hành động--</option>
-                        <option value='delete'>Xoá</option>
+                        <option>
+                           --
+                           {intl.formatMessage({
+                              id: "menu.action",
+                           })}
+                           --
+                        </option>
+                        <option value='delete'>
+                           {intl.formatMessage({
+                              id: "menu.delete",
+                           })}
+                        </option>
                      </select>
-                     <button className='btn btn-primary btn-sm'>Thực hiện</button>
+                     <button className='btn btn-primary btn-sm'>
+                        <FormattedMessage id='menu.perform' />
+                     </button>
                   </div>
-                  <button className='btn btn-primary btn-add mt-4' onClick={onAdd}>
-                     Thêm mới
+                  <button
+                     className='btn btn-primary btn-add mt-4'
+                     onClick={() => navigate("/system/add-new-specialty")}
+                  >
+                     <FormattedMessage id='menu.create' />
                   </button>
                </div>
             </div>
@@ -119,19 +130,17 @@ const ManageSpecialty = () => {
                         #
                      </th>
                      <th scope='col' colSpan=''>
-                        STT
+                        ID
                      </th>
                      <th scope='col' colSpan=''>
-                        Tên chuyên khoa
-                        {/* {{{sortable 'name' _sort}}} */}
+                        <FormattedMessage id='manage.specialty.specialty-name' />
                      </th>
                      <th scope='col' colSpan=''>
-                        Bài dịch
+                        <FormattedMessage id='manage.specialty.translation' />
                      </th>
 
                      <th scope='col' colSpan=''>
-                        Sửa đổi gần nhất
-                        {/* {{{sortable 'createdAt' _sort}}} */}
+                        <FormattedMessage id='manage.specialty.updated' />
                      </th>
                   </tr>
                </thead>
@@ -162,7 +171,7 @@ const ManageSpecialty = () => {
                                     state={{ specialtyId: item.value }}
                                     className='btn btn-link'
                                  >
-                                    Sửa
+                                    <FormattedMessage id='menu.edit' />
                                  </Link>
                                  <p
                                     href=''
@@ -172,7 +181,7 @@ const ManageSpecialty = () => {
                                     data-bs-target='#delete-course'
                                     onClick={handleDeleteSpecialty.bind(this, item.value)}
                                  >
-                                    Xoá
+                                    <FormattedMessage id='menu.delete' />
                                  </p>
                               </td>
                            </tr>
@@ -181,8 +190,10 @@ const ManageSpecialty = () => {
                   ) : (
                      <tr>
                         <td colSpan='5' className='text-center'>
-                           Chưa có chuyên khoa nào được tạo.
-                           <Link to='/system/add-new-specialty'>Tạo chuyên khoa</Link>
+                           <FormattedMessage id='manage.specialty.no-specialty' />
+                           <Link to='/system/add-new-specialty'>
+                              <FormattedMessage id='manage.specialty.create-specialty' />
+                           </Link>
                         </td>
                      </tr>
                   )}

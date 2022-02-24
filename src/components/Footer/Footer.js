@@ -1,5 +1,6 @@
-import "./Footer.scss"
+import { FormattedMessage } from "react-intl"
 import { Col, Row } from "react-bootstrap"
+import "./Footer.scss"
 import addressIcon from "../../assets/footer/btm-address.png"
 import emailIcon from "../../assets/footer/btm-email.png"
 import hotlineIcon from "../../assets/footer/btm-hotline.png"
@@ -14,35 +15,43 @@ const Footer = () => {
          <Row className='bg-footer px-5'>
             <Col className='col-4  pe-3'>
                <ul>
-                  <li className='mb-3'>BỆNH VIỆN VIỆT PHÁP HÀ NỘI</li>
                   <li className='mb-3'>
-                     <img src={hotlineIcon} alt='' className='icon-footer ' /> Hotline cấp cứu:
+                     <FormattedMessage id='footer.hospital' />
+                  </li>
+                  <li className='mb-3'>
+                     <img src={hotlineIcon} alt='' className='icon-footer ' />
+                     <FormattedMessage id='footer.emergency-hotline' />
                      (84-24) 3574 1111
                   </li>
                   <li className='mb-3'>
-                     <img src={hotlineIcon} alt='' className='icon-footer ' /> Điện thoại: (84-24)
-                     3577 1100
+                     <img src={hotlineIcon} alt='' className='icon-footer ' />
+                     <FormattedMessage id='footer.phone' />
+                     (84-24) 3577 1100
                   </li>
                   <li className='mb-3'>
                      <img src={emailIcon} alt='' className='icon-footer ' /> Email:
                      thucdo.developer@gmail.com
                   </li>
                   <li className='mb-3'>
-                     <img src={addressIcon} alt='' className='icon-footer ' /> Địa chỉ: 01 Phương
-                     Mai, Đống Đa, Hà Nội
+                     <img src={addressIcon} alt='' className='icon-footer ' />
+                     <FormattedMessage id='footer.address' />
+                     01 Phương Mai, Đống Đa, Hà Nội
                   </li>
                </ul>
             </Col>
             <Col className='col-3 pe-3'>
                <ul>
                   <li className='mb-3 detail-footer '>
-                     <img src={playIcon} alt='' className='icon-footer-play ' /> CƠ SỞ VẬT CHẤT
+                     <img src={playIcon} alt='' className='icon-footer-play ' />
+                     <FormattedMessage id='footer.facilities' />
                   </li>
                   <li className='mb-3 detail-footer '>
-                     <img src={playIcon} alt='' className='icon-footer-play ' /> GÓI DỊCH VỤ
+                     <img src={playIcon} alt='' className='icon-footer-play ' />
+                     <FormattedMessage id='footer.packages' />
                   </li>
                   <li className='mb-3 detail-footer '>
-                     <img src={playIcon} alt='' className='icon-footer-play ' /> KIẾN THỨC THAI SẢN
+                     <img src={playIcon} alt='' className='icon-footer-play ' />
+                     <FormattedMessage id='footer.maternity' />
                   </li>
                </ul>
             </Col>
@@ -61,7 +70,7 @@ const Footer = () => {
                </ul>
             </Col>
          </Row>
-         <Row className='copywrite'>&copy; 2022 thucdo.developer@gmail.com</Row>
+         <Row className='copywrite'>&copy; 2022 Thức Đỗ</Row>
       </footer>
    )
 }

@@ -11,20 +11,18 @@ import { useSelector } from "react-redux"
 import moment from "moment"
 import PaginationDoctor from "./PaginationDoctor"
 import { Spinner } from "react-bootstrap"
+import { FormattedMessage, useIntl } from "react-intl"
 
 const ManageDoctor = () => {
    const dispatch = useDispatch()
    const navigate = useNavigate()
+   const intl = useIntl()
 
-   // const allDoctors = useSelector((state) => state.userReducer.allDoctor)
    const totalDoctor = useSelector((state) => state.userReducer.totalDoctor)
-   console.log("totalDoctor", totalDoctor)
    const [checked, setChecked] = useState([])
    const [idCheckAll, setIdCheckAll] = useState([])
    const [listDoctor, setListDoctor] = useState([])
    const [loading, setLoading] = useState(false)
-   // const [listDoctors, setListDoctors] = useState([])
-   console.log("idCheckAll", idCheckAll)
    const [pagination, setPagination] = useState({
       page: 0,
       limit: 6,
@@ -39,7 +37,6 @@ const ManageDoctor = () => {
    const fetchAllDoctor = async () => {
       setLoading(true)
       let listDoctor = await paginationDoctor(filter)
-      console.log("listDoctor", listDoctor)
       setPagination({
          ...pagination,
          total: listDoctor.total,
@@ -103,12 +100,10 @@ const ManageDoctor = () => {
       <>
          <div className='mt-4 manage-specialty'>
             <div>
-               <h3>Danh sách Bác sĩ</h3>
-               {/* {{#if deleteCount}} */}
-               <a href='/me/trash/courses'>
-                  {/* Thùng rác */}
-                  {/* ({{ deleteCount }}) */}
-               </a>
+               <h3>
+                  <FormattedMessage id='manage.doctor.list-doctor' />
+               </h3>
+
                <div className='btn-action'>
                   <div className='mt-4 manage-specialty-action'>
                      <div className=' form-check'>
@@ -119,21 +114,34 @@ const ManageDoctor = () => {
                            onChange={handleCheckAll}
                         />
                         <label className='form-check-label' htmlFor='checkbox-all'>
-                           Chọn tất cả
+                           <FormattedMessage id='menu.select-all' />
                         </label>
                      </div>
 
                      <select id='disabledSelect' className='form-select form-select-sm'>
-                        <option>--Hành động--</option>
-                        <option value='delete'>Xoá</option>
+                        <option>
+                           --
+                           {intl.formatMessage({
+                              id: "menu.action",
+                           })}
+                           --
+                        </option>
+                        <option value='delete'>
+                           {intl.formatMessage({
+                              id: "menu.delete",
+                           })}
+                        </option>
                      </select>
-                     <button className='btn btn-primary btn-sm'>Thực hiện</button>
+
+                     <button className='btn btn-primary btn-sm'>
+                        <FormattedMessage id='menu.perform' />
+                     </button>
                   </div>
                   <button
                      className='btn btn-primary btn-add mt-4'
                      onClick={() => navigate("/system/create-doctor")}
                   >
-                     Thêm mới
+                     <FormattedMessage id='menu.create' />
                   </button>
                </div>
             </div>
@@ -145,23 +153,20 @@ const ManageDoctor = () => {
                         #
                      </th>
                      <th scope='col' colSpan=''>
-                        STT
+                        ID
                      </th>
                      <th scope='col' colSpan=''>
-                        Tên Bác sĩ
-                        {/* {{{sortable 'name' _sort}}} */}
+                        <FormattedMessage id='manage.doctor.doctors-name' />
                      </th>
                      <th scope='col' colSpan=''>
-                        Địa chỉ
+                        <FormattedMessage id='manage.doctor.address' />
                      </th>
 
                      <th scope='col' colSpan=''>
-                        Số điện thoại
-                        {/* {{{sortable 'createdAt' _sort}}} */}
+                        <FormattedMessage id='manage.doctor.phoneNumber' />
                      </th>
                      <th scope='col' colSpan=''>
-                        Sửa đổi gần nhất
-                        {/* {{{sortable 'createdAt' _sort}}} */}
+                        <FormattedMessage id='manage.doctor.updated' />
                      </th>
                   </tr>
                </thead>
@@ -200,7 +205,7 @@ const ManageDoctor = () => {
                                           state={{ specialtyId: item.value }}
                                           className='btn btn-link'
                                        >
-                                          Sửa
+                                          <FormattedMessage id='menu.edit' />
                                        </Link>
 
                                        <Link
@@ -208,7 +213,7 @@ const ManageDoctor = () => {
                                           className='btn btn-link'
                                           onClick={handleDeleteDoctor.bind(this, item.value)}
                                        >
-                                          Xoá
+                                          <FormattedMessage id='menu.delete' />
                                        </Link>
                                     </td>
                                  </tr>
@@ -217,8 +222,11 @@ const ManageDoctor = () => {
                         ) : (
                            <tr>
                               <td colSpan='7' className='text-center'>
-                                 Chưa có bác sĩ nào được tạo.
-                                 <Link to='/system/create-doctor'> Tạo bác sĩ</Link>
+                                 <FormattedMessage id='manage.doctor.no-doctor' />
+
+                                 <Link to='/system/create-doctor'>
+                                    <FormattedMessage id='manage.doctor.create-doctor' />
+                                 </Link>
                               </td>
                            </tr>
                         )}

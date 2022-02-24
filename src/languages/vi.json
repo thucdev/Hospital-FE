@@ -1,118 +1,173 @@
 {
-    "homeheader": {
-        "test": "Xét nghiệm",
-        "call-us":"Gọi chúng tôi",
-        "login":"Đăng nhập"
+   "homeheader": {
+      "test": "Xét nghiệm",
+      "call-us": "Gọi chúng tôi",
+      "login": "Đăng nhập"
+   },
 
-    },
+   "main-menu": {
+      "medical-services": "DỊCH VỤ Y TẾ",
+      "patient-guide": "HƯỚNG DẪN BỆNH NHÂN",
+      "maternity": "THAI SẢN",
+      "news": "Tin tức",
+      "about": "Về chúng tôi",
+      "contact": "liên hệ",
+      "find-doctor": "Tìm Bác Sĩ",
+      "appointment": "Đặt Lịch Khám Bệnh",
+      "treatment": "Tin tức",
+      "inquiry": "Hỏi Bác Sĩ",
+      "search": "Chúng tôi có thể giúp gì cho bạn?",
 
-    "main-menu": {
-        "medical-services": "DỊCH VỤ Y TẾ",
-        "patient-guide":"HƯỚNG DẪN BỆNH NHÂN",
-        "maternity":"THAI SẢN",
-        "news":"Tin tức",
-        "about":"Về chúng tôi",
-        "contact":"liên hệ",
-        "find-doctor": "Tìm Bác Sĩ",
-        "appointment": "Đặt Lịch Khám Bệnh",
-        "treatment": "Tin tức",
-        "inquiry": "Hỏi Bác Sĩ",
-        "search" : "Chúng tôi có thể giúp gì cho bạn?"
+      "item1": "Chuyên khoa nội",
+      "item2": "Chuyên khoa ngoại",
+      "item3": "Chuyên khoa nha",
+      "item4": "Dịch vụ bổ trợ",
+      "item5": "Thai sản và sinh trọn gói",
+      "item6": "Nhập viện điều trị",
+      "item7": "Xuất viện",
+      "item8": "Khách thăm bệnh",
+      "item9": "Dịch vụ bảo hiểm",
+      "item10": "Chính sách giá",
+      "item11": "Sinh con tại HFH",
+      "item12": "Tiện nghi khoa sản",
+      "item13": "Lớp học tiền sản",
+      "item14": "Thanh toán trực tuyến",
+      "item15": "Sự kiện và ưu đãi",
+      "item16": "Góc truyền thông",
+      "item17": "Tổng quan",
+      "item18": "Phương châm hoạt động",
+      "item19": "Cơ sở vật chất",
+      "item20": "Phản hồi về dịch vụ"
+   },
 
+   "menu": {
+      "create": "Tạo mới",
+      "add": "Thêm",
+      "edit": "Sửa",
+      "delete": "Xóa",
+      "save": "Lưu lại",
+      "action": "Hành động",
+      "perform": "Thực hiện",
+      "select-all": "Chọn tất cả",
 
-    },
+      "admin": {
+         "dashboard": "DANH MỤC",
+         "manage-doctor": "Quản lý Bác sĩ",
+         "manage-specialty": "Quản lý Chuyên khoa",
+         "manage-schedule": "Quản lý Lịch khám",
+         "add-news": "Thêm tin tức",
+         "logout": "Đăng xuất"
+      },
+      "doctor": {
+         "password": "Mật khẩu",
+         "fullName": "Họ và tên",
+         "specialty": "Thuộc chuyên khoa",
+         "phoneNumber": "Số điện thoại",
+         "address": "Địa chỉ",
+         "language": "Ngôn ngữ",
+         "avatar": "Tải ảnh đại diện",
+         "experience": "Kinh nghiệm",
+         "membership": "Hội viên",
+         "qualifications": "Chứng chỉ",
+         "field": "Lĩnh vực chuyên sâu",
+         "degree": "Bằng cấp chuyên môn"
+      },
+      "placeholder": {
+         "password": "Thêm Mật khẩu",
+         "fullName": "Thêm Họ và tên",
+         "specialty": "Thêm Thuộc chuyên khoa",
+         "phoneNumber": "Thêm Số điện thoại",
+         "address": "Thêm Địa chỉ",
+         "language": "Thêm Ngôn ngữ",
+         "avatar": "Thêm Tải ảnh đại diện",
+         "experience": "Thêm Kinh nghiệm",
+         "membership": "Thêm Hội viên",
+         "qualifications": "Thêm Chứng chỉ",
+         "field": "Thêm Lĩnh vực chuyên sâu",
+         "degree": "Thêm Bằng cấp chuyên môn",
+         "create": "Tạo mới",
+         "add": "Thêm"
+      }
+   },
 
+   "manage": {
+      "doctor": {
+         "list-doctor": "Danh sách Bác sĩ",
+         "no-doctor": "Chưa có bác sĩ nào được tạo",
+         "create-doctor": "Tạo bác sĩ",
+         "doctors-name": "Tên bác sĩ",
+         "phoneNumber": "Số điện thoại",
+         "address": "Địa chỉ",
+         "updated": "Sửa đổi gần nhất"
+      },
+      "specialty": {
+         "list-specialty": "Danh sách Chuyên khoa",
+         "no-specialty": "Chưa có chuyên khoa nào được tạo",
+         "create-specialty": "Tạo chuyên khoa",
+         "specialty-name": "Tên chuyên khoa",
+         "translation": "Bài dịch",
+         "updated": "Sửa đổi gần nhất",
+         "img": "Ảnh chuyên khoa",
+         "select-specialty": "Chọn chuyên khoa"
+      },
+      "schedule": {
+         "list-schedule": "Danh sách lịch khám bệnh",
+         "no-schedule": "Chưa có lịch khám nào được tạo",
+         "appointment-date": "Ngày hẹn",
+         "time": "Thời gian",
+         "patient-name": "Tên bệnh nhân",
+         "reason": "Lý do khám",
+         "phoneNumber": "Số điện thoại",
+         "doctor": "Tên bác sĩ",
+         "done": "Đã khám"
+      },
+      "news": {
+         "title": "Tiêu đề tin tức",
+         "img": "Tải ảnh hiển thị"
+      }
+   },
 
+   "homepage": {
+      "see-all-btn": "Xem tất cả",
+      "read-more": "Xem thêm",
 
-
-    "banner":{
-        "title1":"NỀN TẢNG Y TẾ",
-        "title2":"CHĂM SÓC SỨC KHOẺ TOÀN DIỆN",
-        "child1": "Khám từ xa",
-        "child2": "Khám tổng quát",
-        "child3": "Xét nghiệm y học",
-        "child4": "Khám chuyên khoa",
-        "child5": "Sức khoẻ tinh thần",
-        "child6": "Khám nha khoa"
-
-    },
-
-    "menu": {
-        "admin": {
-                "manage-user": "Quản lý người dùng",
-                "manage-doctor": "Quản lý bác sĩ",
-                "manage-admin": "Quản lý admin",
-                "crud": "CRUD user",
-                "crud-redux": "CRUD redux",
-                "clinic": "Phòng khám",
-                "manage-clinic": "Quản lý phòng khám",
-                "specialty":"Chuyên khoa",
-                "manage-specialty":"Quản lý chuyên khoa",
-                "handbook":"Cẩm nang",
-                "manage-handbook":"Quản lý cẩm nang"
-            },
-            "doctor":{
-                "manage-schedule":"Quản lý kế hoạch khám bệnh",
-                "manage-patient":"Quản lý kế bệnh nhân khám bệnh"
-            }
-    },
-
-    "manage-user":{
-        "add":"Thêm mới người dùng",
-        "email":"Email",
-        "password":"Mật khẩu",
-        "first-name":"Tên",
-        "last-name":"Họ",
-        "phone-number":"Số điện thoại",
-        "address":"Địa chỉ",
-        "gender":"Giới tính",
-        "role":"Vai trò",
-        "position":"Chức danh",
-        "image":"Hình ảnh ",
-        "save":"Thêm người dùng",
-        "edit": "Lưu thay đổi"
-    },
-    "homepage": {
-        "outstanding-doctor": "Bác sĩ nổi bật",
-        "more-info":"Xem thêm",
-        "popular-specialties": "Chuyên khoa phổ biến"
-    },
-    "manage-schedule":{
-        "title":"Quản lý kế hoạch khám bệnh của bác sĩ",
-        "choose-doctor":"Chọn bác sĩ",
-        "choose-date":"Chọn ngày",
-        "save":"Lưu thông tin"
-    },
-    "patient": {
-        "detail-doctor": {
-            "schedule":"Lịch khám",
-            "no-schedule":"Bác sĩ không có lịch hẹn trong ngày. Vui lòng chọn ngày khác!",
-            "choose":"Chọn ",
-            "book-free":" và đặt miễn phí!"
-        },
-        "extra-info-doctor":{
-            "text-address":"ĐỊA CHỈ KHÁM",
-            "price":"Giá khám",
-            "detail":"Xem chi tiết",
-            "payment":"Người bệnh có thể thanh toán chi phí bằng hình thức ",
-            "hide-price":"Ẩn bảng giá"
-        }
-    },
-    "admin": {
-        "manage-doctor":{
-            "title":"Thêm thông tin Bác sĩ",
-            "select-doctor":"Chọn bác sĩ",
-            "intro":"Thông tin giới thiệu",
-            "create":"Tạo thông tin",
-            "save":"Lưu thông tin",
-            "price":"Giá khám bệnh",
-            "payment": "Phương thức thanh toán",
-            "province": "Tỉnh thành",
-            "nameClinic":"Tên phòng khám",
-            "addressClinic":"Địa chỉ phòng khám",
-            "note":"Note",
-            "specialty": "Chọn chuyên khoa",
-            "select-clinic":"Chọn phòng khám"
-        }
-    }
+      "service": {
+         "our-service": "Dịch vụ y tế",
+         "our-service-content": "Tại Bệnh viện Việt Pháp Hà Nội, quý khách sẽ được trải nghiệm các dịch vụ chăm sóc sức khỏe chất lượng cao đạt tiêu chuẩn quốc tế."
+      },
+      "info": {
+         "title": "Bệnh viện Quốc tế hàng đầu tại Hà Nội",
+         "content": "Bệnh viện Việt Pháp Hà Nội là bệnh viện quốc tế đầu tiên tại Hà Nội và miền Bắc Việt Nam",
+         "video": "Xem video của chúng tôi",
+         "working": "Làm việc tại HFH",
+         "item": {
+            "international-doctor": "Bác sĩ nước ngoài",
+            "content1": "Đội ngũ bác sĩ gồm nhiều chuyên gia người Pháp có trình độ chuyên môn cao thuộc nhiều chuyên khoa khác nhau.",
+            "consultations": "Khám ngoại trú mỗi năm",
+            "content2": "Bệnh viện Việt Pháp Hà Nội là địa chỉ tin cậy cho cộng đồng người Việt và nước ngoài sinh sống và làm việc tại Việt Nam.",
+            "born": "Ca sinh nở",
+            "content3": "Hàng năm Bệnh viện Việt Pháp Hà Nội đón rất nhiều trẻ sơ sinh chào đời an toàn và khỏe mạnh."
+         }
+      },
+      "news": {
+         "title": "Tin tức và sự kiện"
+      }
+   },
+   "footer": {
+      "hospital": "BỆNH VIỆN VIỆT PHÁP HÀ NỘI",
+      "emergency-hotline": "Hotline Cấp cứu",
+      "phone": "Điện thoại",
+      "address": "Địa chỉ",
+      "facilities": "CƠ SỞ VẬT CHẤT",
+      "packages": "GÓI DỊCH VỤ",
+      "maternity": "KIẾN THỨC THAI SẢN"
+   },
+   "find-doctor": {
+      "title": "Tìm Bác sĩ",
+      "select-specialty": "Chọn chuyên khoa",
+      "find-btn": "Tìm bác sĩ",
+      "medical-school": "Trường Y",
+      "qualification": "Chứng chỉ",
+      "advanced-training": "Đào tạo nâng cao"
+   }
 }

@@ -1,4 +1,5 @@
 import React from "react"
+import { FormattedMessage } from "react-intl"
 import { Link, Outlet, useNavigate } from "react-router-dom"
 import { Row, Col, Stack } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -15,23 +16,16 @@ import { changLanguageApp } from "../store/reducer/languageSlice"
 export const System = () => {
    const navigate = useNavigate()
    const dispatch = useDispatch()
-   // const [roleId, setRoleId] = useState("")
 
    const isAuth = useSelector((state) => state.authReducer.login.isAuthenticated)
    const roleId = useSelector((state) => state.authReducer.login.user?.roleId)
-   const language = useSelector((state) => state.languageReducer.languageState.language)
-
-   // const roleId
+   // const language = useSelector((state) => state.languageReducer.languageState.language)
 
    useEffect(() => {
       if (!isAuth) {
          navigate("/login")
       }
    }, [isAuth])
-
-   const handleChangeLanguage = (lang) => {
-      lang === "vi" ? dispatch(changLanguageApp("vi")) : dispatch(changLanguageApp("en"))
-   }
 
    const [toggleContents, setToggleContents] = useState(
       <>
@@ -43,6 +37,14 @@ export const System = () => {
       { code: "vn", title: "Việt Nam" },
       { code: "us", title: "English" },
    ])
+   const handleChangeLanguage = () => {
+      selectedLanguage === "us"
+         ? dispatch(changLanguageApp("en"))
+         : dispatch(changLanguageApp("vi"))
+   }
+   useEffect(() => {
+      handleChangeLanguage()
+   }, [selectedLanguage])
 
    const handleLogout = () => {
       localStorage.removeItem("accessToken")
@@ -52,20 +54,22 @@ export const System = () => {
       <>
          <div className='dashboard'>
             <div className='manage-navbar  '>
-               <div className='manage-navbar-title'>DASHBOARD</div>
+               <div className='manage-navbar-title'>
+                  <FormattedMessage id='menu.admin.dashboard' />
+               </div>
                {roleId === "R1" && (
                   <>
                      <Link className='manage-navbar-text' to='manage-doctor'>
-                        Manage Doctor
+                        <FormattedMessage id='menu.admin.manage-doctor' />
                      </Link>
                      <Link className='manage-navbar-text' to='manage-specialty'>
-                        Manage Specialty
+                        <FormattedMessage id='menu.admin.manage-specialty' />
                      </Link>
-                     <Link className='manage-navbar-text' to='manage-schedule-by-doctor'>
-                        Manage Schedule
+                     <Link className='manage-navbar-text' to='manage-schedule'>
+                        <FormattedMessage id='menu.admin.manage-schedule' />
                      </Link>
                      <Link className='manage-navbar-text' to='manage-news'>
-                        Add News
+                        <FormattedMessage id='menu.admin.add-news' />
                      </Link>
                   </>
                )}
@@ -73,10 +77,10 @@ export const System = () => {
                {roleId === "R2" && (
                   <>
                      <Link className='manage-navbar-text' to='manage-schedule-by-doctor'>
-                        Manage Schedule
+                        <FormattedMessage id='menu.admin.manage-schedule' />
                      </Link>
                      <Link className='manage-navbar-text' to='manage-news'>
-                        Manage News
+                        <FormattedMessage id='menu.admin.add-news' />
                      </Link>
                   </>
                )}
@@ -86,38 +90,6 @@ export const System = () => {
                   <Row>
                      <div className='manage-menu-logout'>
                         <>
-                           <div className='language-option'>
-                              <img src={language === "vi" ? VN : EN} alt='' className='flag-icon' />
-                              {language === "vi" ? "VN" : "EN"}
-                              <FontAwesomeIcon
-                                 icon='chevron-down'
-                                 className='language-option-icon'
-                              />
-                              <ul className='language-list '>
-                                 <li
-                                    className={
-                                       language === "vi"
-                                          ? "language-item-active language-item "
-                                          : "language-item "
-                                    }
-                                    onClick={handleChangeLanguage.bind(this, "vi")}
-                                 >
-                                    <img src={VN} alt='' />
-                                    <span>Việt Nam</span>
-                                 </li>
-                                 <li
-                                    className={
-                                       language === "en"
-                                          ? "language-item-active language-item "
-                                          : "language-item "
-                                    }
-                                    onClick={handleChangeLanguage.bind(this, "en")}
-                                 >
-                                    <img src={EN} alt='' />
-                                    <span> English</span>
-                                 </li>
-                              </ul>
-                           </div>
                            <Dropdown
                               onSelect={(eventKey) => {
                                  const { code, title } = languages.find(
@@ -155,7 +127,9 @@ export const System = () => {
                            <span>
                               <FontAwesomeIcon icon='user-md' className='icon' />
                            </span>
-                           <span className='manage-menu-logout-text'>Logout</span>
+                           <span className='manage-menu-logout-text'>
+                              <FormattedMessage id='menu.admin.logout' />
+                           </span>
                         </div>
                      </div>
                   </Row>

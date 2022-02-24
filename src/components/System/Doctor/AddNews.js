@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom"
 import { Dropdown } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { getAllSpecialties } from "../../../store/apiRequest/apiUser"
-
+import { FormattedMessage, useIntl } from "react-intl"
 import FlagIcon from "../../../styles/FlagIcon"
 import { createNews } from "../../../services/userService"
 import Base64 from "../../../utils/Base64"
@@ -91,7 +91,7 @@ const AddNews = () => {
             <div className='add-new-specialty row'>
                <div className='col-6 form-group my-2'>
                   <label htmlFor='' className='text-title'>
-                     Tiêu đề tin tức
+                     <FormattedMessage id='manage.news.title' />
                   </label>
                   <input
                      type='text'
@@ -133,7 +133,7 @@ const AddNews = () => {
                </Dropdown>
                <div className='col-3 form-group my-2 ps-2 upload-photo'>
                   <label htmlFor='' className='text-title'>
-                     Tải ảnh hiển thị
+                     <FormattedMessage id='manage.news.img' />
                   </label>
                   <input
                      type='file'
@@ -142,15 +142,7 @@ const AddNews = () => {
                      onChange={handleOnchangeImg}
                   />
                </div>
-               <div className='col-1 form-group my-2  '>
-                  {/* <button
-                     className='btn btn-success btn-sm mt-4 btn-add'
-                     size='lg'
-                     onClick={onEdit}
-                  >
-                     Edit
-                  </button> */}
-               </div>
+               <div className='col-1 form-group my-2  '></div>
                <div className='col-12'>
                   <MdEditor
                      style={{ height: "400px" }}
@@ -161,7 +153,7 @@ const AddNews = () => {
                </div>
                <div className='col-12'>
                   <button className='btn btn-warning mt-3' onClick={handleSaveNews}>
-                     Save
+                     <FormattedMessage id='menu.save' />
                   </button>
                </div>
             </div>

@@ -1,17 +1,17 @@
-import "./News.scss"
+import { FormattedMessage } from "react-intl"
 import { Row, Col } from "react-bootstrap"
 import "pure-react-carousel/dist/react-carousel.es.css"
 import { useSelector } from "react-redux"
 import { useState, useEffect } from "react"
 import { getNews } from "../../../services/userService"
 import { useNavigate } from "react-router-dom"
+import "./News.scss"
 
 function News() {
    const navigate = useNavigate()
 
    const language = useSelector((state) => state.languageReducer.languageState.language)
    const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
-   console.log("allSpecialties", allSpecialties)
 
    const [filter, setFilter] = useState({
       limit: 3,
@@ -34,7 +34,9 @@ function News() {
    return (
       <div className='section-news'>
          <div className='news-header'>
-            <h2 className='news-header-title'>Tin Tức và Sự Kiện</h2>
+            <h2 className='news-header-title'>
+               <FormattedMessage id='homepage.news.title' />
+            </h2>
          </div>
          <div className='news-content d-flex justify-content-center mx-auto'>
             <Row className='news-slide '>
@@ -56,7 +58,7 @@ function News() {
                                     {item.title}
                                  </h4>
                                  <div className='read-more' onClick={() => viewNewsDetail(item.id)}>
-                                    Read more
+                                    <FormattedMessage id='homepage.read-more' />
                                  </div>
                               </div>
                            </div>
@@ -67,7 +69,7 @@ function News() {
          </div>
          <div className='see-all-new'>
             <button className=' main-btn see-all-new-btn' onClick={() => navigate("/news")}>
-               Xem tất cả
+               <FormattedMessage id='homepage.see-all-btn' />
             </button>
          </div>
       </div>

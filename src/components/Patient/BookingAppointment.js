@@ -12,10 +12,13 @@ import "react-datepicker/dist/react-datepicker.css"
 import { createAppointment, getSpecialtyById } from "../../services/userService"
 import moment from "moment"
 import { useNavigate, userNavigate } from "react-router-dom"
+import { Spinner } from "react-bootstrap"
 import Footer from "../Footer/Footer"
 
 function BookingAppointment() {
    const navigate = useNavigate()
+
+   const [loading, setLoading] = useState(false)
    const [bookingData, setBookingData] = useState({
       fullName: "",
       email: "",
@@ -88,6 +91,8 @@ function BookingAppointment() {
 
    const handleOrderAppointment = async () => {
       try {
+         setLoading(true)
+
          let formattedDate = moment.utc(startDate).format("DD/MM/YYYY")
          let res = await createAppointment({
             ...bookingData,
@@ -97,8 +102,10 @@ function BookingAppointment() {
          })
          if (res.success) {
             toast.success("You have orderd an appointment successfully!")
+            setLoading(false)
             navigate("/confirm-email")
          } else {
+            setLoading(false)
             toast.error("Order an appointment fail!")
          }
       } catch (error) {
@@ -112,129 +119,141 @@ function BookingAppointment() {
          <div className='bg-header bg-booking-appointment'>
             <h1>Đặt Lịch Khám Bệnh</h1>
          </div>
-         <div className='booking-body'>
-            <p>
-               Để đảm bảo an toàn cho khách hàng đến khám chữa bệnh ngoại trú và nội trú trong thời
-               điểm hiện nay, quý khách vui lòng thực hiện khai báo y tế trước khi đến khám bằng
-               cách nhấp chuột{" "}
-               <a href='https://docs.google.com/forms/d/e/1FAIpQLSdv9anK6U6_Fd2paTdRSrVpQn0I7sEe3xYPNQw6ugzTklt_dg/viewform'>
-                  TẠI ĐÂY
-               </a>
-            </p>
+         {loading === true && (
+            <>
+               <p className='mb-5 d-flex justify-content-center mt-5'>
+                  Vui lòng chờ trong giây lát để hệ thống tạo lịch hẹn cho bạn.
+               </p>
+               <div className='d-flex justify-content-center mt-5 mb-5'>
+                  <Spinner animation='border' variant='info' />
+               </div>
+            </>
+         )}
+         {loading === false && (
+            <div className='booking-body'>
+               <p>
+                  Để đảm bảo an toàn cho khách hàng đến khám chữa bệnh ngoại trú và nội trú trong
+                  thời điểm hiện nay, quý khách vui lòng thực hiện khai báo y tế trước khi đến khám
+                  bằng cách nhấp chuột{" "}
+                  <a href='https://docs.google.com/forms/d/e/1FAIpQLSdv9anK6U6_Fd2paTdRSrVpQn0I7sEe3xYPNQw6ugzTklt_dg/viewform'>
+                     TẠI ĐÂY
+                  </a>
+               </p>
 
-            <div className='booking-form'>
-               <div className='booking-form-title'>Đặt lịch hẹn</div>
-               <div className='booking-form-body'>
-                  <Form>
-                     <Form.Group as={Row} className='mb-4'>
-                        <Form.Label column sm='3' className='form-label'>
-                           Họ tên của bạn
-                        </Form.Label>
-                        <Col sm='9'>
-                           <Form.Control
-                              type='text'
-                              placeholder='Họ tên đầy đủ...'
-                              name='fullName'
-                              value={fullName}
-                              onChange={onChangeBookingFormInput}
-                           />
-                        </Col>
-                     </Form.Group>
-                     <Form.Group as={Row} className='mb-4'>
-                        <Form.Label column sm='3' className='form-label'>
-                           Số điện thoại
-                        </Form.Label>
-                        <Col sm='9'>
-                           <Form.Control
-                              type='phone-number'
-                              placeholder='03892145...'
-                              name='phoneNumber'
-                              value={phoneNumber}
-                              onChange={onChangeBookingFormInput}
-                           />
-                        </Col>
-                     </Form.Group>
-                     <Form.Group as={Row} className='mb-4'>
-                        <Form.Label column sm='3' className='form-label'>
-                           Email
-                        </Form.Label>
-                        <Col sm='9'>
-                           <Form.Control
-                              type='text'
-                              placeholder='patient@gmail.com...'
-                              name='email'
-                              value={email}
-                              onChange={onChangeBookingFormInput}
-                           />
-                        </Col>
-                     </Form.Group>
+               <div className='booking-form'>
+                  <div className='booking-form-title'>Đặt lịch hẹn</div>
+                  <div className='booking-form-body'>
+                     <Form>
+                        <Form.Group as={Row} className='mb-4'>
+                           <Form.Label column sm='3' className='form-label'>
+                              Họ tên của bạn
+                           </Form.Label>
+                           <Col sm='9'>
+                              <Form.Control
+                                 type='text'
+                                 placeholder='Họ tên đầy đủ...'
+                                 name='fullName'
+                                 value={fullName}
+                                 onChange={onChangeBookingFormInput}
+                              />
+                           </Col>
+                        </Form.Group>
+                        <Form.Group as={Row} className='mb-4'>
+                           <Form.Label column sm='3' className='form-label'>
+                              Số điện thoại
+                           </Form.Label>
+                           <Col sm='9'>
+                              <Form.Control
+                                 type='phone-number'
+                                 placeholder='03892145...'
+                                 name='phoneNumber'
+                                 value={phoneNumber}
+                                 onChange={onChangeBookingFormInput}
+                              />
+                           </Col>
+                        </Form.Group>
+                        <Form.Group as={Row} className='mb-4'>
+                           <Form.Label column sm='3' className='form-label'>
+                              Email
+                           </Form.Label>
+                           <Col sm='9'>
+                              <Form.Control
+                                 type='text'
+                                 placeholder='patient@gmail.com...'
+                                 name='email'
+                                 value={email}
+                                 onChange={onChangeBookingFormInput}
+                              />
+                           </Col>
+                        </Form.Group>
 
-                     <Form.Group as={Row} className='mb-4'>
-                        <Form.Label column sm='3'>
-                           Chọn chuyên khoa
-                        </Form.Label>
-                        <Col sm='9'>
-                           {/* <Form.Control type='text' placeholder='Password' /> */}
-                           <Select
-                              value={selectedSpecialty}
-                              options={listSpecialty}
-                              className='manage-specialty-select'
-                              onChange={handleChangeSelect}
-                              // onFocus={handleFocusSelect}
-                              // ref={target}
-                           />
-                        </Col>
-                     </Form.Group>
-                     <Form.Group as={Row} className='mb-4'>
-                        <Form.Label column sm='3' className='form-label'>
-                           Chọn ngày
-                        </Form.Label>
-                        <Col sm='6'>
-                           <DatePicker
-                              selected={startDate}
-                              dateFormat='dd/MM/yyyy'
-                              onChange={(date) => setStartDate(date)}
-                              minDate={new Date()}
-                              className='form-control'
-                           />
-                        </Col>
-                        <Col sm='3'>
-                           <Form.Select onChange={handleSelectTime}>
-                              <option>Chọn giờ khám</option>
-                              <option value='T1'>7h</option>
-                              <option value='T2'>8h</option>
-                              <option value='T3'>9h</option>
-                              <option value='T4'>10h</option>
-                              <option value='T5'>11h</option>
-                              <option value='T6'>13h</option>
-                              <option value='T7'>14h</option>
-                              <option value='T8'>15h</option>
-                              <option value='T9'>16h</option>
-                              <option value='T10'>17h</option>
-                           </Form.Select>
-                        </Col>
-                     </Form.Group>
-                     <Form.Group as={Row} className='mb-4'>
-                        <Form.Label column sm='3' className='form-label'>
-                           Vấn đề của bạn
-                        </Form.Label>
-                        <Col sm='9'>
-                           <Form.Control
-                              as='textarea'
-                              rows={3}
-                              name='reason'
-                              value={reason}
-                              onChange={onChangeBookingFormInput}
-                           />
-                        </Col>
-                     </Form.Group>
-                  </Form>
-                  <button className='btn-save-booking main-btn' onClick={handleOrderAppointment}>
-                     Đặt lịch
-                  </button>
+                        <Form.Group as={Row} className='mb-4'>
+                           <Form.Label column sm='3'>
+                              Chọn chuyên khoa
+                           </Form.Label>
+                           <Col sm='9'>
+                              {/* <Form.Control type='text' placeholder='Password' /> */}
+                              <Select
+                                 value={selectedSpecialty}
+                                 options={listSpecialty}
+                                 className='manage-specialty-select'
+                                 onChange={handleChangeSelect}
+                                 // onFocus={handleFocusSelect}
+                                 // ref={target}
+                              />
+                           </Col>
+                        </Form.Group>
+                        <Form.Group as={Row} className='mb-4'>
+                           <Form.Label column sm='3' className='form-label'>
+                              Chọn ngày
+                           </Form.Label>
+                           <Col sm='6'>
+                              <DatePicker
+                                 selected={startDate}
+                                 dateFormat='dd/MM/yyyy'
+                                 onChange={(date) => setStartDate(date)}
+                                 minDate={new Date()}
+                                 className='form-control'
+                              />
+                           </Col>
+                           <Col sm='3'>
+                              <Form.Select onChange={handleSelectTime}>
+                                 <option>Chọn giờ khám</option>
+                                 <option value='T1'>7h</option>
+                                 <option value='T2'>8h</option>
+                                 <option value='T3'>9h</option>
+                                 <option value='T4'>10h</option>
+                                 <option value='T5'>11h</option>
+                                 <option value='T6'>13h</option>
+                                 <option value='T7'>14h</option>
+                                 <option value='T8'>15h</option>
+                                 <option value='T9'>16h</option>
+                                 <option value='T10'>17h</option>
+                              </Form.Select>
+                           </Col>
+                        </Form.Group>
+                        <Form.Group as={Row} className='mb-4'>
+                           <Form.Label column sm='3' className='form-label'>
+                              Vấn đề của bạn
+                           </Form.Label>
+                           <Col sm='9'>
+                              <Form.Control
+                                 as='textarea'
+                                 rows={3}
+                                 name='reason'
+                                 value={reason}
+                                 onChange={onChangeBookingFormInput}
+                              />
+                           </Col>
+                        </Form.Group>
+                     </Form>
+                     <button className='btn-save-booking main-btn' onClick={handleOrderAppointment}>
+                        Đặt lịch
+                     </button>
+                  </div>
                </div>
             </div>
-         </div>
+         )}
          <Footer />
       </>
    )
