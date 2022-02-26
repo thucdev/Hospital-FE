@@ -1,32 +1,19 @@
-import Header from "../Header/Header"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import "./NewsPage.scss"
-import { FormattedMessage } from "react-intl"
-import { useState, useEffect } from "react"
-import { toast } from "react-toastify"
-import { useSelector } from "react-redux"
-import { Form, Col, Row, Button } from "react-bootstrap"
-import Select from "react-select"
-import DatePicker from "react-datepicker"
+import { useEffect, useState } from "react"
+import { Col, Row, Spinner } from "react-bootstrap"
 import "react-datepicker/dist/react-datepicker.css"
-import { createQuestion, getNews } from "../../services/userService"
-import moment from "moment"
-import { useNavigate, userNavigate } from "react-router-dom"
-import { Spinner } from "react-bootstrap"
+import { FormattedMessage } from "react-intl"
+import { useNavigate } from "react-router-dom"
+import { getNews } from "../../services/userService"
 import Footer from "../Footer/Footer"
-import doctor from "../../assets/Services1.jpg"
+import Header from "../Header/Header"
+import "./NewsPage.scss"
 import PaginationNews from "./PaginationNews"
 
 function NewsPage() {
    const navigate = useNavigate()
 
    const [loading, setLoading] = useState(false)
-   // const [currentPage, setCurrentPage] = useState(1)
-   // const [postPerPage, setPostPerPage] = useState(6)
-
    const [postNews, setPostNews] = useState([])
-
-   ///////
    const [pagination, setPagination] = useState({
       page: 0,
       limit: 6,
@@ -60,8 +47,6 @@ function NewsPage() {
       setPagination({
          ...pagination,
          page: newPage,
-
-         // total: allNews.total,
       })
    }
 
@@ -73,7 +58,9 @@ function NewsPage() {
       <>
          <Header />
          <div className='bg-header bg-news'>
-            <h1>Tin Tức</h1>
+            <h1>
+               <FormattedMessage id='homepage.news.title' />
+            </h1>
          </div>
          <div className='news-body'>
             {loading === true && (
@@ -92,17 +79,18 @@ function NewsPage() {
                                  style={{ backgroundImage: `url(${item.img})` }}
                               ></div>
                               <div className='news-item-content'>
-                                 <div className='news-item-info pt-3'>Tin tức</div>
+                                 <div className='news-item-info pt-3'>
+                                    <FormattedMessage id='homepage.news.news' />
+                                 </div>
                                  <h4
                                     className='news-item-content-title'
                                     onClick={() => viewNewsDetail(item.id)}
                                  >
                                     {item.title}
                                  </h4>
-                                 {/* <div className='news-item-content-body'>item.descriptionMarkdown</div> */}
 
                                  <div className='read-more' onClick={() => viewNewsDetail(item.id)}>
-                                    Read more
+                                    <FormattedMessage id='homepage.read-more' />
                                  </div>
                               </div>
                            </div>

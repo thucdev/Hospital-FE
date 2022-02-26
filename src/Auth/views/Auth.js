@@ -1,12 +1,11 @@
 import { useEffect } from "react"
 import { Spinner } from "react-bootstrap"
-
+import { useDispatch, useSelector } from "react-redux"
+import { Navigate } from "react-router-dom"
+import { loadUser } from "../../store/apiRequest/apiAuth"
 import Login from "../Login"
 import RegisterForm from "../RegisterForm"
 import "./Auth.scss"
-import { useDispatch, useSelector } from "react-redux"
-import { loadUser } from "../../store/apiRequest/apiAuth"
-import { Navigate } from "react-router-dom"
 
 function Auth({ authRoute }) {
    const dispatch = useDispatch()
@@ -28,14 +27,14 @@ function Auth({ authRoute }) {
    } else if (authRoute === "login") {
       body = (
          <>
-            <h1>Login</h1>
+            <h1 className='mb-2'>Login</h1>
             <Login />
          </>
       )
    } else {
       body = (
          <>
-            <h1>Register</h1>
+            <h1 className='mb-2'>Register</h1>
             <RegisterForm />
          </>
       )

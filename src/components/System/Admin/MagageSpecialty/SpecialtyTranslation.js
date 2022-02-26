@@ -1,19 +1,16 @@
-import { useState, useEffect } from "react"
 import MarkdownIt from "markdown-it"
+import { useEffect, useState } from "react"
+import { Dropdown } from "react-bootstrap"
+import { FormattedMessage } from "react-intl"
 import MdEditor from "react-markdown-editor-lite"
 import "react-markdown-editor-lite/lib/index.css"
+import { useSelector } from "react-redux"
 import Select from "react-select"
-import { DropdownButton, Dropdown, Form } from "react-bootstrap"
-import FlagIcon from "../../../../styles/FlagIcon"
-import { useNavigate } from "react-router-dom"
-
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import "./SpecialtyTranslation.scss"
 import { createNewSpecialtyTranslation, getSpecialtyById } from "../../../../services/userService"
-import Base64 from "../../../../utils/Base64"
-import { FormattedMessage } from "react-intl"
-import { useSelector } from "react-redux"
+import FlagIcon from "../../../../styles/FlagIcon"
+import "./SpecialtyTranslation.scss"
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */)
@@ -22,8 +19,6 @@ const SpecialtyTranslation = () => {
    const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
 
    const [title, setTitle] = useState("")
-   // const [imgBase64, setImgBase64] = useState('')
-
    const [editor, setEditor] = useState({
       descriptionMarkdown: "",
       descriptionHTML: "",
@@ -37,15 +32,6 @@ const SpecialtyTranslation = () => {
       { code: "us", title: "English" },
    ])
 
-   // const handleOnchangeImg = async (event) => {
-   //     let data = event.target.files
-   //     let file = data[0]
-   //     if (file) {
-   //         let base64 = await Base64.getBase64(file)
-   //         setImgBase64(base64)
-   //     }
-   // }
-
    const handleOnchangeInput = (e) => {
       setTitle(e.target.value)
    }
@@ -57,7 +43,6 @@ const SpecialtyTranslation = () => {
       })
    }
 
-   //////////////////////
    const [selectedSpecialty, setSelectedSpecialty] = useState({
       value: "",
       label: "",
@@ -96,7 +81,7 @@ const SpecialtyTranslation = () => {
          console.log("", error)
       }
    }
-   //save translate
+
    const handleSaveTranslation = async () => {
       try {
          const data = await createNewSpecialtyTranslation({
@@ -112,7 +97,10 @@ const SpecialtyTranslation = () => {
                descriptionMarkdown: "",
                descriptionHTML: "",
             })
-            // setToggleContents('Language')
+            setSelectedSpecialty({
+               value: "",
+               label: "",
+            })
             toast.success("Create specialty successfully!")
          } else {
             toast.error("Create fail!")
@@ -181,29 +169,6 @@ const SpecialtyTranslation = () => {
                         ))}
                      </Dropdown.Menu>
                   </Dropdown>
-                  {/* <div className=' form-group my-2 p-0 '>
-                            <label htmlFor='' className='text-title'>
-                                Tải ảnh chuyên khoa
-                            </label>
-                            <input
-                                type='file'
-                                className='form-control-file translate-specialty-file-upload'
-                                onChange={handleOnchangeImg}
-                            />
-                        </div> */}
-                  {/* <div className=' form-group my-2  p-0'>
-                            <button className='btn btn-success btn-sm mt-4 btn-add' onClick={onAdd}>
-                                Add New
-                            </button>
-                        </div> */}
-                  {/* <div className=' form-group my-2  p-0'>
-                            <button
-                                className='btn btn-success btn-sm mt-4 btn-add'
-                                onClick={onTranslate}
-                            >
-                                Translate
-                            </button>
-                        </div> */}
                </div>
                <div className='col-12'>
                   <MdEditor

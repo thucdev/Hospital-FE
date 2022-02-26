@@ -1,19 +1,18 @@
-import { useState, useEffect, useRef } from "react"
 import MarkdownIt from "markdown-it"
+import { useEffect, useRef, useState } from "react"
+import { Dropdown } from "react-bootstrap"
+import { FormattedMessage } from "react-intl"
 import MdEditor from "react-markdown-editor-lite"
 import "react-markdown-editor-lite/lib/index.css"
+import { useSelector } from "react-redux"
+import { useLocation, useNavigate } from "react-router-dom"
 import Select from "react-select"
-import { DropdownButton, Dropdown, Form, Overlay, OverlayTrigger, Tooltip } from "react-bootstrap"
-import FlagIcon from "../../../../styles/FlagIcon"
-import { useNavigate } from "react-router-dom"
-import { FormattedMessage } from "react-intl"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import "./EditSpecialty.scss"
 import { getSpecialtyById, updateSpecialty } from "../../../../services/userService"
+import FlagIcon from "../../../../styles/FlagIcon"
 import Base64 from "../../../../utils/Base64"
-import { useSelector } from "react-redux"
-import { useLocation } from "react-router-dom"
+import "./EditSpecialty.scss"
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */)
@@ -65,19 +64,6 @@ const EditSpecialty = () => {
          descriptionHTML: html,
       })
    }
-
-   //////////////////////
-
-   // const fetchAllSpecialty = () => {
-   //     const listObj = []
-   //     allSpecialties?.map((item) => {
-   //         let obj = {}
-   //         obj.label = item.title
-   //         obj.value = item.id
-   //         listObj.push(obj)
-   //     })
-   //     setListSpecialty(listObj)
-   // }
 
    const [detailSpecialty, setDetailSpecialty] = useState([])
    const getDetailSpecialty = async () => {
@@ -174,27 +160,15 @@ const EditSpecialty = () => {
                         value={selectedSpecialty}
                         options={listSpecialty}
                         className='manage-specialty-select'
-                        // onChange={handleChangeSelect}
-                        // onFocus={handleFocusSelect}
-                        // ref={target}
                      />
-                     {/* <OverlayTrigger
-                                placement='top'
-                                overlay={<Tooltip>Please select language first!</Tooltip>}
-                            > */}
+
                      <input
                         type='text'
                         className='manage-specialty-input form-control '
                         value={title}
                         ref={target}
-                        // onFocus={
-                        //     selectedSpecialty?.label?.length === 0
-                        //         ? handleFocusInput
-                        //         : ''
-                        // }
                         onChange={handleOnchangeInput}
                      />
-                     {/* </OverlayTrigger> */}
                   </div>
 
                   <Dropdown
@@ -239,11 +213,7 @@ const EditSpecialty = () => {
                         onChange={handleOnchangeImg}
                      />
                   </div>
-                  {/* <div className=' form-group my-2  p-0'>
-                     <button className='btn btn-success btn-sm mt-4 btn-add'  navigate("/system/add-new-specialty")>
-                        Add New
-                     </button>
-                  </div> */}
+
                   <div className=' form-group my-2  p-0'>
                      <button
                         className='btn btn-success  mt-5 btn-add'

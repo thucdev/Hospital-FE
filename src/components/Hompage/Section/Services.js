@@ -1,22 +1,17 @@
+import "pure-react-carousel/dist/react-carousel.es.css"
+import Carousel from "react-elastic-carousel"
+import { FormattedMessage } from "react-intl"
+import { useSelector } from "react-redux"
 import "react-responsive-carousel/lib/styles/carousel.min.css" // requires a loader
+import { useNavigate } from "react-router-dom"
 // import { Carousel } from 'react-responsive-carousel'
 import "./Services.scss"
-import service1 from "../../../assets/Services1.jpg"
-import service2 from "../../../assets/Services2.jpg"
-import { Button } from "react-bootstrap"
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from "pure-react-carousel"
-import "pure-react-carousel/dist/react-carousel.es.css"
-import Carousel, { consts } from "react-elastic-carousel"
-import { useSelector } from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
-import { FormattedMessage, useIntl } from "react-intl"
 
 function Services() {
    const navigate = useNavigate()
 
    const language = useSelector((state) => state.languageReducer.languageState.language)
    const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
-   console.log("allSpecialties", allSpecialties)
    const breakPoints = [
       { width: 1, itemsToShow: 1 },
       { width: 550, itemsToShow: 1, itemsToScroll: 1 },
@@ -78,14 +73,20 @@ function Services() {
                                  style={{ backgroundImage: `url(${item.img})` }}
                               ></div>
                               <div className='slide-item-content'>
-                                 <h4 className='slide-item-content-title'>
+                                 <h4
+                                    className='slide-item-content-title'
+                                    onClick={() => viewSpecialtyDetail(item.id)}
+                                 >
                                     {item.translationData?.title}
                                  </h4>
                                  <div className='slide-item-content-body'>
                                     {item.translationData?.descriptionMarkdown}
                                  </div>
 
-                                 <div className='read-more'>
+                                 <div
+                                    className='read-more'
+                                    onClick={() => viewSpecialtyDetail(item.id)}
+                                 >
                                     <FormattedMessage id='homepage.read-more' />
                                  </div>
                               </div>

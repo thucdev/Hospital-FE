@@ -25,7 +25,6 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   // gap: 10px;
    .news-thumbnail {
       background-size: cover;
       height: 229px;
@@ -34,8 +33,6 @@
 
    .news-item-content {
       padding: 0 16px 0 16px;
-      // height: 212px;
-      // width: 535px;
       height: 200px;
       width: 340px;
       background-color: white;
@@ -89,13 +86,6 @@
    justify-content: center;
    margin: auto;
 }
-
-//custome pagination
-// .page-link {
-//    padding: 0.7rem 1.2rem;
-//    background-color: #0061a8;
-//    border: 1px solid #0096d5;
-// }
 
 .pagin {
    .page-link {

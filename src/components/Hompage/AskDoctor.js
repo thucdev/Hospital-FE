@@ -1,18 +1,12 @@
-import Header from "../Header/Header"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import "./AskDoctor.scss"
-import { FormattedMessage } from "react-intl"
-import { useState, useEffect } from "react"
-import { toast } from "react-toastify"
-import { useSelector } from "react-redux"
-import { Form, Col, Row, Button } from "react-bootstrap"
-import Select from "react-select"
-import DatePicker from "react-datepicker"
+import { useState } from "react"
+import { Col, Form, Row } from "react-bootstrap"
 import "react-datepicker/dist/react-datepicker.css"
+import { FormattedMessage } from "react-intl"
+import { toast } from "react-toastify"
 import { createQuestion } from "../../services/userService"
-import moment from "moment"
-import { useNavigate, userNavigate } from "react-router-dom"
 import Footer from "../Footer/Footer"
+import Header from "../Header/Header"
+import "./AskDoctor.scss"
 
 function AskDoctor() {
    const [askingData, setAskingData] = useState({
@@ -37,6 +31,12 @@ function AskDoctor() {
          let res = await createQuestion({ askingData })
          if (res.success) {
             toast.success("Send your question success")
+            setAskingData({
+               fullName: "",
+               email: "",
+               phoneNumber: "",
+               reason: "",
+            })
          } else {
             toast.error("Send your question fail")
          }
@@ -49,16 +49,20 @@ function AskDoctor() {
       <>
          <Header />
          <div className='bg-header bg-ask-doctor'>
-            <h1>Hỏi Bác Sĩ</h1>
+            <h1>
+               <FormattedMessage id='inquiry.title' />
+            </h1>
          </div>
          <div className='booking-body'>
             <div className='booking-form'>
-               <div className='booking-form-title'>Gửi câu hỏi cho chúng tôi</div>
+               <div className='booking-form-title'>
+                  <FormattedMessage id='inquiry.title' />
+               </div>
                <div className='booking-form-body'>
                   <Form>
                      <Form.Group as={Row} className='mb-4'>
                         <Form.Label column sm='3' className='form-label'>
-                           Họ tên của bạn
+                           <FormattedMessage id='inquiry.full-name' />
                         </Form.Label>
                         <Col sm='9'>
                            <Form.Control
@@ -72,7 +76,7 @@ function AskDoctor() {
                      </Form.Group>
                      <Form.Group as={Row} className='mb-4'>
                         <Form.Label column sm='3' className='form-label'>
-                           Số điện thoại
+                           <FormattedMessage id='inquiry.phone-number' />
                         </Form.Label>
                         <Col sm='9'>
                            <Form.Control
@@ -101,7 +105,7 @@ function AskDoctor() {
 
                      <Form.Group as={Row} className='mb-4'>
                         <Form.Label column sm='3' className='form-label'>
-                           Vấn đề của bạn
+                           <FormattedMessage id='inquiry.description' />
                         </Form.Label>
                         <Col sm='9'>
                            <Form.Control
@@ -118,7 +122,7 @@ function AskDoctor() {
                      className='main-btn mx-auto btn-question'
                      onClick={handleOrderAppointment}
                   >
-                     Gửi câu hỏi
+                     <FormattedMessage id='inquiry.submit' />
                   </button>
                </div>
             </div>

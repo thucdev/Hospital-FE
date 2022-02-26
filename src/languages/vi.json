@@ -150,7 +150,8 @@
          }
       },
       "news": {
-         "title": "Tin tức và sự kiện"
+         "title": "Tin tức và sự kiện",
+         "news": "Tin tức"
       }
    },
    "footer": {
@@ -168,6 +169,34 @@
       "find-btn": "Tìm bác sĩ",
       "medical-school": "Trường Y",
       "qualification": "Chứng chỉ",
-      "advanced-training": "Đào tạo nâng cao"
+      "advanced-training": "Đào tạo nâng cao",
+      "experience": "Kinh nghiệm",
+      "membership": "Hội viên",
+      "field": "Lĩnh vực chuyên sâu",
+      "order": "Đặt lịch khám bệnh"
+   },
+   "booking": {
+      "wait-minutes": "Vui lòng chờ trong giây lát để hệ thống tạo lịch hẹn cho bạn.",
+      "test-covid": "Để đảm bảo an toàn cho khách hàng đến khám chữa bệnh ngoại trú và nội trú trong thời điểm hiện nay, quý khách vui lòng thực hiện khai báo y tế trước khi đến khám bằng cách nhấp chuột",
+      "here": " TẠI ĐÂY",
+      "full-name": "Họ tên của bạn",
+      "phone-number": "Số điện thoại",
+      "select-specialty": "Chọn chuyên khoa",
+      "select-day": "Chọn ngày",
+      "select-time": "Select giờ khám",
+      "reason": "Vấn đề của bạn",
+      "booking": "Đặt lịch"
+   },
+   "inquiry": {
+      "title": "Gửi câu hỏi cho chúng tôi",
+      "full-name": "Họ tên của bạn",
+      "phone-number": "Số điện thoại",
+      "description": "Nội dung",
+      "submit": "Gửi yêu cầu"
+   },
+   "detail": {
+      "specialty": {
+         "title": "Chuyên khoa nội"
+      }
    }
 }

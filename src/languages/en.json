@@ -151,7 +151,8 @@
          }
       },
       "news": {
-         "title": "What’s New"
+         "title": "What’s New",
+         "news": "News"
       }
    },
 
@@ -168,6 +169,37 @@
    "find-doctor": {
       "title": "Find a doctor",
       "select-specialty": "Select a Speciality",
-      "find-btn": "Find Doctor"
+      "find-btn": "Find Doctor",
+      "medical-school": "Medical school",
+      "qualification": "Qualifications",
+      "advanced-training": "Advanced training",
+      "experience": "Experience",
+      "membership": "Membership",
+      "field": "Special Interests",
+      "order": "Make an Appointment"
+   },
+   "booking": {
+      "wait-minutes": "Please wait a moment for the system to create an appointment for you.",
+      "test-covid": "In order to ensure the safety of customers who come for outpatient and inpatient treatment at this time, please make a medical declaration before coming to the clinic by clicking",
+      "here": " HERE",
+      "full-name": "Full name",
+      "phone-number": "Phone number",
+      "select-specialty": "Select specialty",
+      "select-day": "Select day",
+      "select-time": "Select time",
+      "reason": "Your problem",
+      "booking": "Make an appointment"
+   },
+   "inquiry": {
+      "title": "Send us an Inquiry",
+      "full-name": "Full name",
+      "phone-number": "Phone number",
+      "description": "Description",
+      "submit": "Submit"
+   },
+   "detail": {
+      "specialty": {
+         "title": "Medical Specialties"
+      }
    }
 }

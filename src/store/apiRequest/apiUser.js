@@ -1,5 +1,5 @@
 import axios from "../../utils/axios"
-import { getAllSpecialtiesSuccess, getAllDoctorSuccess } from "../reducer/userSlice"
+import { getAllDoctorSuccess, getAllSpecialtiesSuccess } from "../reducer/userSlice"
 
 const getAllSpecialties = () => async (dispatch) => {
    try {

@@ -1,21 +1,10 @@
-import Header from "../Header/Header"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import "./DetailNews.scss"
-import { FormattedMessage } from "react-intl"
-import { useState, useEffect } from "react"
-import { toast } from "react-toastify"
-import { useSelector } from "react-redux"
-import { Form, Col, Row, Button } from "react-bootstrap"
-import Select from "react-select"
-import DatePicker from "react-datepicker"
+import { useEffect, useState } from "react"
 import "react-datepicker/dist/react-datepicker.css"
-import { createQuestion, getNews, getNewsById } from "../../services/userService"
-import moment from "moment"
-import { useNavigate, userNavigate, useParams } from "react-router-dom"
-import { Spinner } from "react-bootstrap"
+import { useParams } from "react-router-dom"
+import { getNewsById } from "../../services/userService"
 import Footer from "../Footer/Footer"
-import doctor from "../../assets/Services1.jpg"
-import detail from "../../assets/Services1.jpg"
+import Header from "../Header/Header"
+import "./DetailNews.scss"
 
 function DetailNews() {
    const { id } = useParams()
@@ -34,7 +23,7 @@ function DetailNews() {
       <>
          <Header />
          <div className='bg-header bg-detail-specialty'>
-            <h1>Chuyên khoa nội</h1>
+            <h1>Tin tức</h1>
          </div>
          <div className='specialty-detail'>
             <div className='specialty-detail-title'>{specialty.title}</div>

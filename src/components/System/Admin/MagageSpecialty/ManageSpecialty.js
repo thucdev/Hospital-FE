@@ -1,15 +1,14 @@
-import { useState, useEffect } from "react"
+import moment from "moment"
+import { useEffect, useState } from "react"
+import { FormattedMessage, useIntl } from "react-intl"
 import "react-markdown-editor-lite/lib/index.css"
+import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import "./ManageSpecialty.scss"
 import { deleteSpecialty } from "../../../../services/userService"
 import { getAllSpecialties } from "../../../../store/apiRequest/apiUser"
-import { useSelector } from "react-redux"
-import { FormattedMessage, useIntl } from "react-intl"
-import moment from "moment"
+import "./ManageSpecialty.scss"
 
 const ManageSpecialty = () => {
    const intl = useIntl()
@@ -19,27 +18,21 @@ const ManageSpecialty = () => {
    const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
    const [checked, setChecked] = useState([])
    const [listSpecialty, setListSpecialty] = useState([])
-   const [listSpecialtyEn, setListSpecialtyEn] = useState([])
    const [idCheckAll, setIdCheckAll] = useState([])
 
    const fetchAllSpecialty = () => {
       const listObj = []
-      const listObjEn = []
       const listId = []
       allSpecialties?.map((item) => {
          let obj = {}
-         let objEn = {}
          obj.label = item.title
          obj.labelEn = item.translationData.title
          obj.value = item.id
          obj.lastEdit = moment.utc(item.updatedAt).format("DD/MM/YYYY")
-         // objEn.value = item.translationData.value
          listObj.push(obj)
          listId.push(item.id)
-         // listObjEn.push(objEn)
       })
       setListSpecialty(listObj)
-      setListSpecialtyEn(listObjEn)
       setIdCheckAll(listId)
    }
 

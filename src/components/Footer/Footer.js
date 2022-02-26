@@ -1,13 +1,13 @@
-import { FormattedMessage } from "react-intl"
 import { Col, Row } from "react-bootstrap"
-import "./Footer.scss"
+import { FormattedMessage } from "react-intl"
 import addressIcon from "../../assets/footer/btm-address.png"
+import playIcon from "../../assets/footer/btm-below-2.png"
 import emailIcon from "../../assets/footer/btm-email.png"
 import hotlineIcon from "../../assets/footer/btm-hotline.png"
 import fbIcon from "../../assets/footer/btm-link-facebook.png"
 import linkedinIcon from "../../assets/footer/btm-link-linkedin.png"
 import ytIcon from "../../assets/footer/btm-link-youtube.png"
-import playIcon from "../../assets/footer/btm-below-2.png"
+import "./Footer.scss"
 
 const Footer = () => {
    return (

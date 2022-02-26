@@ -49,14 +49,13 @@
    }
 
    .btn-save-booking {
-      width: 200px;
       height: 50px;
       margin-left: 196px;
       border-color: $main-color-soft;
       border-radius: 5px;
       font-weight: 700;
       color: $main-color;
-      width: 230px;
+      min-width: 230px;
       transition: all 0.3s ease;
 
       &:hover {

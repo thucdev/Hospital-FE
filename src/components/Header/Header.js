@@ -1,18 +1,17 @@
-import { FormattedMessage } from "react-intl"
-import "react-responsive-carousel/lib/styles/carousel.min.css" // requires a loader
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useSelector, useDispatch } from "react-redux"
-import VN from "../../assets/vi.png"
+import { FormattedMessage } from "react-intl"
+import { useDispatch, useSelector } from "react-redux"
+import "react-responsive-carousel/lib/styles/carousel.min.css" // requires a loader
+import { useNavigate } from "react-router-dom"
 import EN from "../../assets/en.png"
+import navGroup from "../../assets/group-1.png"
+import navGroup2 from "../../assets/group-2.png"
+import navGroup3 from "../../assets/group-3.png"
 import Logo from "../../assets/Logo.png"
 import navGroup1 from "../../assets/user.png"
-import navGroup3 from "../../assets/group-3.png"
-import navGroup2 from "../../assets/group-2.png"
-import navGroup from "../../assets/group-1.png"
-
-import "./Header.scss"
-import { Link, useNavigate } from "react-router-dom"
+import VN from "../../assets/vi.png"
 import { changLanguageApp } from "../../store/reducer/languageSlice"
+import "./Header.scss"
 
 function Header() {
    const navigate = useNavigate()

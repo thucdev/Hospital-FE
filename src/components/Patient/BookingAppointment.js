@@ -1,22 +1,22 @@
-import Header from "../Header/Header"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import "./BookingAppointment.scss"
-import { FormattedMessage } from "react-intl"
-import { useState, useEffect } from "react"
-import { toast } from "react-toastify"
-import { useSelector } from "react-redux"
-import { Form, Col, Row, Button } from "react-bootstrap"
-import Select from "react-select"
+import moment from "moment"
+import { useEffect, useState } from "react"
+import { Col, Form, Row, Spinner } from "react-bootstrap"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
+import { FormattedMessage, useIntl } from "react-intl"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import Select from "react-select"
+import { toast } from "react-toastify"
 import { createAppointment, getSpecialtyById } from "../../services/userService"
-import moment from "moment"
-import { useNavigate, userNavigate } from "react-router-dom"
-import { Spinner } from "react-bootstrap"
 import Footer from "../Footer/Footer"
+import Header from "../Header/Header"
+import "./BookingAppointment.scss"
 
 function BookingAppointment() {
    const navigate = useNavigate()
+   const intl = useIntl()
+   const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
 
    const [loading, setLoading] = useState(false)
    const [bookingData, setBookingData] = useState({
@@ -40,31 +40,23 @@ function BookingAppointment() {
 
    const [startDate, setStartDate] = useState(new Date())
 
-   const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
-   console.log("allSpecialties", allSpecialties)
-
    const [selectedSpecialty, setSelectedSpecialty] = useState({
       value: "",
       label: "",
    })
-   const [title, setTitle] = useState(selectedSpecialty.label)
 
    const [listSpecialty, setListSpecialty] = useState([])
    const fetchAllSpecialty = () => {
       const listObj = []
-      const listObjEn = []
       allSpecialties?.map((item) => {
          let obj = {}
          let objEn = {}
          obj.label = item.title
          obj.labelEn = item.translationData.title
          obj.value = item.id
-         // objEn.value = item.translationData.value
          listObj.push(obj)
-         // listObjEn.push(objEn)
       })
       setListSpecialty(listObj)
-      // setListSpecialtyEn(listObjEn)
    }
 
    const handleChangeSelect = async (selectedOption) => {
@@ -117,12 +109,14 @@ function BookingAppointment() {
       <>
          <Header />
          <div className='bg-header bg-booking-appointment'>
-            <h1>Đặt Lịch Khám Bệnh</h1>
+            <h1>
+               <FormattedMessage id='find-doctor.order' />
+            </h1>
          </div>
          {loading === true && (
             <>
                <p className='mb-5 d-flex justify-content-center mt-5'>
-                  Vui lòng chờ trong giây lát để hệ thống tạo lịch hẹn cho bạn.
+                  <FormattedMessage id='booking.wait-minutes' />
                </p>
                <div className='d-flex justify-content-center mt-5 mb-5'>
                   <Spinner animation='border' variant='info' />
@@ -132,26 +126,29 @@ function BookingAppointment() {
          {loading === false && (
             <div className='booking-body'>
                <p>
-                  Để đảm bảo an toàn cho khách hàng đến khám chữa bệnh ngoại trú và nội trú trong
-                  thời điểm hiện nay, quý khách vui lòng thực hiện khai báo y tế trước khi đến khám
-                  bằng cách nhấp chuột{" "}
+                  <FormattedMessage id='booking.test-covid' />
+
                   <a href='https://docs.google.com/forms/d/e/1FAIpQLSdv9anK6U6_Fd2paTdRSrVpQn0I7sEe3xYPNQw6ugzTklt_dg/viewform'>
-                     TẠI ĐÂY
+                     <FormattedMessage id='booking.here' />
                   </a>
                </p>
 
                <div className='booking-form'>
-                  <div className='booking-form-title'>Đặt lịch hẹn</div>
+                  <div className='booking-form-title'>
+                     <FormattedMessage id='find-doctor.order' />
+                  </div>
                   <div className='booking-form-body'>
                      <Form>
                         <Form.Group as={Row} className='mb-4'>
                            <Form.Label column sm='3' className='form-label'>
-                              Họ tên của bạn
+                              <FormattedMessage id='booking.full-name' />
                            </Form.Label>
                            <Col sm='9'>
                               <Form.Control
                                  type='text'
-                                 placeholder='Họ tên đầy đủ...'
+                                 placeholder={intl.formatMessage({
+                                    id: "booking.full-name",
+                                 })}
                                  name='fullName'
                                  value={fullName}
                                  onChange={onChangeBookingFormInput}
@@ -160,7 +157,7 @@ function BookingAppointment() {
                         </Form.Group>
                         <Form.Group as={Row} className='mb-4'>
                            <Form.Label column sm='3' className='form-label'>
-                              Số điện thoại
+                              <FormattedMessage id='booking.phone-number' />
                            </Form.Label>
                            <Col sm='9'>
                               <Form.Control
@@ -189,7 +186,7 @@ function BookingAppointment() {
 
                         <Form.Group as={Row} className='mb-4'>
                            <Form.Label column sm='3'>
-                              Chọn chuyên khoa
+                              <FormattedMessage id='booking.select-specialty' />
                            </Form.Label>
                            <Col sm='9'>
                               {/* <Form.Control type='text' placeholder='Password' /> */}
@@ -205,7 +202,7 @@ function BookingAppointment() {
                         </Form.Group>
                         <Form.Group as={Row} className='mb-4'>
                            <Form.Label column sm='3' className='form-label'>
-                              Chọn ngày
+                              <FormattedMessage id='booking.select-day' />
                            </Form.Label>
                            <Col sm='6'>
                               <DatePicker
@@ -218,7 +215,11 @@ function BookingAppointment() {
                            </Col>
                            <Col sm='3'>
                               <Form.Select onChange={handleSelectTime}>
-                                 <option>Chọn giờ khám</option>
+                                 <option>
+                                    {intl.formatMessage({
+                                       id: "booking.select-time",
+                                    })}
+                                 </option>
                                  <option value='T1'>7h</option>
                                  <option value='T2'>8h</option>
                                  <option value='T3'>9h</option>
@@ -234,7 +235,7 @@ function BookingAppointment() {
                         </Form.Group>
                         <Form.Group as={Row} className='mb-4'>
                            <Form.Label column sm='3' className='form-label'>
-                              Vấn đề của bạn
+                              <FormattedMessage id='booking.reason' />
                            </Form.Label>
                            <Col sm='9'>
                               <Form.Control
@@ -248,7 +249,7 @@ function BookingAppointment() {
                         </Form.Group>
                      </Form>
                      <button className='btn-save-booking main-btn' onClick={handleOrderAppointment}>
-                        Đặt lịch
+                        <FormattedMessage id='booking.booking' />
                      </button>
                   </div>
                </div>

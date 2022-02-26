@@ -1,18 +1,17 @@
-import Header from "../Header/Header"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import "./Homepage.scss"
+import { Col, Row } from "react-bootstrap"
 import { FormattedMessage } from "react-intl"
-import Services from "./Section/Services"
-import slide1 from "../../assets/slide1.jpg"
-import slide2 from "../../assets/slide2.jpg"
-import slide3 from "../../assets/slide3.jpg"
+import { Carousel } from "react-responsive-carousel"
 import icon1 from "../../assets/icon-1.png"
 import icon2 from "../../assets/icon-2.png"
 import icon3 from "../../assets/icon-3.png"
-import { Carousel } from "react-responsive-carousel"
-import { Col, Row } from "react-bootstrap"
+import slide2 from "../../assets/slide2.jpg"
+import slide3 from "../../assets/slide3.jpg"
 import Footer from "../Footer/Footer"
+import Header from "../Header/Header"
+import "./Homepage.scss"
 import News from "./Section/News"
+import Services from "./Section/Services"
 
 function Homepage() {
    return (
@@ -113,7 +112,6 @@ function Homepage() {
          </div>
 
          <News />
-
          <Footer />
       </>
    )

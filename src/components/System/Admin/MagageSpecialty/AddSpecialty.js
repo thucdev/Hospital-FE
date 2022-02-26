@@ -1,18 +1,17 @@
-import { useState, useRef } from "react"
 import MarkdownIt from "markdown-it"
+import { useRef, useState } from "react"
+import { Dropdown } from "react-bootstrap"
+import { FormattedMessage } from "react-intl"
 import MdEditor from "react-markdown-editor-lite"
 import "react-markdown-editor-lite/lib/index.css"
+import { useDispatch } from "react-redux"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import { useNavigate } from "react-router-dom"
-import "./ManageSpecialty.scss"
-import { Dropdown } from "react-bootstrap"
-import { useDispatch } from "react-redux"
-import { getAllSpecialties } from "../../../../store/apiRequest/apiUser"
-import { FormattedMessage } from "react-intl"
-import FlagIcon from "../../../../styles/FlagIcon"
 import { createNewSpecialty } from "../../../../services/userService"
+import { getAllSpecialties } from "../../../../store/apiRequest/apiUser"
+import FlagIcon from "../../../../styles/FlagIcon"
 import Base64 from "../../../../utils/Base64"
+import "./ManageSpecialty.scss"
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */)
@@ -72,7 +71,6 @@ const AddSpecialty = () => {
                descriptionHTML: "",
             })
             setToggleContents("Language")
-            // setImgBase64('')
             dispatch(getAllSpecialties())
             ref.current.value = ""
 
@@ -84,12 +82,6 @@ const AddSpecialty = () => {
          console.log("", error)
       }
    }
-
-   // const navigate = useNavigate()
-
-   // const onEdit = () => {
-   //    navigate("/system/manage-specialty")
-   // }
 
    return (
       <>

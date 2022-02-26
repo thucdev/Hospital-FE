@@ -1,43 +1,40 @@
 .carousel.carousel-slider {
-    overflow: inherit;
+   overflow: inherit;
 }
 
 .carousel .control-next.control-arrow,
 .carousel .control-next.control-arrow:hover {
-    background-color: transparent;
-    /* width: 50px;
-    height: 50px;
-    border-radius: 50%; */
-    right: 16px;
+   background-color: transparent;
+   right: 16px;
 }
 
 .carousel .control-prev.control-arrow,
 .carousel .control-prev.control-arrow:hover {
-    background-color: transparent;
-    left: 16px;
+   background-color: transparent;
+   left: 16px;
 }
 
 .carousel .control-arrow,
 .carousel.carousel-slider .control-arrow {
-    opacity: 1;
+   opacity: 1;
 }
 
 .carousel .control-next.control-arrow:before {
-    content: '';
-    border: solid #a0a1a5;
-    border-width: 0 6px 6px 0;
-    display: inline-block;
-    padding: 14px;
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
+   content: "";
+   border: solid #a0a1a5;
+   border-width: 0 6px 6px 0;
+   display: inline-block;
+   padding: 14px;
+   transform: rotate(-45deg);
+   -webkit-transform: rotate(-45deg);
 }
 
 .carousel .control-prev.control-arrow:before {
-    content: '';
-    border: solid #a0a1a5;
-    border-width: 0 6px 6px 0;
-    display: inline-block;
-    padding: 14px;
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
+   content: "";
+   border: solid #a0a1a5;
+   border-width: 0 6px 6px 0;
+   display: inline-block;
+   padding: 14px;
+   transform: rotate(135deg);
+   -webkit-transform: rotate(135deg);
 }

@@ -1,17 +1,13 @@
-import React from "react"
-import { FormattedMessage } from "react-intl"
-import { Link, Outlet, useNavigate } from "react-router-dom"
-import { Row, Col, Stack } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import "./System.scss"
-import { useEffect, useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { Dropdown } from "react-bootstrap"
-import FlagIcon from "../styles/FlagIcon"
-import VN from "../assets/vi.png"
-import EN from "../assets/en.png"
+import React, { useEffect, useState } from "react"
+import { Dropdown, Row } from "react-bootstrap"
+import { FormattedMessage } from "react-intl"
+import { useDispatch, useSelector } from "react-redux"
+import { Link, Outlet, useNavigate } from "react-router-dom"
 import { loginFailed } from "../store/reducer/authSlice"
 import { changLanguageApp } from "../store/reducer/languageSlice"
+import FlagIcon from "../styles/FlagIcon"
+import "./System.scss"
 
 export const System = () => {
    const navigate = useNavigate()
@@ -19,7 +15,6 @@ export const System = () => {
 
    const isAuth = useSelector((state) => state.authReducer.login.isAuthenticated)
    const roleId = useSelector((state) => state.authReducer.login.user?.roleId)
-   // const language = useSelector((state) => state.languageReducer.languageState.language)
 
    useEffect(() => {
       if (!isAuth) {

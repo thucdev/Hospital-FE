@@ -1,14 +1,13 @@
-import { useState, useEffect, useRef } from "react"
-import { toast } from "react-toastify"
-import { FormattedMessage, injectIntl, useIntl } from "react-intl"
 import _ from "lodash"
+import { useEffect, useRef, useState } from "react"
+import { FormattedMessage, useIntl } from "react-intl"
+import { useDispatch, useSelector } from "react-redux"
 import Select from "react-select"
-import { useSelector } from "react-redux"
+import { toast } from "react-toastify"
+import { checkIsEmailExist, createDoctor, getSpecialtyById } from "../../../../services/userService"
+import { getAllDoctor } from "../../../../store/apiRequest/apiUser"
 import Base64 from "../../../../utils/Base64"
 import "./CreateDoctor.scss"
-import { getSpecialtyById, createDoctor, checkIsEmailExist } from "../../../../services/userService"
-import { useDispatch } from "react-redux"
-import { getAllDoctor } from "../../../../store/apiRequest/apiUser"
 
 function CreateDoctor() {
    const ref = useRef()
@@ -54,22 +53,16 @@ function CreateDoctor() {
       field: [],
    })
    const [listSpecialty, setListSpecialty] = useState([])
-   //    const [listSpecialtyEn, setListSpecialtyEn] = useState([])
    const fetchAllSpecialty = () => {
       const listObj = []
-      //   const listObjEn = []
       allSpecialties?.map((item) => {
          let obj = {}
-         let objEn = {}
          obj.label = item.title
          obj.labelEn = item.translationData.title
          obj.value = item.id
-         // objEn.value = item.translationData.value
          listObj.push(obj)
-         // listObjEn.push(objEn)
       })
       setListSpecialty(listObj)
-      //   setListSpecialtyEn(listObjEn)
    }
    useEffect(() => {
       fetchAllSpecialty()

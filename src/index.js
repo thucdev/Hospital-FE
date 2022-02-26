@@ -1,14 +1,14 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import "./index.scss"
-import App from "./App"
-import IntlProviderWrapper from "./hoc/IntlProviderWrapper"
-import reportWebVitals from "./reportWebVitals"
-import { BrowserRouter as Routers } from "react-router-dom"
 import { Provider } from "react-redux"
-import { store, persistor } from "./store"
+import { BrowserRouter as Routers } from "react-router-dom"
 import { PersistGate } from "redux-persist/integration/react"
+import App from "./App"
 import "./fontawesomeIcons"
+import IntlProviderWrapper from "./hoc/IntlProviderWrapper"
+import "./index.scss"
+import reportWebVitals from "./reportWebVitals"
+import { persistor, store } from "./store"
 
 ReactDOM.render(
    <React.StrictMode>

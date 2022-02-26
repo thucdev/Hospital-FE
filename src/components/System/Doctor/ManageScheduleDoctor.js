@@ -1,37 +1,27 @@
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
+import { FormattedMessage, useIntl } from "react-intl"
 import "react-markdown-editor-lite/lib/index.css"
-import { Link, useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { toast } from "react-toastify"
+import { useSelector } from "react-redux"
 import "react-toastify/dist/ReactToastify.css"
 // import "./ManageSpecialty.scss"
-import { deleteDoctor, getAllSchedulesByDoctor } from "../../../services/userService"
-import { getAllDoctor } from "../../../store/apiRequest/apiUser"
-import { useSelector } from "react-redux"
-import moment from "moment"
-import { FormattedMessage, useIntl } from "react-intl"
+import { getAllSchedulesByDoctor } from "../../../services/userService"
 
 const ManageScheduleDoctor = () => {
    const intl = useIntl()
 
-   const dispatch = useDispatch()
    const doctorId = useSelector((state) => state.authReducer.login.user?.userId)
 
    const [allSchedules, setAllSchedules] = useState([])
    const [checked, setChecked] = useState([])
    const [idCheckAll, setIdCheckAll] = useState([])
-   const [listDoctor, setListDoctor] = useState([])
+
    const fetchAllSchedule = async () => {
       let res = await getAllSchedulesByDoctor({ doctorId })
-      console.log("allshc", res.data)
-      // const listObj = []
       const listId = []
       res.data?.map((item) => {
          listId.push(item.id)
       })
       setAllSchedules(res.data)
-
-      // setListDoctor(listObj)
       setIdCheckAll(listId)
    }
 
@@ -39,9 +29,8 @@ const ManageScheduleDoctor = () => {
       fetchAllSchedule()
    }, [])
 
-   const navigate = useNavigate()
-   const onAdd = () => {
-      navigate("/system/create-doctor")
+   const done = () => {
+      alert("Đã khám xong")
    }
 
    const handleCheckInput = (id) => {
@@ -155,7 +144,7 @@ const ManageScheduleDoctor = () => {
                               <td>{item.reason}</td>
                               <td>{item.patientData.phoneNumber}</td>
                               <td className='w-20'>
-                                 <button className='btn btn-primary' onClick={onAdd}>
+                                 <button className='btn btn-primary' onClick={done}>
                                     <FormattedMessage id='manage.schedule.done' />
                                  </button>
                               </td>

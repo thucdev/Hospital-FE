@@ -1,15 +1,12 @@
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
+import { FormattedMessage, useIntl } from "react-intl"
 import "react-markdown-editor-lite/lib/index.css"
-import { Link, useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-// import "./ManageSpecialty.scss"
 import { deleteDoctor, getAllSchedules } from "../../../../services/userService"
 import { getAllDoctor } from "../../../../store/apiRequest/apiUser"
-import { useSelector } from "react-redux"
-import moment from "moment"
-import { FormattedMessage, useIntl } from "react-intl"
 
 const ManageSchedule = () => {
    const dispatch = useDispatch()
@@ -18,36 +15,21 @@ const ManageSchedule = () => {
    const [allSchedules, setAllSchedules] = useState([])
    const [checked, setChecked] = useState([])
    const [idCheckAll, setIdCheckAll] = useState([])
-   const [listDoctor, setListDoctor] = useState([])
 
    const fetchAllSchedule = async () => {
       let res = await getAllSchedules()
-      // const listObj = []
       const listId = []
       res.data?.map((item) => {
-         // let obj = {}
-         // obj.label = item.fullName
-         // obj.address = item.address
-         // obj.phoneNumber = item.phoneNumber
-         // obj.value = item.id
-         // obj.lastEdit = moment.utc(item.updatedAt).format("DD/MM/YYYY")
-         // listObj.push(obj)
          listId.push(item.id)
       })
       setAllSchedules(res.data)
 
-      // setListDoctor(listObj)
       setIdCheckAll(listId)
    }
 
    useEffect(() => {
       fetchAllSchedule()
    }, [])
-
-   const navigate = useNavigate()
-   const onAdd = () => {
-      navigate("/system/create-doctor")
-   }
 
    const handleDeleteDoctor = async (specialtyId) => {
       let res = await deleteDoctor(specialtyId)

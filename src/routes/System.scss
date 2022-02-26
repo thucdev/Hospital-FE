@@ -15,10 +15,8 @@
          text-decoration: none;
          font-size: 22px;
          display: block;
-         // width: fit-content;
          height: 40px;
          margin: 24px 0px 5px 0;
-         // text-align: center;
          padding-left: 14px;
          border-bottom: 1px solid rgb(156, 154, 154);
       }
@@ -30,7 +28,6 @@
          width: fit-content;
          margin: 24px 12px;
          &:hover {
-            // background-color: #999;
             text-decoration: underline;
          }
       }
@@ -64,7 +61,6 @@
       .manage-menu-logout-content {
          .manage-menu-logout-text {
             font-size: 20px;
-            // margin-left: 4px;
             display: inline-block;
          }
       }

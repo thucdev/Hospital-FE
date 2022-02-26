@@ -1,28 +1,20 @@
-import Header from "../Header/Header"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import "./FindDoctor.scss"
-import { FormattedMessage } from "react-intl"
-import { useState, useEffect } from "react"
-import { toast } from "react-toastify"
-import { useSelector } from "react-redux"
-import { Form, Col, Row, Button, Accordion } from "react-bootstrap"
-import Select from "react-select"
-import DatePicker from "react-datepicker"
+import { useEffect, useState } from "react"
+import { Accordion, Col, Form, Row } from "react-bootstrap"
 import "react-datepicker/dist/react-datepicker.css"
-import { createAppointment, getDoctorById, getSpecialtyById } from "../../services/userService"
-import moment from "moment"
-import { useNavigate, userNavigate } from "react-router-dom"
+import { FormattedMessage } from "react-intl"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import Select from "react-select"
+import { getSpecialtyById } from "../../services/userService"
 import Footer from "../Footer/Footer"
-import doctor1 from "../../assets/doctor1.jpg"
-import { Certificate } from "crypto"
+import Header from "../Header/Header"
+import "./FindDoctor.scss"
 
 function FindDoctor() {
    const navigate = useNavigate()
 
    const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
    const allDoctors = useSelector((state) => state.userReducer.allDoctor)
-
-   console.log("allDoctors", allDoctors)
 
    const [selectedSpecialty, setSelectedSpecialty] = useState({
       value: "",
@@ -47,12 +39,9 @@ function FindDoctor() {
          obj.label = item.title
          obj.labelEn = item.translationData.title
          obj.value = item.id
-         // objEn.value = item.translationData.value
          listSpec.push(obj)
-         // listObjEn.push(objEn)
       })
       setListSpecialty(listSpec)
-      // setListSpecialtyEn(listObjEn)
    }
 
    const handleChangeSelectSpecialty = async (selectedOption) => {
@@ -125,9 +114,6 @@ function FindDoctor() {
                specialtyName: findSpecialtyName(item.specialtyId),
             }))
             setDisplayDoctor(data)
-            // setDisplayDoctor(doctorInfo)
-            // setDisplayDoctor(listDoctor)
-            console.log("displa", displayDoctor)
          }
       } catch (error) {
          console.log("er", error)
@@ -207,17 +193,21 @@ function FindDoctor() {
                            <Accordion alwaysOpen>
                               <Accordion.Item eventKey='0'>
                                  <Accordion.Header className='accordion-title'>
-                                    Chứng chỉ
+                                    <FormattedMessage id='find-doctor.qualificantion' />
                                  </Accordion.Header>
                                  <Accordion.Body>
-                                    <p className='school'>Trường Y</p>
+                                    <p className='school'>
+                                       <FormattedMessage id='find-doctor.medical-school' />
+                                    </p>
                                     <ul>
                                        {item.doctor_infoData.degree?.map((degree, index) => {
                                           return <li key={index}>{degree}</li>
                                        })}
                                     </ul>
 
-                                    <p className='training'>Đào tạo nâng cao</p>
+                                    <p className='training'>
+                                       <FormattedMessage id='find-doctor.advanced-training' />
+                                    </p>
                                     <ul>
                                        <ul>
                                           {item.doctor_infoData.certificate?.map(
@@ -230,9 +220,13 @@ function FindDoctor() {
                                  </Accordion.Body>
                               </Accordion.Item>
                               <Accordion.Item eventKey='1'>
-                                 <Accordion.Header>Kinh nghiệm</Accordion.Header>
+                                 <Accordion.Header>
+                                    <FormattedMessage id='find-doctor.experience' />
+                                 </Accordion.Header>
                                  <Accordion.Body>
-                                    <p className='school'>Kinh nghiệm</p>
+                                    <p className='school'>
+                                       <FormattedMessage id='find-doctor.experience' />
+                                    </p>
                                     <ul>
                                        {item.doctor_infoData.experience?.map(
                                           (experience, index) => {
@@ -243,9 +237,13 @@ function FindDoctor() {
                                  </Accordion.Body>
                               </Accordion.Item>
                               <Accordion.Item eventKey='2'>
-                                 <Accordion.Header>Hội viên</Accordion.Header>
+                                 <Accordion.Header>
+                                    <FormattedMessage id='find-doctor.membership' />
+                                 </Accordion.Header>
                                  <Accordion.Body>
-                                    <p className='school'>Hội viên</p>
+                                    <p className='school'>
+                                       <FormattedMessage id='find-doctor.membership' />
+                                    </p>
                                     <ul>
                                        {item.doctor_infoData.member?.map((member, index) => {
                                           return <li key={index}>{member}</li>
@@ -254,9 +252,13 @@ function FindDoctor() {
                                  </Accordion.Body>
                               </Accordion.Item>
                               <Accordion.Item eventKey='3'>
-                                 <Accordion.Header>Lĩnh vực chuyên sâu</Accordion.Header>
+                                 <Accordion.Header>
+                                    <FormattedMessage id='find-doctor.field' />
+                                 </Accordion.Header>
                                  <Accordion.Body>
-                                    <p className='school'>Lĩnh vực chuyên sâu</p>
+                                    <p className='school'>
+                                       <FormattedMessage id='find-doctor.field' />
+                                    </p>
                                     <ul>
                                        {item.doctor_infoData.field?.map((field, index) => {
                                           return <li key={index}>{field}</li>
@@ -270,7 +272,7 @@ function FindDoctor() {
                               className='main-btn find-doctor-btn mx-auto mt-4'
                               onClick={findDoctor}
                            >
-                              Đặt lịch khám bệnh
+                              <FormattedMessage id='find-doctor.order' />
                            </button>
                         </Col>
                      </Row>
