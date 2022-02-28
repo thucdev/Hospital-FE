@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { Spinner } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import { Navigate } from "react-router-dom"
-import { loadUser } from "../../store/apiRequest/apiAuth"
+import { loadUser } from "../../store/apiRequest/apiAuth" //x
 import Login from "../Login"
 import RegisterForm from "../RegisterForm"
 import "./Auth.scss"
@@ -10,12 +10,12 @@ import "./Auth.scss"
 function Auth({ authRoute }) {
    const dispatch = useDispatch()
 
+   const login = useSelector((state) => state.authReducer.login)
+   const { authLoading, isAuthenticated } = login
+
    useEffect(() => {
       dispatch(loadUser())
    }, [dispatch])
-
-   const login = useSelector((state) => state.authReducer.login)
-   const { authLoading, isAuthenticated } = login
 
    let body
    if (authLoading) {

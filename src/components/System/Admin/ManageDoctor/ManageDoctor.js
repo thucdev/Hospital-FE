@@ -67,7 +67,8 @@ const ManageDoctor = () => {
 
    const handleDeleteDoctor = async (specialtyId) => {
       let res = await deleteDoctor(specialtyId)
-      if (res?.success) {
+      console.log("res delete", res)
+      if (res?.data?.success) {
          toast.success("Delete doctor success")
          dispatch(getAllDoctor())
       } else {
@@ -199,20 +200,19 @@ const ManageDoctor = () => {
                                     <td>{moment.utc(item.updatedAt).format("DD/MM/YYYY")}</td>
                                     <td className='w-20'>
                                        <Link
-                                          to='/system/edit-specialty'
-                                          state={{ specialtyId: item.value }}
+                                          to='/system/'
+                                          // state={{ specialtyId: item.value }}
                                           className='btn btn-link'
                                        >
                                           <FormattedMessage id='menu.edit' />
                                        </Link>
 
-                                       <Link
-                                          to='/system/edit-specialty'
+                                       <p
                                           className='btn btn-link'
-                                          onClick={handleDeleteDoctor.bind(this, item.value)}
+                                          onClick={handleDeleteDoctor.bind(this, item.id)}
                                        >
                                           <FormattedMessage id='menu.delete' />
-                                       </Link>
+                                       </p>
                                     </td>
                                  </tr>
                               )

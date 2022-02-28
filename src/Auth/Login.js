@@ -23,7 +23,7 @@ const Login = () => {
    const login = async (event) => {
       event.preventDefault()
 
-      const loginData = await loginAsync(loginForm, dispatch)
+      const loginData = await loginAsync(loginForm, dispatch, navigate)
       if (loginData?.success) {
          navigate("/system")
       } else {

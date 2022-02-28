@@ -167,11 +167,7 @@ const ManageSpecialty = () => {
                                     <FormattedMessage id='menu.edit' />
                                  </Link>
                                  <p
-                                    href=''
                                     className='btn btn-link'
-                                    data-id='{{this._id}}'
-                                    data-bs-toggle='modal'
-                                    data-bs-target='#delete-course'
                                     onClick={handleDeleteSpecialty.bind(this, item.value)}
                                  >
                                     <FormattedMessage id='menu.delete' />

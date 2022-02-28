@@ -4,6 +4,7 @@ import { Dropdown, Row } from "react-bootstrap"
 import { FormattedMessage } from "react-intl"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, Outlet, useNavigate } from "react-router-dom"
+import { logout } from "../services/userService"
 import { loginFailed } from "../store/reducer/authSlice"
 import { changLanguageApp } from "../store/reducer/languageSlice"
 import FlagIcon from "../styles/FlagIcon"
@@ -41,8 +42,10 @@ export const System = () => {
       handleChangeLanguage()
    }, [selectedLanguage])
 
-   const handleLogout = () => {
+   const handleLogout = async () => {
+      await logout(localStorage.removeItem("refreshToken"))
       localStorage.removeItem("accessToken")
+      localStorage.removeItem("refreshToken")
       dispatch(loginFailed())
    }
    return (

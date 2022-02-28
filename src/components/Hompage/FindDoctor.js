@@ -193,7 +193,7 @@ function FindDoctor() {
                            <Accordion alwaysOpen>
                               <Accordion.Item eventKey='0'>
                                  <Accordion.Header className='accordion-title'>
-                                    <FormattedMessage id='find-doctor.qualificantion' />
+                                    <FormattedMessage id='find-doctor.qualification' />
                                  </Accordion.Header>
                                  <Accordion.Body>
                                     <p className='school'>

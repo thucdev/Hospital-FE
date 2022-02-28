@@ -1,46 +1,41 @@
 import axios from "../utils/axios"
+import { createAxios } from "../utils/axiosJWT"
+import { setHeader } from "../utils/setAuthHeader"
+let axiosJWT = createAxios()
 
 const createNewSpecialty = (data) => {
-   return axios.post(`/create-new-specialty`, data)
+   return axiosJWT.post(`/create-new-specialty`, data, setHeader())
 }
 
 const createNewSpecialtyTranslation = (data) => {
-   return axios.post(`/create-new-specialty-translation`, data)
+   return axiosJWT.post(`/create-new-specialty-translation`, data, setHeader())
 }
 
 const getSpecialtyById = (id) => {
-   return axios.get(`/get-specialty-by-id/?id=${id}`)
+   return axiosJWT.get(`/get-specialty-by-id/?id=${id}`, setHeader())
 }
 
 const updateSpecialty = (data) => {
-   return axios.put(`/update-specialty`, data)
+   return axiosJWT.put(`/update-specialty`, data, setHeader())
 }
 
 const deleteSpecialty = (id) => {
-   return axios.delete(`/delete-specialty`, {
-      data: {
-         id: id,
-      },
-   })
+   return axiosJWT.delete(`/delete-specialty/?id=${id}`, setHeader())
 }
 
 const createDoctor = (data) => {
-   return axios.post(`/create-doctor`, data)
+   return axiosJWT.post(`/create-doctor`, data, setHeader())
 }
 
 const getDoctorById = (id) => {
-   return axios.get(`/get-doctor-by-id/?id=${id}`)
+   return axiosJWT.get(`/get-doctor-by-id/?id=${id}`, setHeader())
 }
 
 const deleteDoctor = (id) => {
-   return axios.delete(`/delete-doctor`, {
-      data: {
-         id: id,
-      },
-   })
+   return axiosJWT.delete(`/delete-doctor/?id=${id}`, setHeader())
 }
 const createAppointment = (data) => {
-   return axios.post(`/create-an-appointment`, data)
+   return axiosJWT.post(`/create-an-appointment`, data, setHeader())
 }
 
 const verifyBookingAppointment = (data) => {
@@ -48,11 +43,11 @@ const verifyBookingAppointment = (data) => {
 }
 
 const getAllSchedules = () => {
-   return axios.get("/get-all-schedules")
+   return axiosJWT.get("/get-all-schedules", setHeader())
 }
 
 const getAllSchedulesByDoctor = (doctorId) => {
-   return axios.post("/get-all-schedules-by-doctor", doctorId)
+   return axiosJWT.post("/get-all-schedules-by-doctor", doctorId, setHeader())
 }
 
 const checkIsEmailExist = (email) => {
@@ -64,7 +59,7 @@ const createQuestion = (data) => {
 }
 
 const createNews = (data) => {
-   return axios.post("/create-news", data)
+   return axiosJWT.post("/create-news", data, setHeader())
 }
 
 const getNews = (data) => {
@@ -77,6 +72,10 @@ const paginationDoctor = (data) => {
 
 const getNewsById = (id) => {
    return axios.get(`/get-news-by-id/?id=${id}`)
+}
+
+const logout = (data) => {
+   return axiosJWT.post("/logout", data, setHeader())
 }
 
 export {
@@ -98,4 +97,5 @@ export {
    getNews,
    getNewsById,
    paginationDoctor,
+   logout,
 }
