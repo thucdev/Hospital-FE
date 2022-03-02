@@ -39,27 +39,27 @@ const createAppointment = (data) => {
 }
 
 const verifyBookingAppointment = (data) => {
-   return axios.post("/verify-appointment", data)
+   return axios.post("/v1/api/verify-appointment", data)
 }
 
 const getAllSchedules = () => {
-   return axiosJWT.get("/get-all-schedules", setHeader())
+   return axiosJWT.get("/v1/api/get-all-schedules", setHeader())
 }
 
 const getAllSchedulesByDoctor = (doctorId) => {
-   return axiosJWT.post("/get-all-schedules-by-doctor", doctorId, setHeader())
+   return axiosJWT.post("/v1/api/get-all-schedules-by-doctor", doctorId, setHeader())
 }
 
 const checkIsEmailExist = (email) => {
-   return axios.post("/is-email-exist", email)
+   return axios.post("/v1/api/is-email-exist", email)
 }
 
 const createQuestion = (data) => {
-   return axios.post("/create-question", data)
+   return axios.post("/v1/api/create-question", data)
 }
 
 const createNews = (data) => {
-   return axiosJWT.post("/create-news", data, setHeader())
+   return axiosJWT.post("/v1/api/create-news", data, setHeader())
 }
 
 const getNews = (data) => {
@@ -75,7 +75,7 @@ const getNewsById = (id) => {
 }
 
 const logout = (data) => {
-   return axiosJWT.post("/logout", data, setHeader())
+   return axiosJWT.post("/v1/api/logout", data, setHeader())
 }
 
 export {
