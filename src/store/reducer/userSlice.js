@@ -12,8 +12,8 @@ const userSlice = createSlice({
          state.allSpecialty = action.payload
       },
       getAllDoctorSuccess: (state, action) => {
-         state.allDoctor = action.payload.data
-         state.totalDoctor = action.payload.total
+         state.allDoctor = action.payload
+         // state.totalDoctor = action.payload.total
       },
    },
 })

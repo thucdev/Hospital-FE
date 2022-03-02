@@ -19,14 +19,15 @@ const ManageSchedule = () => {
    const fetchAllSchedule = async () => {
       let res = await getAllSchedules()
       const listId = []
-      res.data?.map((item) => {
-         listId.push(item.id)
-      })
-      setAllSchedules(res.data)
+      if (res && res.data.length > 0) {
+         res.data.forEach((item) => {
+            listId.push(item.id)
+         })
+      }
+      setAllSchedules(res.data.data)
 
       setIdCheckAll(listId)
    }
-
    useEffect(() => {
       fetchAllSchedule()
    }, [])

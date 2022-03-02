@@ -47,14 +47,15 @@ function FindDoctor() {
    const handleChangeSelectSpecialty = async (selectedOption) => {
       try {
          let res = await getSpecialtyById(selectedOption.value)
-         if (res?.data) {
+         if (res?.data?.data) {
             setSelectedSpecialty({
-               label: res.data.title,
-               value: res.data.id,
+               label: res.data.data.title,
+               value: res.data.data.id,
             })
          }
 
          let doctorArr = allDoctors.filter((item) => item.specialtyId === selectedOption.value)
+
          if (doctorArr) {
             let listDoctor = []
             doctorArr?.map((item) => {

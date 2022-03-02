@@ -13,7 +13,23 @@ const getAllSpecialties = () => async (dispatch) => {
 const getAllDoctor = () => async (dispatch) => {
    try {
       let res = await axios.get(`/get-all-doctors`)
-      await dispatch(getAllDoctorSuccess(res))
+      if (res) {
+         let dataUser = res?.data.map((item) => {
+            return {
+               ...item,
+               image: Buffer.from(item.image, "base64").toString("binary"),
+               doctor_infoData: {
+                  experience: JSON.parse(item.doctor_infoData.experience),
+                  degree: JSON.parse(item.doctor_infoData.degree),
+                  certificate: JSON.parse(item.doctor_infoData.certificate),
+                  member: JSON.parse(item.doctor_infoData.member),
+                  field: JSON.parse(item.doctor_infoData.field),
+               },
+            }
+         })
+
+         await dispatch(getAllDoctorSuccess(dataUser))
+      }
    } catch (error) {
       console.log("", error)
    }
