@@ -1,19 +1,22 @@
 import axios from "axios"
 import jwt_decode from "jwt-decode"
+import { Navigate } from "react-router-dom"
 import { ACCESS_TOKEN, apiUrl, REFRESH_TOKEN } from "./constant"
-
 const refreshToken = async () => {
    let refreshToken = localStorage.getItem(REFRESH_TOKEN)
 
    try {
       const res = await axios.post(
-         `${apiUrl}/refresh`,
+         `${apiUrl}/v1/api/refresh`,
          { refreshToken }
          // {
          //    withCredentials: true,
          //    credentials: "include",
          // }
       )
+      if (res.success === false) {
+         return <Navigate to='/login' />
+      }
       return res.data
    } catch (error) {
       console.log("er", error)

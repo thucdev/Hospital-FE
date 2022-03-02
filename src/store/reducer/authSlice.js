@@ -22,6 +22,7 @@ const authSlice = createSlice({
       loginFailed: (state) => {
          state.login.authLoading = false
          state.login.isAuthenticated = false
+         state.login.user = null
       },
       registerSuccess: (state) => {
          state.register.authLoading = false
