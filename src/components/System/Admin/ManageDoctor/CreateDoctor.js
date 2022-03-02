@@ -128,10 +128,10 @@ function CreateDoctor() {
          getDataFromLocal()
 
          let res = await getSpecialtyById(selectedOption.value)
-         if (res?.data.data) {
+         if (res?.data) {
             setSelectedSpecialty({
-               label: res.data.data.title,
-               value: res.data.data.id,
+               label: res.data.title,
+               value: res.data.id,
             })
          }
       } catch (error) {

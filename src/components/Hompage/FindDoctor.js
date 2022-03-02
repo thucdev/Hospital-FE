@@ -48,10 +48,10 @@ function FindDoctor() {
       try {
          let res = await getSpecialtyById(selectedOption.value)
          console.log("specialty finddocto", res)
-         if (res?.data?.data) {
+         if (res?.data) {
             setSelectedSpecialty({
-               label: res.data.data.title,
-               value: res.data.data.id,
+               label: res.data.title,
+               value: res.data.id,
             })
          }
 
