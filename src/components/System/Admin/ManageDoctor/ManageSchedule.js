@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Spinner } from "react-bootstrap"
 import { FormattedMessage, useIntl } from "react-intl"
 import "react-markdown-editor-lite/lib/index.css"
 import { useDispatch } from "react-redux"
@@ -12,11 +13,13 @@ const ManageSchedule = () => {
    const dispatch = useDispatch()
    const intl = useIntl()
 
+   const [loading, setLoading] = useState(false)
    const [allSchedules, setAllSchedules] = useState([])
    const [checked, setChecked] = useState([])
    const [idCheckAll, setIdCheckAll] = useState([])
 
    const fetchAllSchedule = async () => {
+      setLoading(true)
       let res = await getAllSchedules()
       const listId = []
       if (res && res.data.length > 0) {
@@ -27,6 +30,7 @@ const ManageSchedule = () => {
       setAllSchedules(res.data.data)
 
       setIdCheckAll(listId)
+      setLoading(false)
    }
    useEffect(() => {
       fetchAllSchedule()
@@ -132,55 +136,64 @@ const ManageSchedule = () => {
                   </tr>
                </thead>
                <tbody>
-                  {allSchedules?.length > 0 ? (
-                     allSchedules.map((item, index) => {
-                        return (
-                           <tr key={index}>
-                              <td>
-                                 <div className='mb-3 form-check'>
-                                    <input
-                                       type='checkbox'
-                                       className='form-check-input checkbox-item'
-                                       checked={checked.includes(item.id)}
-                                       onChange={() => handleCheckInput(item.id)}
-                                    />
-                                 </div>
-                              </td>
+                  {loading === true && (
+                     <div className='d-flex justify-content-center mt-2'>
+                        <Spinner animation='border' variant='info' />
+                     </div>
+                  )}
+                  {loading === false && (
+                     <>
+                        {allSchedules?.length > 0 ? (
+                           allSchedules.map((item, index) => {
+                              return (
+                                 <tr key={index}>
+                                    <td>
+                                       <div className='mb-3 form-check'>
+                                          <input
+                                             type='checkbox'
+                                             className='form-check-input checkbox-item'
+                                             checked={checked.includes(item.id)}
+                                             onChange={() => handleCheckInput(item.id)}
+                                          />
+                                       </div>
+                                    </td>
 
-                              <td>{index + 1}</td>
-                              <td>{item.dateBooked}</td>
-                              <td className='ps-3'>{item.timeBooked}</td>
-                              <td>{item.patientData.fullName}</td>
-                              <td>{item.reason}</td>
-                              <td>{item.doctorData.fullName}</td>
-                              <td className='w-20'>
-                                 <Link
-                                    to='/system/edit-specialty'
-                                    state={{ specialtyId: item.value }}
-                                    className='btn btn-link'
-                                 >
-                                    <FormattedMessage id='menu.edit' />
-                                 </Link>
-                                 <p
-                                    href=''
-                                    className='btn btn-link'
-                                    data-id='{{this._id}}'
-                                    data-bs-toggle='modal'
-                                    data-bs-target='#delete-course'
-                                    onClick={handleDeleteDoctor.bind(this, item.value)}
-                                 >
-                                    <FormattedMessage id='menu.delete' />
-                                 </p>
+                                    <td>{index + 1}</td>
+                                    <td>{item.dateBooked}</td>
+                                    <td className='ps-3'>{item.timeBooked}</td>
+                                    <td>{item.patientData.fullName}</td>
+                                    <td>{item.reason}</td>
+                                    <td>{item.doctorData.fullName}</td>
+                                    <td className='w-20'>
+                                       <Link
+                                          to='/system/edit-specialty'
+                                          state={{ specialtyId: item.value }}
+                                          className='btn btn-link'
+                                       >
+                                          <FormattedMessage id='menu.edit' />
+                                       </Link>
+                                       <p
+                                          href=''
+                                          className='btn btn-link'
+                                          data-id='{{this._id}}'
+                                          data-bs-toggle='modal'
+                                          data-bs-target='#delete-course'
+                                          onClick={handleDeleteDoctor.bind(this, item.value)}
+                                       >
+                                          <FormattedMessage id='menu.delete' />
+                                       </p>
+                                    </td>
+                                 </tr>
+                              )
+                           })
+                        ) : (
+                           <tr>
+                              <td colSpan='7' className='text-center'>
+                                 <FormattedMessage id='manage.schedule.no-schedule' />
                               </td>
                            </tr>
-                        )
-                     })
-                  ) : (
-                     <tr>
-                        <td colSpan='7' className='text-center'>
-                           <FormattedMessage id='manage.schedule.no-schedule' />
-                        </td>
-                     </tr>
+                        )}
+                     </>
                   )}
                </tbody>
             </table>

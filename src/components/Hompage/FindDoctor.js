@@ -47,6 +47,7 @@ function FindDoctor() {
    const handleChangeSelectSpecialty = async (selectedOption) => {
       try {
          let res = await getSpecialtyById(selectedOption.value)
+         console.log("specialty finddocto", res)
          if (res?.data?.data) {
             setSelectedSpecialty({
                label: res.data.data.title,

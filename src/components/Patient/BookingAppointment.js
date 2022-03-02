@@ -62,10 +62,10 @@ function BookingAppointment() {
    const handleChangeSelect = async (selectedOption) => {
       try {
          let res = await getSpecialtyById(selectedOption.value)
-         if (res?.data) {
+         if (res?.data.data) {
             setSelectedSpecialty({
-               label: res.data.title,
-               value: res.data.id,
+               label: res.data.data.title,
+               value: res.data.data.id,
             })
          }
       } catch (error) {
@@ -92,7 +92,8 @@ function BookingAppointment() {
             dateBooked: formattedDate,
             specialtyId: selectedSpecialty.value,
          })
-         if (res.success) {
+         console.log("res", res)
+         if (res.data.success) {
             toast.success("You have orderd an appointment successfully!")
             setLoading(false)
             navigate("/confirm-email")

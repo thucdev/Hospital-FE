@@ -18,7 +18,7 @@ function DetailSpecialty() {
    const [specialty, setSpecialty] = useState([])
    const fetchData = async () => {
       let specialty = await getSpecialtyById(id)
-      setSpecialty(specialty.data)
+      setSpecialty(specialty.data.data)
    }
 
    useEffect(() => {
@@ -49,7 +49,7 @@ function DetailSpecialty() {
                               className={`specialty-list-name ${id == item.id ? "active" : ""}  `}
                               onClick={() => viewAnotherSpecialty(item.id)}
                            >
-                              {item.translationData.title}
+                              {item.title}
                            </li>
                         )
                      })}

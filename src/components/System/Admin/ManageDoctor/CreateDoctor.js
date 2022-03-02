@@ -128,10 +128,10 @@ function CreateDoctor() {
          getDataFromLocal()
 
          let res = await getSpecialtyById(selectedOption.value)
-         if (res?.data) {
+         if (res?.data.data) {
             setSelectedSpecialty({
-               label: res.data.title,
-               value: res.data.id,
+               label: res.data.data.title,
+               value: res.data.data.id,
             })
          }
       } catch (error) {
@@ -162,7 +162,9 @@ function CreateDoctor() {
             specialtyId: selectedSpecialty.value,
             ...infosArray,
          })
-         if (res.success) {
+         console.log("res", res)
+
+         if (res.data.success) {
             toast.success("Create doctor successfully!")
 
             setInfoFiled({
@@ -194,7 +196,7 @@ function CreateDoctor() {
             dispatch(getAllDoctor())
             ref.current.value = ""
          } else {
-            toast.error(`${res.message}!`)
+            toast.error(`${res.data.message}!`)
          }
       } catch (error) {
          console.log("e", error)

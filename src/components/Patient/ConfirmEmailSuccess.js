@@ -1,7 +1,7 @@
-import Header from "../Header/Header"
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import { verifyBookingAppointment } from "../../services/userService"
+import Header from "../Header/Header"
 
 const ConfirmEmailSuccess = () => {
    const [verify, setVerify] = useState({
@@ -38,7 +38,7 @@ const ConfirmEmailSuccess = () => {
          <Header />
 
          {verify.isLoading === true ? (
-            <div>Loading data...</div>
+            <div className='confirm-content text-center mt-5'>Đang lấy dữ liệu từ server...</div>
          ) : (
             <div>
                {verify.isVerify === true ? (
@@ -49,7 +49,9 @@ const ConfirmEmailSuccess = () => {
                      </div>
                   </div>
                ) : (
-                  <div className='title mt-4'>Lịch hẹn không tồn tại hoặc đã được xác nhận!</div>
+                  <div className='title confirm-content text-center mt-4'>
+                     Lịch hẹn không tồn tại hoặc đã được xác nhận!
+                  </div>
                )}
             </div>
          )}
