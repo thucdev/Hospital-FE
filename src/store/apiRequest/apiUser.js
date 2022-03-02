@@ -3,7 +3,7 @@ import { getAllDoctorSuccess, getAllSpecialtiesSuccess } from "../reducer/userSl
 
 const getAllSpecialties = () => async (dispatch) => {
    try {
-      let res = await axios.get(`/get-all-specialties`)
+      let res = await axios.get(`/v1/api/get-all-specialties`)
       await dispatch(getAllSpecialtiesSuccess(res.data))
    } catch (error) {
       console.log("", error)
@@ -12,7 +12,7 @@ const getAllSpecialties = () => async (dispatch) => {
 
 const getAllDoctor = () => async (dispatch) => {
    try {
-      let res = await axios.get(`/get-all-doctors`)
+      let res = await axios.get(`/v1/api/get-all-doctors`)
       if (res) {
          let dataUser = res?.data.map((item) => {
             return {

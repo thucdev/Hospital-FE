@@ -5,7 +5,7 @@ import { loginFailed, loginSuccess, registerSuccess } from "../reducer/authSlice
 
 export const loginAsync = async (user, dispatch) => {
    try {
-      const res = await axios.post(`${apiUrl}/login`, user)
+      const res = await axios.post(`${apiUrl}/v1/api/login`, user)
       if (res.data.success) {
          localStorage.setItem(ACCESS_TOKEN, res.data.accessToken)
          localStorage.setItem(REFRESH_TOKEN, res.data.refreshToken)
@@ -26,7 +26,7 @@ export const loadUser = () => async (dispatch) => {
       setAuthHeader(localStorage[ACCESS_TOKEN])
    }
    try {
-      const response = await axios.get(`${apiUrl}/auth`, { withCredentials: true })
+      const response = await axios.get(`${apiUrl}/v1/api/auth`, { withCredentials: true })
 
       if (response.data.success) {
          setAuthHeader(localStorage[ACCESS_TOKEN])
@@ -43,7 +43,7 @@ export const loadUser = () => async (dispatch) => {
 
 export const registerUser = async (user, dispatch) => {
    try {
-      const res = await axios.post(`${apiUrl}/register`, user)
+      const res = await axios.post(`${apiUrl}/v1/api/register`, user)
       dispatch(registerSuccess(res.data))
    } catch (error) {
       console.log("", error)

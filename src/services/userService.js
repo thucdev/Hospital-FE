@@ -4,38 +4,38 @@ import { setHeader } from "../utils/setAuthHeader"
 let axiosJWT = createAxios()
 
 const createNewSpecialty = (data) => {
-   return axiosJWT.post(`/create-new-specialty`, data, setHeader())
+   return axiosJWT.post(`/v1/api/create-new-specialty`, data, setHeader())
 }
 
 const createNewSpecialtyTranslation = (data) => {
-   return axiosJWT.post(`/create-new-specialty-translation`, data, setHeader())
+   return axiosJWT.post(`/v1/api/create-new-specialty-translation`, data, setHeader())
 }
 
 const getSpecialtyById = (id) => {
-   return axiosJWT.get(`/get-specialty-by-id/?id=${id}`, setHeader())
+   return axiosJWT.get(`/v1/api/get-specialty-by-id/?id=${id}`, setHeader())
 }
 
 const updateSpecialty = (data) => {
-   return axiosJWT.put(`/update-specialty`, data, setHeader())
+   return axiosJWT.put(`/v1/api/update-specialty`, data, setHeader())
 }
 
 const deleteSpecialty = (id) => {
-   return axiosJWT.delete(`/delete-specialty/?id=${id}`, setHeader())
+   return axiosJWT.delete(`/v1/api/delete-specialty/?id=${id}`, setHeader())
 }
 
 const createDoctor = (data) => {
-   return axiosJWT.post(`/create-doctor`, data, setHeader())
+   return axiosJWT.post(`/v1/api/create-doctor`, data, setHeader())
 }
 
 const getDoctorById = (id) => {
-   return axiosJWT.get(`/get-doctor-by-id/?id=${id}`, setHeader())
+   return axiosJWT.get(`/v1/api/get-doctor-by-id/?id=${id}`, setHeader())
 }
 
 const deleteDoctor = (id) => {
-   return axiosJWT.delete(`/delete-doctor/?id=${id}`, setHeader())
+   return axiosJWT.delete(`/v1/api/delete-doctor/?id=${id}`, setHeader())
 }
 const createAppointment = (data) => {
-   return axiosJWT.post(`/create-an-appointment`, data, setHeader())
+   return axiosJWT.post(`/v1/api/create-an-appointment`, data, setHeader())
 }
 
 const verifyBookingAppointment = (data) => {
@@ -63,15 +63,15 @@ const createNews = (data) => {
 }
 
 const getNews = (data) => {
-   return axios.get(`/news?limit=${data?.limit}&page=${data?.page}`)
+   return axios.get(`/v1/api/news?limit=${data?.limit}&page=${data?.page}`)
 }
 
 const paginationDoctor = (data) => {
-   return axios.get(`/doctors?limit=${data?.limit}&page=${data?.page}`)
+   return axios.get(`/v1/api/doctors?limit=${data?.limit}&page=${data?.page}`)
 }
 
 const getNewsById = (id) => {
-   return axios.get(`/get-news-by-id/?id=${id}`)
+   return axios.get(`/v1/api/get-news-by-id/?id=${id}`)
 }
 
 const logout = (data) => {
