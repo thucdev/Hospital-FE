@@ -12,7 +12,7 @@ const createNewSpecialtyTranslation = (data) => {
 }
 
 const getSpecialtyById = (id) => {
-   return axiosJWT.get(`/v1/api/get-specialty-by-id/?id=${id}`, setHeader())
+   return axiosJWT.get(`/v1/api/get-specialty-by-id/?id=${id}`)
 }
 
 const updateSpecialty = (data) => {
@@ -28,14 +28,14 @@ const createDoctor = (data) => {
 }
 
 const getDoctorById = (id) => {
-   return axiosJWT.get(`/v1/api/get-doctor-by-id/?id=${id}`, setHeader())
+   return axiosJWT.get(`/v1/api/get-doctor-by-id/?id=${id}`)
 }
 
 const deleteDoctor = (id) => {
    return axiosJWT.delete(`/v1/api/delete-doctor/?id=${id}`, setHeader())
 }
 const createAppointment = (data) => {
-   return axiosJWT.post(`/v1/api/create-an-appointment`, data, setHeader())
+   return axiosJWT.post(`/v1/api/create-an-appointment`, data)
 }
 
 const verifyBookingAppointment = (data) => {
@@ -51,7 +51,7 @@ const getAllSchedulesByDoctor = (doctorId) => {
 }
 
 const checkIsEmailExist = (email) => {
-   return axios.post("/v1/api/is-email-exist", email)
+   return axios.post("/v1/api/is-email-exist", email, setHeader())
 }
 
 const createQuestion = (data) => {
