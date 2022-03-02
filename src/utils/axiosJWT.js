@@ -1,13 +1,14 @@
-import axios from "axios"
 import jwt_decode from "jwt-decode"
 import { Navigate } from "react-router-dom"
+import axios from "../utils/axios"
 import { ACCESS_TOKEN, apiUrl, REFRESH_TOKEN } from "./constant"
+
 const refreshToken = async () => {
    let refreshToken = localStorage.getItem(REFRESH_TOKEN)
 
    try {
       const res = await axios.post(
-         `${apiUrl}/v1/api/refresh`,
+         `/v1/api/refresh`,
          { refreshToken }
          // {
          //    withCredentials: true,
