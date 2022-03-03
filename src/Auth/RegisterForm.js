@@ -65,7 +65,6 @@ const RegisterForm = () => {
                <Form.Control
                   type='password'
                   className='my-1'
-                  className='my-1'
                   placeholder='Password'
                   name='password'
                   required

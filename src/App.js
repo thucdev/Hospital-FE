@@ -33,7 +33,7 @@ function App() {
    useEffect(() => {
       dispatch(getAllSpecialties())
       dispatch(getAllDoctor())
-   }, [])
+   }, [dispatch])
 
    return (
       <>

@@ -17,7 +17,7 @@ function DetailNews() {
 
    useEffect(() => {
       fetchData()
-   }, [])
+   }, [fetchData])
 
    return (
       <>

@@ -92,6 +92,7 @@ function BookingAppointment() {
             dateBooked: formattedDate,
             specialtyId: selectedSpecialty.value,
          })
+         console.log("res booking", res)
          if (res.success) {
             toast.success("You have orderd an appointment successfully!")
             setLoading(false)

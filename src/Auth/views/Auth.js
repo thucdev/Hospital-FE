@@ -32,7 +32,7 @@ function Auth({ authRoute }) {
    }
    useEffect(() => {
       checkAuth()
-   }, [])
+   }, [checkAuth])
 
    let body
    if (authLoading) {

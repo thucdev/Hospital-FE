@@ -16,9 +16,10 @@ function DetailSpecialty() {
    const allSpecialties = useSelector((state) => state.userReducer.allSpecialty)
 
    const [specialty, setSpecialty] = useState([])
+   console.log("specialty", specialty)
    const fetchData = async () => {
       let specialty = await getSpecialtyById(id)
-      setSpecialty(specialty.data.data)
+      setSpecialty(specialty?.data)
    }
 
    useEffect(() => {
@@ -46,7 +47,7 @@ function DetailSpecialty() {
                         return (
                            <li
                               key={index}
-                              className={`specialty-list-name ${id == item.id ? "active" : ""}  `}
+                              className={`specialty-list-name ${id === item.id ? "active" : ""}  `}
                               onClick={() => viewAnotherSpecialty(item.id)}
                            >
                               {item.title}
@@ -77,7 +78,7 @@ function DetailSpecialty() {
                         return (
                            <li
                               key={index}
-                              className={`specialty-list-name ${id == item.id ? "active" : ""}  `}
+                              className={`specialty-list-name ${id === item.id ? "active" : ""}  `}
                               onClick={() => viewAnotherSpecialty(item.id)}
                            >
                               {item.translationData?.title}
