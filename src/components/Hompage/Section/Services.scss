@@ -118,3 +118,47 @@ button.rec-dot:active,
 button.rec-dot:focus {
    box-shadow: 0 0 1px 3px rgba(235, 16, 16, 0.5);
 }
+
+/* mobile and tablet */
+@media (max-width: 1023px) {
+}
+
+/* tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+}
+
+/* mobile */
+@media (max-width: 739px) {
+   .section-services {
+      width: 100%;
+      padding: 0;
+
+      .slide-item-content {
+         padding-left: 100px !important;
+         width: 447px;
+         height: 170px !important;
+         .slide-item-content-title {
+            cursor: pointer;
+            padding-top: 12px;
+            padding-bottom: 10px;
+            font-size: 22px !important;
+         }
+
+         .slide-item-content-body {
+            width: 344px !important;
+         }
+      }
+   }
+   .service-content {
+      .service-slide {
+         .bg-image {
+            width: 402px;
+            height: 294px;
+         }
+      }
+   }
+
+   .rec-arrow-left {
+      display: none;
+   }
+}

@@ -42,7 +42,7 @@ const ManageSpecialty = () => {
 
    const handleDeleteSpecialty = async (specialtyId) => {
       let res = await deleteSpecialty(specialtyId)
-      if (res?.success) {
+      if (res?.data.success) {
          toast.success("Delete specialty success")
          dispatch(getAllSpecialties())
       } else {

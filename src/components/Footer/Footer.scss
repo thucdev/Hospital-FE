@@ -1,9 +1,11 @@
 @import "../../styles/setting";
 
 .bg-footer {
+   overflow: hidden;
+
    background: url("../../assets/footer.jpg") #0061a9 no-repeat center top;
    // width: 1349px;
-   width: 1361px;
+   // width: 1361px;
    height: 349px;
    -webkit-background-size: cover;
    -moz-background-size: cover;
@@ -37,11 +39,30 @@
 }
 
 .copywrite {
+   overflow: hidden;
+
    background-color: #005594;
-   width: 1361px;
+   // width: 1361px;
    height: 36px;
    color: white;
    font-size: 12px;
+   display: flex;
    justify-content: center;
    align-items: center;
+   text-align: center;
+}
+
+/* mobile and tablet */
+@media (max-width: 1023px) {
+}
+
+/* tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+   .copywrite {
+      min-width: 740px;
+   }
+}
+
+/* mobile */
+@media (max-width: 739px) {
 }

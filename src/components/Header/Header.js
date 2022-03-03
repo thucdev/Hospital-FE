@@ -212,36 +212,36 @@ function Header() {
                </div>
             </div>
          </div>
-         <div className='navbar-contact'>
-            <div className='navbar-item' onClick={() => navigate("/find-doctor")}>
+         <div className='navbar-contact row'>
+            <div className='navbar-item col-sm-6 ' onClick={() => navigate("/find-doctor")}>
                <div className='navbar-icon'>
                   <img src={navGroup1} alt='' />
                </div>
-               <span className='navbar-item-title'>
+               <span className='navbar-item-text col-sm-6 navbar-item-title'>
                   <FormattedMessage id='main-menu.find-doctor' />
                </span>
             </div>
-            <div className='navbar-item' onClick={() => navigate("/booking-appointment")}>
+            <div className='navbar-item col-sm-6 ' onClick={() => navigate("/booking-appointment")}>
                <div className='navbar-icon'>
                   <img src={navGroup3} alt='' />
                </div>
-               <span className='navbar-item-title'>
+               <span className='navbar-item-text col-sm-6 navbar-item-title'>
                   <FormattedMessage id='main-menu.appointment' />
                </span>
             </div>
-            <div className='navbar-item' onClick={() => navigate("/news")}>
+            <div className='navbar-item col-sm-6 ' onClick={() => navigate("/news")}>
                <div className='navbar-icon'>
                   <img src={navGroup2} alt='' />
                </div>
-               <span className='navbar-item-title'>
+               <span className='navbar-item-text col-sm-6 navbar-item-title'>
                   <FormattedMessage id='main-menu.treatment' />
                </span>
             </div>
-            <div className='navbar-item' onClick={() => navigate("/ask-doctor")}>
+            <div className='navbar-item col-sm-6 ' onClick={() => navigate("/ask-doctor")}>
                <div className='navbar-icon'>
                   <img src={navGroup} alt='' />
                </div>
-               <span className='navbar-item-title'>
+               <span className='navbar-item-text col-sm-6 navbar-item-title'>
                   <FormattedMessage id='main-menu.inquiry' />
                </span>
             </div>

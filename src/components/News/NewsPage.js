@@ -63,45 +63,50 @@ function NewsPage() {
             </h1>
          </div>
          <div className='news-body'>
-            {loading === true && (
-               <div className='d-flex justify-content-center mt-2'>
-                  <Spinner animation='border' variant='info' />
-               </div>
-            )}
-            {loading === false && (
-               <Row className='news-item-page'>
-                  {postNews?.map((item, index) => {
-                     return (
-                        <Col sm='4' key={index} className='mb-4'>
-                           <div>
-                              <div
-                                 className='bg-image news-thumbnail'
-                                 style={{ backgroundImage: `url(${item.img})` }}
-                              ></div>
-                              <div className='news-item-content'>
-                                 <div className='news-item-info pt-3'>
-                                    <FormattedMessage id='homepage.news.news' />
-                                 </div>
-                                 <h4
-                                    className='news-item-content-title'
-                                    onClick={() => viewNewsDetail(item.id)}
-                                 >
-                                    {item.title}
-                                 </h4>
+            <div className='container'>
+               {loading === true && (
+                  <div className='d-flex justify-content-center mt-2'>
+                     <Spinner animation='border' variant='info' />
+                  </div>
+               )}
+               {loading === false && (
+                  <Row className='news-item-page'>
+                     {postNews?.map((item, index) => {
+                        return (
+                           <Col sm='4' key={index} className='mb-4'>
+                              <div>
+                                 <div
+                                    className='bg-image news-thumbnail'
+                                    style={{ backgroundImage: `url(${item.img})` }}
+                                 ></div>
+                                 <div className='news-item-content'>
+                                    <div className='news-item-info pt-3'>
+                                       <FormattedMessage id='homepage.news.news' />
+                                    </div>
+                                    <h4
+                                       className='news-item-content-title'
+                                       onClick={() => viewNewsDetail(item.id)}
+                                    >
+                                       {item.title}
+                                    </h4>
 
-                                 <div className='read-more' onClick={() => viewNewsDetail(item.id)}>
-                                    <FormattedMessage id='homepage.read-more' />
+                                    <div
+                                       className='read-more'
+                                       onClick={() => viewNewsDetail(item.id)}
+                                    >
+                                       <FormattedMessage id='homepage.read-more' />
+                                    </div>
                                  </div>
                               </div>
-                           </div>
-                        </Col>
-                     )
-                  })}
-               </Row>
-            )}
-         </div>
-         <div className='pagination-number  my-4'>
-            <PaginationNews pagination={pagination} onPageChange={handlePageChange} />
+                           </Col>
+                        )
+                     })}
+                  </Row>
+               )}
+            </div>
+            <div className='pagination-number  my-4'>
+               <PaginationNews pagination={pagination} onPageChange={handlePageChange} />
+            </div>
          </div>
          <Footer />
       </>

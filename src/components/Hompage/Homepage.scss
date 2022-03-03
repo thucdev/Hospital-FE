@@ -64,6 +64,7 @@
    display: flex;
    justify-content: center;
    align-items: center;
+   overflow: hidden;
 
    .info-hospital-header {
       justify-content: center;
@@ -104,5 +105,33 @@
       margin: 40px 0;
       gap: 16px;
       justify-content: center;
+   }
+}
+
+//responsive
+@media (max-width: 1023px) {
+}
+
+/* tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+}
+
+/* mobile */
+@media (max-width: 739px) {
+   .main-menu {
+      height: 0 !important;
+   }
+   .input-search-homepage {
+      .input-search-border {
+         width: 320px !important;
+
+         .input-search {
+            width: 220px !important;
+         }
+         .input-search-icon {
+            width: 30px;
+            height: 30px !important;
+         }
+      }
    }
 }

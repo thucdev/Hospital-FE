@@ -51,7 +51,7 @@ function Homepage() {
                   </Row>
                </Row>
                <Row className='info-hospital-body'>
-                  <Col className='col-4  px-4'>
+                  <div className='col-lg-4 col-sm-12 col-md-12  px-4'>
                      <Row className=' mb-3'>
                         <Col className='col-3 p-0'>
                            <img src={icon2} alt='' />
@@ -66,8 +66,8 @@ function Homepage() {
                      <Row className='info-hospital-content'>
                         <FormattedMessage id='homepage.info.item.content1' />
                      </Row>
-                  </Col>
-                  <Col className='col-4  px-4'>
+                  </div>
+                  <div className='col-lg-4 col-sm-12 col-md-12  px-4'>
                      <Row className=' mb-3'>
                         <Col className='col-3 p-0'>
                            <img src={icon3} alt='' />
@@ -82,8 +82,8 @@ function Homepage() {
                      <Row className='info-hospital-content'>
                         <FormattedMessage id='homepage.info.item.content2' />
                      </Row>
-                  </Col>
-                  <Col className='col-4  px-4'>
+                  </div>
+                  <div className='col-lg-4 col-sm-12 col-md-12  px-4'>
                      <Row className=' mb-3'>
                         <Col className='col-3 p-0'>
                            <img src={icon1} alt='' />
@@ -98,7 +98,7 @@ function Homepage() {
                      <Row className='info-hospital-content'>
                         <FormattedMessage id='homepage.info.item.content3' />
                      </Row>
-                  </Col>
+                  </div>
                </Row>
                <Row className='info-hospital-btn'>
                   <button className='main-btn col-3'>

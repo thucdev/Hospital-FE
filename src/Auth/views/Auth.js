@@ -2,20 +2,37 @@ import { useEffect } from "react"
 import { Spinner } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import { Navigate } from "react-router-dom"
-import { loadUser } from "../../store/apiRequest/apiAuth" //x
+import axios from "../../../src/utils/axios"
+import { loginFailed, loginSuccess } from "../../store/reducer/authSlice"
+import { ACCESS_TOKEN } from "../../utils/constant"
+import setAuthHeader, { setHeader } from "../../utils/setAuthHeader"
 import Login from "../Login"
 import RegisterForm from "../RegisterForm"
 import "./Auth.scss"
 
 function Auth({ authRoute }) {
    const dispatch = useDispatch()
-
    const login = useSelector((state) => state.authReducer.login)
    const { authLoading, isAuthenticated } = login
 
+   //check if user is exist
+   let checkAuth = async () => {
+      if (localStorage[ACCESS_TOKEN]) {
+         const response = await axios.get(`/v1/api/auth`, setHeader())
+         if (response.success) {
+            setAuthHeader(localStorage[ACCESS_TOKEN])
+            dispatch(loginSuccess(response.user))
+         } else {
+            localStorage.removeItem(ACCESS_TOKEN)
+            dispatch(loginFailed())
+         }
+      } else {
+         dispatch(loginFailed())
+      }
+   }
    useEffect(() => {
-      dispatch(loadUser())
-   }, [dispatch])
+      checkAuth()
+   }, [])
 
    let body
    if (authLoading) {

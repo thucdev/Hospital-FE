@@ -1,7 +1,8 @@
 @import "../../styles/setting";
 
 .bg-booking-appointment {
-   width: 1349px;
+   // min-width: 1349px;
+   min-width: 100%;
    height: 400px;
    background: url("../../assets/booking.png") no-repeat center center;
    -webkit-background-size: cover;
@@ -18,6 +19,7 @@
       font-size: 48px;
       font-weight: 500;
       color: white;
+      text-align: center;
    }
 }
 
@@ -61,6 +63,38 @@
       &:hover {
          color: white;
          background-color: $main-color;
+      }
+   }
+}
+
+//responsive
+@media (max-width: 1023px) {
+}
+
+/* tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+   .booking-body {
+      padding: unset !important;
+      .booking-form {
+         .booking-form-body {
+            padding: 0 48px 30px;
+         }
+      }
+   }
+}
+
+/* mobile */
+@media (max-width: 739px) {
+   .booking-body {
+      padding: unset !important;
+      .booking-form {
+         .booking-form-body {
+            padding: unset;
+         }
+      }
+      .btn-save-booking {
+         margin-left: 60px;
+         margin-bottom: 20px;
       }
    }
 }

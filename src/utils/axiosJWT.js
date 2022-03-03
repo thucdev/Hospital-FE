@@ -1,5 +1,4 @@
 import jwt_decode from "jwt-decode"
-import { Navigate } from "react-router-dom"
 import axios from "../utils/axios"
 import { ACCESS_TOKEN, apiUrl, REFRESH_TOKEN } from "./constant"
 
@@ -15,8 +14,8 @@ const refreshToken = async () => {
          //    credentials: "include",
          // }
       )
-      if (res.success === false) {
-         return <Navigate to='/login' />
+      if (!res.success) {
+         window.location.pathname = `/login`
       }
       return res.data
    } catch (error) {
