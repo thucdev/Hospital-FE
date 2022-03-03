@@ -92,7 +92,7 @@ function BookingAppointment() {
             dateBooked: formattedDate,
             specialtyId: selectedSpecialty.value,
          })
-         if (res.data.success) {
+         if (res.success) {
             toast.success("You have orderd an appointment successfully!")
             setLoading(false)
             navigate("/confirm-email")
