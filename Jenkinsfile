@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    dockerimagename = "thucidol/nodeapp"
+    dockerimagename = "thucidol/hospital-fe"
     dockerImage = ""
   }
 

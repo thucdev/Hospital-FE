@@ -16,7 +16,7 @@ spec:
         spec:
             containers:
                 - name: nodeserver
-                  image: thucidol/nodeapp:latest
+                  image: thucidol/hospital-fe:latest
                   ports:
                       - containerPort: 3000
 
