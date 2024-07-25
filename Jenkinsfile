@@ -16,7 +16,6 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh "docker image ls"
 
                     docker.withRegistry("https://registry.hub.docker.com", "dockerhub-credentials-id") {
                     // def app = docker.build "hospital-fe"
