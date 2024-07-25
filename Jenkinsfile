@@ -12,8 +12,8 @@ pipeline {
     stages {
 
         stage('Checkout') {
-            steps {
-                git 'https://github.com/thucdev/Hospital-FE.git'
+             steps {
+                checkout scm
             }
         }
 
