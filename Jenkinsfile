@@ -1,11 +1,12 @@
 pipeline {
     agent any
+    tools { dockerTool  "dockerthuc" }
+
     environment {
         REGISTRY = "thucidol"
         IMAGE = "hospital-fe"
         KUBECONFIG_CREDENTIAL_ID = credentials('dockerhub-credentials-id')
     }
-    tools {dockerTool  "docker" }
     stages {
         stage('Checkout') {
             steps {
