@@ -13,9 +13,11 @@ pipeline {
         }
         stage('Build') {
             steps {
-                docker.withRegistry("https://index.docker.io", "dockerhub-credentials-id") {
+                script {
+                    docker.withRegistry("https://index.docker.io", "dockerhub-credentials-id") {
                     def app = docker.build "hospital-fe"
                     app.push 'latest'
+                    }
                 }
             }
         }
