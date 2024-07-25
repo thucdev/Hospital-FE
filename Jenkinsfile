@@ -1,13 +1,16 @@
 pipeline {
-    stage('Checkout'){
+    agent any
+    stages {
+        stage('Checkout'){
             checkout scm
-    }
+        }
 
-    docker.withRegistry("https://index.docker.io", "dockerhub-credentials-id") {
-        stage "Build"
-        def app = docker.build "hospital-fe"
+        docker.withRegistry("https://index.docker.io", "dockerhub-credentials-id") {
+            stage "Build"
+            def app = docker.build "hospital-fe"
 
-        stage "Publish"
-        app.push 'latest'
+            stage "Publish"
+            app.push 'latest'
+        }
     }
 }
